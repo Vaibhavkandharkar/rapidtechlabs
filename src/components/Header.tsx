@@ -1,7 +1,8 @@
 import { Link } from "@tanstack/react-router";
 import { useState } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Video } from "lucide-react";
 import logo from "@/assets/logo.png";
+import { InstantMeeting } from "@/components/InstantMeeting";
 
 const nav = [
   { to: "/", label: "Home" },
