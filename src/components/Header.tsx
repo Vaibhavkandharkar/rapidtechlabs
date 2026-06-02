@@ -1,7 +1,8 @@
 import { Link } from "@tanstack/react-router";
 import { useState } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Video } from "lucide-react";
 import logo from "@/assets/logo.png";
+import { InstantMeeting } from "@/components/InstantMeeting";
 
 const nav = [
   { to: "/", label: "Home" },
@@ -36,7 +37,14 @@ export function Header() {
             </Link>
           ))}
         </nav>
-        <div className="hidden lg:block">
+        <div className="hidden lg:flex items-center gap-2">
+          <InstantMeeting
+            trigger={
+              <button className="inline-flex items-center gap-1.5 rounded-lg border border-border bg-card px-3.5 py-2 text-sm font-semibold text-foreground hover:bg-secondary transition">
+                <Video size={14} /> Instant Meeting
+              </button>
+            }
+          />
           <Link
             to="/contact"
             className="inline-flex items-center rounded-lg bg-gradient-brand px-4 py-2 text-sm font-semibold text-white shadow-glow hover:opacity-95 transition"
