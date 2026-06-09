@@ -50,9 +50,9 @@ export function Footer() {
             <button className="rounded-lg bg-cyan px-3 py-2 text-sm font-semibold text-brand hover:opacity-90">Join</button>
           </form>
           <ul className="mt-6 space-y-2 text-sm text-white/70">
-            <li className="flex items-center gap-2"><Mail size={14}/> hello@rapidtechlabs.com</li>
-            <li className="flex items-center gap-2"><Phone size={14}/> +1 (555) 123-4567</li>
-            <li className="flex items-center gap-2"><MapPin size={14}/> Global · Remote-first</li>
+            <li className="flex items-center gap-2"><Mail size={14} /> vaibhavk0099@gmail.com</li>
+            <li className="flex items-center gap-2"><Phone size={14} /> +91 9325378590</li>
+            <li className="flex items-center gap-2"><MapPin size={14} /> Global · Remote-first</li>
           </ul>
         </div>
       </div>
