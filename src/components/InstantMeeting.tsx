@@ -68,7 +68,11 @@ export function InstantMeeting({
   throw new Error('Failed to schedule meeting');
 }
 
-      const result = await response.json();
+    const result = await response.json();
+
+    if (!result.meetLink) {
+      throw new Error("Google Meet link was not generated");
+    }
 
     setScheduled({
       date,
