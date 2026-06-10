@@ -14,7 +14,7 @@ export function Footer() {
     setStatus('loading');
     
     try {
-      const response = await fetch('http://localhost:5000/api/newsletter', {
+      const response = await fetch('https://api.rapidtechlabs.in/api/newsletter', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
