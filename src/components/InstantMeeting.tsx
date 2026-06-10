@@ -35,6 +35,43 @@ export function InstantMeeting({
     setTimeout(() => setCopied(false), 2000);
   };
 
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const handleScheduleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setLoading(true);
+    setError(null);
+    
+    const formData = new FormData(e.currentTarget);
+    const data = {
+      name: formData.get('name'),
+      email: formData.get('email'),
+      date: date,
+      time: time
+    };
+
+    try {
+      const response = await fetch('http://localhost:5000/api/schedule', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to schedule meeting');
+      }
+
+      setScheduled({ date, time });
+    } catch (err: any) {
+      setError(err.message || 'Something went wrong. Please try again.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -96,9 +133,14 @@ export function InstantMeeting({
               </div>
             ) : (
               <form
-                onSubmit={(e) => { e.preventDefault(); setScheduled({ date, time }); }}
+                onSubmit={handleScheduleSubmit}
                 className="space-y-4"
               >
+                {error && (
+                  <div className="bg-red-500/10 border border-red-500/20 text-red-500 p-3 rounded-lg text-sm mb-4">
+                    {error}
+                  </div>
+                )}
                 <div>
                   <label className="block text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-2">Pick a day</label>
                   <div className="flex gap-2 overflow-x-auto pb-1">
@@ -136,14 +178,14 @@ export function InstantMeeting({
                   </div>
                 </div>
                 <div className="grid sm:grid-cols-2 gap-3">
-                  <input required placeholder="Your name" maxLength={120}
+                  <input name="name" required placeholder="Your name" maxLength={120}
                     className="rounded-lg border border-input bg-background px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring" />
-                  <input required type="email" placeholder="Work email" maxLength={255}
+                  <input name="email" required type="email" placeholder="Work email" maxLength={255}
                     className="rounded-lg border border-input bg-background px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring" />
                 </div>
-                <button type="submit"
-                  className="w-full rounded-lg bg-gradient-brand px-5 py-2.5 font-semibold text-white shadow-glow hover:brightness-110">
-                  Confirm meeting
+                <button type="submit" disabled={loading}
+                  className="w-full rounded-lg bg-gradient-brand px-5 py-2.5 font-semibold text-white shadow-glow hover:brightness-110 disabled:opacity-70">
+                  {loading ? 'Confirming...' : 'Confirm meeting'}
                 </button>
               </form>
             )}

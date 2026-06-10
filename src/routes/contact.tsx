@@ -20,6 +20,45 @@ export const Route = createFileRoute("/contact")({
 
 function ContactPage() {
   const [sent, setSent] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setLoading(true);
+    setError(null);
+    
+    const formData = new FormData(e.currentTarget);
+    const data = {
+      name: formData.get('name'),
+      email: formData.get('email'),
+      company: formData.get('company'),
+      service: formData.get('service'),
+      project: formData.get('project'),
+      demo: formData.get('demo') === 'on'
+    };
+
+    try {
+      const response = await fetch('https://api.rapidtechlabs.in/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to submit message');
+      }
+
+      setSent(true);
+    } catch (err: any) {
+      setError(err.message || 'Something went wrong. Please try again.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <>
       <PageHero eyebrow="Contact" title="Let's build what's next." subtitle="Tell us about your goals — we'll respond within one business day with a tailored plan." />
@@ -27,7 +66,7 @@ function ContactPage() {
         <div className="grid lg:grid-cols-3 gap-10">
           <div className="lg:col-span-2">
             <form
-              onSubmit={(e) => { e.preventDefault(); setSent(true); }}
+              onSubmit={handleSubmit}
               className="rounded-2xl bg-card border border-border p-8 shadow-card space-y-5"
             >
               {sent ? (
@@ -38,6 +77,11 @@ function ContactPage() {
                 </div>
               ) : (
                 <>
+                  {error && (
+                    <div className="bg-red-500/10 border border-red-500/20 text-red-500 p-3 rounded-lg text-sm">
+                      {error}
+                    </div>
+                  )}
                   <div className="grid sm:grid-cols-2 gap-5">
                     <Field label="Full name" name="name" required />
                     <Field label="Work email" name="email" type="email" required />
@@ -46,7 +90,7 @@ function ContactPage() {
                     <Field label="Company" name="company" />
                     <div>
                       <label className="block text-sm font-medium mb-1.5">Service of interest</label>
-                      <select className="w-full rounded-lg border border-input bg-background px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-ring">
+                      <select name="service" className="w-full rounded-lg border border-input bg-background px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-ring">
                         <option>Not sure yet</option>
                         {services.map((s) => <option key={s.slug}>{s.title}</option>)}
                       </select>
@@ -54,14 +98,14 @@ function ContactPage() {
                   </div>
                   <div>
                     <label className="block text-sm font-medium mb-1.5">Tell us about your project</label>
-                    <textarea required rows={5} maxLength={2000}
+                    <textarea name="project" required rows={5} maxLength={2000}
                       className="w-full rounded-lg border border-input bg-background px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-ring" />
                   </div>
                   <label className="flex items-center gap-2 text-sm text-muted-foreground">
-                    <input type="checkbox" defaultChecked /> Request a product demo
+                    <input type="checkbox" name="demo" defaultChecked /> Request a product demo
                   </label>
-                  <button type="submit" className="w-full rounded-lg bg-gradient-brand px-6 py-3 font-semibold text-white shadow-glow hover:brightness-110 transition">
-                    Send message
+                  <button type="submit" disabled={loading} className="w-full rounded-lg bg-gradient-brand px-6 py-3 font-semibold text-white shadow-glow hover:brightness-110 transition disabled:opacity-70">
+                    {loading ? 'Sending...' : 'Send message'}
                   </button>
                 </>
               )}
