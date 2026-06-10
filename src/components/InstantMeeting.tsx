@@ -27,7 +27,11 @@ export function InstantMeeting({
   const [copied, setCopied] = useState(false);
   const [date, setDate] = useState(dates[1].toISOString());
   const [time, setTime] = useState(times[1]);
-  const [scheduled, setScheduled] = useState<null | { date: string; time: string }>(null);
+ const [scheduled, setScheduled] = useState<null | {
+  date: string;
+  time: string;
+  meetLink: string;
+}>(null);
 
   const copy = async () => {
     await navigator.clipboard.writeText(room);
@@ -61,10 +65,16 @@ export function InstantMeeting({
       });
 
       if (!response.ok) {
-        throw new Error('Failed to schedule meeting');
-      }
+  throw new Error('Failed to schedule meeting');
+}
 
-      setScheduled({ date, time });
+      const result = await response.json();
+
+    setScheduled({
+      date,
+      time,
+      meetLink: result.meetLink,
+    });
     } catch (err: any) {
       setError(err.message || 'Something went wrong. Please try again.');
     } finally {
@@ -127,6 +137,16 @@ export function InstantMeeting({
                   {new Date(scheduled.date).toLocaleDateString(undefined, { weekday: "long", month: "short", day: "numeric" })} at {scheduled.time}.
                   We've reserved your slot — a calendar invite will hit your inbox shortly.
                 </p>
+                <div className="mt-4">
+                <a
+                  href={scheduled.meetLink}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-2 rounded-lg bg-gradient-brand px-4 py-2 text-white font-medium"
+                >
+                  Join Google Meet
+                </a>
+              </div>
                 <button onClick={() => setScheduled(null)} className="mt-4 text-sm text-primary font-medium hover:underline">
                   Book another slot
                 </button>
