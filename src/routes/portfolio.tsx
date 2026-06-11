@@ -2,17 +2,13 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { PageHero, Section } from "@/components/Section";
 import { caseStudies } from "@/data/site";
 import { ArrowRight } from "lucide-react";
+import { generateMeta, webPageSchema, breadcrumbSchema } from "@/lib/seo";
 
 export const Route = createFileRoute("/portfolio")({
-  head: () => ({
-    meta: [
-      { title: "Portfolio — RapidTechLabs Case Studies" },
-      { name: "description", content: "Selected work across manufacturing, healthcare, education, AI and growth marketing." },
-      { property: "og:title", content: "Portfolio — RapidTechLabs" },
-      { property: "og:description", content: "Outcomes our clients love." },
-      { property: "og:url", content: "/portfolio" },
-    ],
-    links: [{ rel: "canonical", href: "/portfolio" }],
+  head: () => generateMeta({
+    title: "Portfolio & Case Studies — ERP, HMS, AI Projects | RapidTechLabs",
+    description: "Explore our selected work across manufacturing ERP, hospital management, institute platforms, AI copilots and growth marketing. 100+ projects delivered across 14 countries.",
+    path: "/portfolio",
   }),
   component: PortfolioPage,
 });
@@ -42,6 +38,31 @@ function PortfolioPage() {
           </Link>
         </div>
       </Section>
+
+      {/* JSON-LD Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(
+            webPageSchema({
+              name: "Portfolio — RapidTechLabs Case Studies",
+              description: "Selected work across manufacturing, healthcare, education, AI and growth marketing.",
+              path: "/portfolio",
+            })
+          ),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(
+            breadcrumbSchema([
+              { name: "Home", path: "/" },
+              { name: "Portfolio", path: "/portfolio" },
+            ])
+          ),
+        }}
+      />
     </>
   );
 }

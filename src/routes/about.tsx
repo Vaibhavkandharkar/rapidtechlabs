@@ -3,17 +3,13 @@ import { PageHero, Section } from "@/components/Section";
 import { CheckCircle2, Target, Users, Sparkles } from "lucide-react";
 import about from "@/assets/about.jpg";
 import { stats } from "@/data/site";
+import { generateMeta, webPageSchema, breadcrumbSchema } from "@/lib/seo";
 
 export const Route = createFileRoute("/about")({
-  head: () => ({
-    meta: [
-      { title: "About RapidTechLabs — Premium engineering partner" },
-      { name: "description", content: "Meet the team building enterprise platforms across ERP, healthcare, education and AI." },
-      { property: "og:title", content: "About RapidTechLabs" },
-      { property: "og:description", content: "A premium engineering partner for ambitious teams." },
-      { property: "og:url", content: "/about" },
-    ],
-    links: [{ rel: "canonical", href: "/about" }],
+  head: () => generateMeta({
+    title: "About RapidTechLabs — Premium Engineering Partner for Ambitious Teams",
+    description: "Meet the senior engineering team building enterprise platforms across ERP, healthcare, education and AI. 100+ projects delivered, 50+ global clients, 99% satisfaction.",
+    path: "/about",
   }),
   component: AboutPage,
 });
@@ -85,6 +81,31 @@ function AboutPage() {
           ))}
         </ul>
       </Section>
+
+      {/* JSON-LD Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(
+            webPageSchema({
+              name: "About RapidTechLabs",
+              description: "Meet the team building enterprise platforms across ERP, healthcare, education and AI.",
+              path: "/about",
+            })
+          ),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(
+            breadcrumbSchema([
+              { name: "Home", path: "/" },
+              { name: "About", path: "/about" },
+            ])
+          ),
+        }}
+      />
     </>
   );
 }

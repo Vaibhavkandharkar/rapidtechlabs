@@ -2,17 +2,13 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { PageHero, Section } from "@/components/Section";
 import { services, techStack } from "@/data/site";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
+import { generateMeta, webPageSchema, breadcrumbSchema } from "@/lib/seo";
 
 export const Route = createFileRoute("/services")({
-  head: () => ({
-    meta: [
-      { title: "Services — RapidTechLabs" },
-      { name: "description", content: "Industrial ERP, Hospital & Institute Management, MVC product development, AI integration and digital marketing." },
-      { property: "og:title", content: "Services — RapidTechLabs" },
-      { property: "og:description", content: "Six core practices, one accountable partner." },
-      { property: "og:url", content: "/services" },
-    ],
-    links: [{ rel: "canonical", href: "/services" }],
+  head: () => generateMeta({
+    title: "IT Services — ERP, Hospital Management, AI & Digital Marketing | RapidTechLabs",
+    description: "Industrial ERP, Hospital & Institute Management Systems, MVC product development, AI integration and performance digital marketing. Six core practices, one accountable partner.",
+    path: "/services",
   }),
   component: ServicesPage,
 });
@@ -56,6 +52,31 @@ function ServicesPage() {
           ))}
         </div>
       </Section>
+
+      {/* JSON-LD Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(
+            webPageSchema({
+              name: "Services — RapidTechLabs",
+              description: "Industrial ERP, Hospital & Institute Management, MVC product development, AI integration and digital marketing.",
+              path: "/services",
+            })
+          ),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(
+            breadcrumbSchema([
+              { name: "Home", path: "/" },
+              { name: "Services", path: "/services" },
+            ])
+          ),
+        }}
+      />
     </>
   );
 }

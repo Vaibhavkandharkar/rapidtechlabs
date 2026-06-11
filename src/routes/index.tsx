@@ -8,17 +8,13 @@ import { Section } from "@/components/Section";
 import {
   Accordion, AccordionContent, AccordionItem, AccordionTrigger,
 } from "@/components/ui/accordion";
+import { generateMeta, faqPageSchema, breadcrumbSchema, webPageSchema } from "@/lib/seo";
 
 export const Route = createFileRoute("/")({
-  head: () => ({
-    meta: [
-      { title: "RapidTechLabs — Smart Technology Solutions for Modern Enterprises" },
-      { name: "description", content: "Transforming businesses through ERP, AI, healthcare, education and product engineering. 100+ projects, 50+ clients, 99% satisfaction." },
-      { property: "og:title", content: "RapidTechLabs — Smart Technology Solutions" },
-      { property: "og:description", content: "Enterprise IT, AI integration and digital growth — engineered for scale." },
-      { property: "og:url", content: "/" },
-    ],
-    links: [{ rel: "canonical", href: "/" }],
+  head: () => generateMeta({
+    title: "RapidTechLabs — Smart Technology Solutions for Modern Enterprises",
+    description: "Transforming businesses through ERP, AI, healthcare, education and product engineering. 100+ projects, 50+ clients, 99% satisfaction.",
+    path: "/",
   }),
   component: Home,
 });
@@ -237,6 +233,34 @@ function Home() {
           </Link>
         </div>
       </section>
+
+      {/* JSON-LD Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(faqPageSchema(faqs)),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(
+            webPageSchema({
+              name: "RapidTechLabs — Smart Technology Solutions",
+              description: "Transforming businesses through ERP, AI, healthcare, education and product engineering.",
+              path: "/",
+            })
+          ),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(
+            breadcrumbSchema([{ name: "Home", path: "/" }])
+          ),
+        }}
+      />
     </>
   );
 }

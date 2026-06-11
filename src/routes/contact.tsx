@@ -3,17 +3,13 @@ import { PageHero, Section } from "@/components/Section";
 import { Mail, Phone, MapPin, CheckCircle2 } from "lucide-react";
 import { useState } from "react";
 import { services } from "@/data/site";
+import { generateMeta, webPageSchema, breadcrumbSchema } from "@/lib/seo";
 
 export const Route = createFileRoute("/contact")({
-  head: () => ({
-    meta: [
-      { title: "Contact RapidTechLabs — Book a discovery call" },
-      { name: "description", content: "Tell us about your project. We respond within one business day." },
-      { property: "og:title", content: "Contact RapidTechLabs" },
-      { property: "og:description", content: "Book a discovery call." },
-      { property: "og:url", content: "/contact" },
-    ],
-    links: [{ rel: "canonical", href: "/contact" }],
+  head: () => generateMeta({
+    title: "Contact RapidTechLabs — Book a Free Discovery Call Today",
+    description: "Tell us about your project and get a tailored plan within one business day. Enterprise IT, ERP, hospital management, AI integration and digital marketing solutions.",
+    path: "/contact",
   }),
   component: ContactPage,
 });
@@ -122,6 +118,31 @@ function ContactPage() {
           </aside>
         </div>
       </Section>
+
+      {/* JSON-LD Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(
+            webPageSchema({
+              name: "Contact RapidTechLabs",
+              description: "Tell us about your project. We respond within one business day.",
+              path: "/contact",
+            })
+          ),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(
+            breadcrumbSchema([
+              { name: "Home", path: "/" },
+              { name: "Contact", path: "/contact" },
+            ])
+          ),
+        }}
+      />
     </>
   );
 }

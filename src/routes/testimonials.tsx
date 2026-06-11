@@ -2,17 +2,13 @@ import { createFileRoute } from "@tanstack/react-router";
 import { PageHero, Section } from "@/components/Section";
 import { testimonials, stats } from "@/data/site";
 import { Quote, Star } from "lucide-react";
+import { generateMeta, webPageSchema, breadcrumbSchema } from "@/lib/seo";
 
 export const Route = createFileRoute("/testimonials")({
-  head: () => ({
-    meta: [
-      { title: "Testimonials — Loved by leaders | RapidTechLabs" },
-      { name: "description", content: "Hear from COOs, CTOs and founders building with RapidTechLabs." },
-      { property: "og:title", content: "Testimonials — RapidTechLabs" },
-      { property: "og:description", content: "Trusted by leaders, loved by teams." },
-      { property: "og:url", content: "/testimonials" },
-    ],
-    links: [{ rel: "canonical", href: "/testimonials" }],
+  head: () => generateMeta({
+    title: "Client Testimonials & Reviews — Trusted by COOs, CTOs & Founders | RapidTechLabs",
+    description: "Hear from COOs, CTOs and founders building mission-critical platforms with RapidTechLabs. 99% client satisfaction, 50+ global clients across ERP, healthcare, AI and more.",
+    path: "/testimonials",
   }),
   component: TestimonialsPage,
 });
@@ -55,6 +51,31 @@ function TestimonialsPage() {
           </div>
         </div>
       </Section>
+
+      {/* JSON-LD Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(
+            webPageSchema({
+              name: "Client Testimonials — RapidTechLabs",
+              description: "Hear from COOs, CTOs and founders building with RapidTechLabs.",
+              path: "/testimonials",
+            })
+          ),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(
+            breadcrumbSchema([
+              { name: "Home", path: "/" },
+              { name: "Testimonials", path: "/testimonials" },
+            ])
+          ),
+        }}
+      />
     </>
   );
 }
