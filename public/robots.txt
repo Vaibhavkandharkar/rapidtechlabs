@@ -1,5 +1,19 @@
-User-agent: *
+User-agent: Googlebot
 Allow: /
-Disallow: /assets/
-
-Sitemap: https://www.rapidtechlabs.in/sitemap.xml
+User-agent: APIs-Google
+Allow: /
+User-agent: Mediapartners-Google
+Allow: /
+User-agent: AdsBot-Google-Mobile
+Allow: /
+User-agent: AdsBot-Google
+Allow: /
+User-agent: Googlebot-Image
+Allow: /
+User-agent: Googlebot-News
+Allow: /
+User-agent: Googlebot-Video
+Allow: /
+User-agent: Storebot-Google
+Allow: /
+Sitemap: https://www.rapidtechlabs.in/
