@@ -73,7 +73,7 @@ export function organizationSchema() {
     contactPoint: {
       "@type": "ContactPoint",
       telephone: "+91-9325378590",
-      email: "contact.rapidtechlabs@gmail.com",
+      email: "contact.rapidtechlabs@",
       contactType: "sales",
       availableLanguage: ["English", "Hindi"],
     },
