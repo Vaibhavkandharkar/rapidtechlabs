@@ -108,7 +108,7 @@ function ContactPage() {
             </form>
           </div>
           <aside className="space-y-6">
-            <InfoCard icon={Mail} label="Email" value="contact.rapidtechlabs@gmail.com" />
+            <InfoCard icon={Mail} label="Email" value="contact.rapidtechlabs@" />
             <InfoCard icon={Phone} label="Phone" value="+91 9325378590" />
             <InfoCard icon={MapPin} label="HQ" value="Global · Remote-first" />
             <div className="rounded-2xl bg-gradient-hero text-white p-6 shadow-glow">
