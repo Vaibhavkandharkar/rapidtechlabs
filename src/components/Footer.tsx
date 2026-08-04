@@ -92,7 +92,7 @@ export function Footer() {
             </p>
           )}
           <ul className="mt-6 space-y-2 text-sm text-white/70">
-            <li className="flex items-center gap-2"><Mail size={14} /> contact.rapidtechlabs@gmail.com</li>
+            <li className="flex items-center gap-2"><Mail size={14} /> contact.rapidtechlabs@</li>
             <li className="flex items-center gap-2"><Phone size={14} /> +91 9325378590</li>
             <li className="flex items-center gap-2"><MapPin size={14} /> Global · Remote-first</li>
           </ul>
