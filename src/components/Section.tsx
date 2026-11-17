@@ -33,11 +33,23 @@ export function Section({
   );
 }
 
-export function PageHero({ eyebrow, title, subtitle }: { eyebrow?: string; title: string; subtitle?: string }) {
+export function PageHero({
+  eyebrow,
+  title,
+  subtitle,
+}: {
+  eyebrow?: string;
+  title: string;
+  subtitle?: string;
+}) {
   return (
     <div className="bg-gradient-hero text-white">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20 sm:py-28">
-        {eyebrow && <span className="text-xs font-semibold uppercase tracking-widest text-cyan">{eyebrow}</span>}
+        {eyebrow && (
+          <span className="text-xs font-semibold uppercase tracking-widest text-cyan">
+            {eyebrow}
+          </span>
+        )}
         <h1 className="mt-3 text-4xl sm:text-5xl lg:text-6xl font-bold max-w-3xl">{title}</h1>
         {subtitle && <p className="mt-5 text-white/80 text-lg max-w-2xl">{subtitle}</p>}
       </div>

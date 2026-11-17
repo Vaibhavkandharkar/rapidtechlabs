@@ -1,14 +1,14 @@
 import { Link } from "@tanstack/react-router";
 import { useState } from "react";
-import { Menu, X, Video } from "lucide-react";
+import { Menu, X, Video, Sparkles, ArrowRight } from "lucide-react";
 import logo from "@/assets/logo.png";
 import { InstantMeeting } from "@/components/InstantMeeting";
 
 const nav = [
   { to: "/", label: "Home" },
-  { to: "/about", label: "About" },
   { to: "/services", label: "Services" },
   { to: "/portfolio", label: "Portfolio" },
+  { to: "/about", label: "About" },
   { to: "/testimonials", label: "Testimonials" },
   { to: "/contact", label: "Contact" },
 ];
@@ -19,7 +19,13 @@ export function Header() {
     <header className="sticky top-0 z-50 glass border-b border-white/40">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex h-16 items-center justify-between">
         <Link to="/" className="flex items-center gap-2">
-          <img src={logo} alt="RapidTechLabs" className="h-9 w-9 object-contain" width={36} height={36} />
+          <img
+            src={logo}
+            alt="RapidTechLabs"
+            className="h-9 w-9 object-contain"
+            width={36}
+            height={36}
+          />
           <span className="font-display font-bold text-lg text-foreground">
             Rapid<span className="text-gradient-brand">TechLabs</span>
           </span>
@@ -30,12 +36,24 @@ export function Header() {
               key={n.to}
               to={n.to}
               className="px-3 py-2 rounded-md text-sm font-medium text-foreground/80 hover:text-foreground hover:bg-secondary transition-colors"
-              activeProps={{ className: "text-primary" }}
+              activeProps={{ className: "text-primary font-semibold" }}
               activeOptions={{ exact: n.to === "/" }}
             >
               {n.label}
             </Link>
           ))}
+          <a
+            href="/#software-products"
+            className="px-3 py-2 rounded-md text-sm font-medium text-foreground/80 hover:text-foreground hover:bg-secondary transition-colors"
+          >
+            DocuGen
+          </a>
+          <a
+            href="/#pricing"
+            className="px-3 py-2 rounded-md text-sm font-medium text-foreground/80 hover:text-foreground hover:bg-secondary transition-colors"
+          >
+            Pricing
+          </a>
         </nav>
         <div className="hidden lg:flex items-center gap-2">
           <InstantMeeting
@@ -47,12 +65,16 @@ export function Header() {
           />
           <Link
             to="/contact"
-            className="inline-flex items-center rounded-lg bg-gradient-brand px-4 py-2 text-sm font-semibold text-white shadow-glow hover:opacity-95 transition"
+            className="inline-flex items-center gap-1.5 rounded-lg bg-gradient-brand px-4 py-2 text-sm font-semibold text-white shadow-glow hover:opacity-95 transition"
           >
-            Request Demo
+            <span>Request a Quote</span> <ArrowRight size={14} />
           </Link>
         </div>
-        <button className="lg:hidden p-2" onClick={() => setOpen(!open)} aria-label="Menu">
+        <button
+          className="lg:hidden p-2 text-foreground"
+          onClick={() => setOpen(!open)}
+          aria-label="Menu"
+        >
           {open ? <X /> : <Menu />}
         </button>
       </div>
@@ -69,9 +91,36 @@ export function Header() {
                 {n.label}
               </Link>
             ))}
-            <Link to="/contact" onClick={() => setOpen(false)} className="mt-2 rounded-lg bg-gradient-brand px-4 py-2 text-sm font-semibold text-white text-center">
-              Request Demo
-            </Link>
+            <a
+              href="/#software-products"
+              onClick={() => setOpen(false)}
+              className="px-3 py-2 rounded-md text-sm font-medium hover:bg-secondary"
+            >
+              DocuGen Engine
+            </a>
+            <a
+              href="/#pricing"
+              onClick={() => setOpen(false)}
+              className="px-3 py-2 rounded-md text-sm font-medium hover:bg-secondary"
+            >
+              Pricing & Packages
+            </a>
+            <div className="pt-2 flex flex-col gap-2">
+              <InstantMeeting
+                trigger={
+                  <button className="w-full inline-flex items-center justify-center gap-1.5 rounded-lg border border-border bg-card px-3.5 py-2.5 text-sm font-semibold text-foreground hover:bg-secondary transition">
+                    <Video size={14} /> Instant Meeting
+                  </button>
+                }
+              />
+              <Link
+                to="/contact"
+                onClick={() => setOpen(false)}
+                className="rounded-lg bg-gradient-brand px-4 py-2.5 text-sm font-semibold text-white text-center shadow-glow"
+              >
+                Request a Free Quote
+              </Link>
+            </div>
           </div>
         </div>
       )}

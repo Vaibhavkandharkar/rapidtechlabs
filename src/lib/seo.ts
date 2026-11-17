@@ -10,6 +10,8 @@
 export const SITE_URL = "https://www.rapidtechlabs.in";
 export const SITE_NAME = "RapidTechLabs";
 export const DEFAULT_OG_IMAGE = `${SITE_URL}/og-image.png`;
+export const CONTACT_EMAIL = "contact.rapidtechlabs@gmail.com";
+export const CONTACT_PHONE = "+91 9325378590";
 
 // ─── meta generator ─────────────────────────────────────────────────────────
 
@@ -69,26 +71,20 @@ export function organizationSchema() {
     url: SITE_URL,
     logo: `${SITE_URL}/logo.png`,
     description:
-      "Enterprise IT solutions: ERP, hospital & institute management, MVC product development, AI integration and digital marketing.",
+      "Enterprise IT solutions: ERP, hospital & institute management, custom software, website development, AI integration and digital marketing.",
     contactPoint: {
       "@type": "ContactPoint",
       telephone: "+91-9325378590",
-      email: "contact.rapidtechlabs@",
+      email: CONTACT_EMAIL,
       contactType: "sales",
       availableLanguage: ["English", "Hindi"],
     },
-    sameAs: [
-      // Add real social URLs when available
-    ],
+    sameAs: ["https://www.linkedin.com/company/rapidtechlabs", "https://twitter.com/rapidtechlabs"],
   };
 }
 
 /** WebPage schema — one per route. */
-export function webPageSchema(opts: {
-  name: string;
-  description: string;
-  path: string;
-}) {
+export function webPageSchema(opts: { name: string; description: string; path: string }) {
   return {
     "@context": "https://schema.org",
     "@type": "WebPage",
@@ -99,7 +95,51 @@ export function webPageSchema(opts: {
   };
 }
 
-/** FAQPage schema — for the homepage FAQ section. */
+/** Service schema. */
+export function serviceSchema(opts: { name: string; description: string; serviceType: string }) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: opts.name,
+    description: opts.description,
+    serviceType: opts.serviceType,
+    provider: {
+      "@type": "Organization",
+      name: SITE_NAME,
+      url: SITE_URL,
+    },
+    areaServed: ["US", "GB", "CA", "AU", "IN", "Worldwide"],
+  };
+}
+
+/** SoftwareApplication schema for DocuGen Engine. */
+export function softwareAppSchema(opts: {
+  name: string;
+  description: string;
+  applicationCategory: string;
+  operatingSystem?: string;
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    name: opts.name,
+    description: opts.description,
+    applicationCategory: opts.applicationCategory,
+    operatingSystem: opts.operatingSystem ?? "Web / Cloud",
+    offers: {
+      "@type": "Offer",
+      price: "49.00",
+      priceCurrency: "USD",
+    },
+    publisher: {
+      "@type": "Organization",
+      name: SITE_NAME,
+      url: SITE_URL,
+    },
+  };
+}
+
+/** FAQPage schema — for FAQ sections. */
 export function faqPageSchema(faqs: Array<{ q: string; a: string }>) {
   return {
     "@context": "https://schema.org",
@@ -113,9 +153,7 @@ export function faqPageSchema(faqs: Array<{ q: string; a: string }>) {
 }
 
 /** BreadcrumbList schema. */
-export function breadcrumbSchema(
-  items: Array<{ name: string; path: string }>
-) {
+export function breadcrumbSchema(items: Array<{ name: string; path: string }>) {
   return {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
