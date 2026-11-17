@@ -173,7 +173,7 @@ export function WebsiteAuditSection() {
   };
 
   return (
-    <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20">
+    <section id="audit-tool" className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20 scroll-mt-20">
       <div className="relative rounded-3xl bg-gradient-hero text-white p-8 sm:p-14 overflow-hidden shadow-glow">
         <div className="absolute top-0 right-0 -mr-20 -mt-20 w-80 h-80 rounded-full bg-cyan/10 blur-3xl pointer-events-none" />
 
