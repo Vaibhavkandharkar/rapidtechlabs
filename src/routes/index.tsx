@@ -43,9 +43,9 @@ import { CTASection } from "@/components/CTASection";
 export const Route = createFileRoute("/")({
   head: () =>
     generateMeta({
-      title: "RapidTechLabs — Smart Technology Solutions, Custom Software & Web Development",
+      title: "RapidTechLabs — Professional Web Development, Custom Software & Digital Agency",
       description:
-        "Enterprise IT solutions, website development, custom software engineering, ERP, and AI integration for international businesses. 100+ projects delivered with 99% satisfaction.",
+        "High-performance website development, custom software engineering, ERP, and AI integration for growing businesses and enterprises. Transparent pricing and guaranteed code ownership.",
       path: "/",
     }),
   component: Home,
@@ -67,7 +67,7 @@ function Home() {
         <div className="absolute inset-0 opacity-30">
           <img
             src={hero}
-            alt=""
+            alt="RapidTechLabs Technology Workspace"
             className="w-full h-full object-cover"
             width={1600}
             height={1024}
@@ -77,7 +77,7 @@ function Home() {
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-24 lg:py-32 grid lg:grid-cols-2 gap-12 items-center">
           <div className="animate-fade-up">
             <span className="inline-flex items-center gap-2 rounded-full glass-dark px-4 py-1.5 text-xs font-medium text-cyan">
-              <Sparkles size={14} /> Enterprise IT · AI · Custom Software · Global Delivery
+              <Sparkles size={14} /> Full-Stack Engineering · AI · Web Development · Agency Partner
             </span>
             <h1 className="mt-5 text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight">
               Transforming Businesses Through{" "}
@@ -85,29 +85,30 @@ function Home() {
                 Smart Technology Solutions
               </span>
             </h1>
-            <p className="mt-6 text-lg text-white/80 max-w-xl">
-              From high-converting web applications and ERPs to AI copilots and custom software, we
-              engineer the digital backbone of forward-thinking organizations worldwide.
+            <p className="mt-6 text-lg text-white/80 max-w-xl leading-relaxed">
+              From launch-ready corporate websites and custom SaaS to modular ERPs and AI copilots,
+              we engineer the digital backbone of ambitious businesses in India and worldwide.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <a
-                href="#enquiry-form"
+                href="#pricing"
                 className="inline-flex items-center gap-2 rounded-lg bg-cyan px-6 py-3 font-semibold text-brand hover:brightness-110 transition shadow-glow"
               >
-                Request a Free Quote <ArrowRight size={18} />
+                View Packages & Pricing <ArrowRight size={18} />
               </a>
-              <Link
-                to="/services"
+              <a
+                href="#enquiry-form"
                 className="inline-flex items-center gap-2 rounded-lg glass-dark px-6 py-3 font-semibold text-white hover:bg-white/20 transition"
               >
-                Explore Services
-              </Link>
+                Request Custom Quote
+              </a>
             </div>
-            <div className="mt-10 grid grid-cols-3 gap-4 max-w-md">
-              {stats.slice(0, 3).map((s) => (
+            {/* Operational Commitments (Replaced fake client counts) */}
+            <div className="mt-10 grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-lg">
+              {stats.map((s) => (
                 <div key={s.label}>
-                  <div className="text-2xl sm:text-3xl font-bold text-cyan">{s.value}</div>
-                  <div className="text-xs text-white/70 mt-1">{s.label}</div>
+                  <div className="text-xl sm:text-2xl font-bold text-cyan">{s.value}</div>
+                  <div className="text-[11px] text-white/70 mt-0.5">{s.label}</div>
                 </div>
               ))}
             </div>
@@ -116,7 +117,7 @@ function Home() {
             <div className="relative rounded-2xl overflow-hidden shadow-glow ring-1 ring-white/20">
               <img
                 src={dashboard}
-                alt="Platform dashboard"
+                alt="Platform dashboard preview"
                 className="w-full h-auto"
                 width={1400}
                 height={896}
@@ -128,8 +129,8 @@ function Home() {
                   <Zap className="text-white" size={18} />
                 </div>
                 <div>
-                  <div className="text-xs text-muted-foreground">Avg. deployment</div>
-                  <div className="font-semibold text-foreground">6 weeks</div>
+                  <div className="text-xs text-muted-foreground">Average Delivery</div>
+                  <div className="font-semibold text-foreground">2–4 Weeks</div>
                 </div>
               </div>
             </div>
@@ -137,31 +138,30 @@ function Home() {
         </div>
       </section>
 
-      {/* CLIENT LOGOS */}
+      {/* SECTOR FOCUS & PLATFORM CAPABILITIES */}
       <section className="border-y border-border bg-secondary/40">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10">
-          <p className="text-center text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-6">
-            Trusted by teams at forward-thinking enterprises
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
+          <p className="text-center text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-4">
+            Technical Engineering Across Key Industry Verticals
           </p>
-          <div className="flex flex-wrap items-center justify-center gap-x-12 gap-y-4 opacity-70">
-            {[
-              "Meridian Manufacturing",
-              "Northcare Hospitals",
-              "Brightline Institute",
-              "FinPivot AI",
-              "Loomstack Growth",
-              "Volton Robotics",
-            ].map((n) => (
-              <span
-                key={n}
-                className="font-display font-bold text-lg sm:text-xl text-muted-foreground"
-              >
-                {n}
-              </span>
-            ))}
+          <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-3 opacity-80 text-sm font-semibold text-muted-foreground">
+            <span>Manufacturing & ERP</span>
+            <span>·</span>
+            <span>Healthcare & Clinics</span>
+            <span>·</span>
+            <span>Education & EdTech</span>
+            <span>·</span>
+            <span>FinTech & AI</span>
+            <span>·</span>
+            <span>Retail & E-Commerce</span>
+            <span>·</span>
+            <span>SaaS Startups</span>
           </div>
         </div>
       </section>
+
+      {/* PRICING & PACKAGES (Positioned high for conversion focus) */}
+      <PricingSection />
 
       {/* FREE WEBSITE AUDIT TOOL */}
       <WebsiteAuditSection />
@@ -170,7 +170,7 @@ function Home() {
       <Section
         eyebrow="What we do"
         title="Solutions engineered for scale"
-        subtitle="End-to-end technology practices engineered for international performance, security, and sales conversion."
+        subtitle="End-to-end technology practices engineered for high performance, security, and measurable sales conversion."
         center
       >
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -293,11 +293,8 @@ function Home() {
         </div>
       </Section>
 
-      {/* INTERNATIONAL AGENCY PARTNERSHIP */}
+      {/* INTERNATIONAL & INDIAN AGENCY PARTNERSHIP */}
       <AgencyPartnershipSection />
-
-      {/* PRICING & PACKAGES */}
-      <PricingSection />
 
       {/* ABOUT */}
       <Section className="bg-gradient-soft rounded-3xl mx-4 sm:mx-6 lg:mx-8 !max-w-none">
@@ -305,7 +302,7 @@ function Home() {
           <div className="rounded-2xl overflow-hidden shadow-card">
             <img
               src={about}
-              alt="Our team"
+              alt="Our engineering team"
               className="w-full h-auto"
               width={1400}
               height={960}
@@ -317,19 +314,19 @@ function Home() {
               About RapidTechLabs
             </span>
             <h2 className="mt-3 text-3xl sm:text-4xl font-bold">
-              A premium engineering partner for ambitious teams
+              A reliable engineering partner for ambitious teams
             </h2>
-            <p className="mt-4 text-muted-foreground text-lg">
-              We blend deep domain expertise with rigorous engineering to deliver platforms that
-              move the needle — from factory floors to hospital wards, classrooms to capital
-              markets.
+            <p className="mt-4 text-muted-foreground text-lg leading-relaxed">
+              We blend deep technical craft with business awareness to deliver platforms that move
+              the needle — from corporate websites to hospital clinics, educational institutions to
+              custom ERPs.
             </p>
             <ul className="mt-6 space-y-3">
               {[
-                "Senior, full-stack engineering pods with 8+ years experience",
-                "Secure-by-design architecture, strict NDAs & IP transfer",
-                "Outcome-driven delivery with weekly sprints & live staging",
-                "Direct time-zone overlap for US, UK, Canada & Australia clients",
+                "Senior, full-stack engineers with hands-on production experience",
+                "Secure-by-design architecture, strict NDAs & 100% IP transfer",
+                "Outcome-driven delivery with bi-weekly sprint staging demos",
+                "Transparent Indian market pricing with no surprise billing",
               ].map((t) => (
                 <li key={t} className="flex items-start gap-3">
                   <CheckCircle2 className="text-accent mt-0.5" size={20} />
@@ -372,11 +369,11 @@ function Home() {
         </div>
       </Section>
 
-      {/* CASE STUDIES */}
+      {/* CASE STUDIES (Clearly labeled demonstration case studies) */}
       <Section
         eyebrow="Case studies"
-        title="Verified outcomes our clients love"
-        subtitle="Real software platforms running in production across 14 countries."
+        title="Demonstrated Technical Solutions"
+        subtitle="Representative software architectures engineered across diverse business domains."
         center
       >
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -435,34 +432,33 @@ function Home() {
             to="/portfolio"
             className="inline-flex items-center gap-2 rounded-lg border border-border bg-card px-5 py-2.5 font-semibold hover:bg-secondary transition shadow-sm"
           >
-            View full portfolio & verified metrics <ArrowRight size={16} />
+            View full portfolio & architectural cases <ArrowRight size={16} />
           </Link>
         </div>
       </Section>
 
-      {/* TESTIMONIALS PREVIEW */}
-      <Section eyebrow="Testimonials" title="Trusted by leaders, loved by teams" center>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {testimonials.slice(0, 3).map((t) => (
-            <blockquote
-              key={t.name}
+      {/* REPRESENTATIVE PROJECT REFERENCES & CLIENT FEEDBACK FRAMEWORK */}
+      <Section
+        eyebrow="Demonstration Scenarios"
+        title="Project Case Scenarios & Implementations"
+        subtitle="Representative client use cases reflecting our modular engineering and deliverables."
+        center
+      >
+        <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+          {testimonials.map((t, idx) => (
+            <div
+              key={idx}
               className="rounded-2xl bg-card border border-border p-6 shadow-card flex flex-col justify-between"
             >
-              <p className="text-foreground text-sm leading-relaxed">"{t.quote}"</p>
-              <footer className="mt-6 flex items-center gap-3 pt-4 border-t border-border">
-                <div className="w-10 h-10 rounded-full bg-gradient-brand grid place-items-center text-white font-semibold text-sm">
-                  {t.name
-                    .split(" ")
-                    .map((n) => n[0])
-                    .join("")
-                    .slice(0, 2)}
-                </div>
-                <div>
-                  <div className="font-semibold text-sm text-foreground">{t.name}</div>
-                  <div className="text-xs text-muted-foreground">{t.role}</div>
-                </div>
-              </footer>
-            </blockquote>
+              <div>
+                <span className="inline-block px-2.5 py-0.5 rounded bg-secondary text-[10px] font-bold uppercase tracking-wider text-accent mb-2">
+                  {t.type}
+                </span>
+                <h4 className="font-bold text-base text-foreground">{t.name}</h4>
+                <div className="text-xs text-primary font-medium mb-3">{t.role}</div>
+                <p className="text-muted-foreground text-sm leading-relaxed">"{t.quote}"</p>
+              </div>
+            </div>
           ))}
         </div>
       </Section>
@@ -479,7 +475,7 @@ function Home() {
       <Section
         eyebrow="FAQ"
         title="Frequently asked questions"
-        subtitle="Everything you need to know about our services, pricing, timelines, and international collaboration."
+        subtitle="Everything you need to know about our services, pricing, GST compliance, and project delivery."
         center
       >
         <Accordion type="single" collapsible className="max-w-3xl mx-auto">
@@ -506,7 +502,7 @@ function Home() {
         title="Let's build what's next for your business."
         subtitle="Tell us about your goals — our technical architects will respond within one business day with a tailored roadmap and guaranteed estimate."
         primaryText="Get a Free Consultation"
-        secondaryText="Book Instant Video Call"
+        secondaryText="Book Video Meeting"
       />
 
       {/* Service Detail Modal */}

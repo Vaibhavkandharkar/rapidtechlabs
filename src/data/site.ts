@@ -54,28 +54,28 @@ export const services: Service[] = [
   {
     slug: "website-development",
     title: "Website Development",
-    short: "High-performance, conversion-focused websites engineered for global brands.",
+    short: "High-performance, conversion-focused websites engineered for modern businesses.",
     description:
       "We build blazing-fast, mobile-responsive, SEO-ready corporate websites, web applications, and landing pages that turn visitors into qualified leads and paying customers.",
     businessBenefits: [
-      "Boost conversion rates by up to 40% with CRO-optimized layouts",
+      "Boost conversion rates with CRO-optimized layouts",
       "Sub-second loading times improving Google search rank & user retention",
       "100% responsive across smartphones, tablets, laptops, and ultra-wide screens",
-      "Enterprise security, GDPR/data privacy compliance, and clean accessible code",
+      "Enterprise security, SSL configuration, and clean accessible code",
     ],
     icon: Globe,
     image: dev,
     features: [
       "Custom React & Next.js Websites",
       "Headless CMS & WordPress",
-      "Responsive & Mobile-First",
-      "Performance & Core Web Vitals 90+",
+      "Mobile-First Responsive Layouts",
+      "Performance & Core Web Vitals Optimization",
     ],
     deliverables: [
       "Custom UI/UX Design in Figma",
       "Full-Stack Development & Testing",
       "On-Page SEO & Analytics Setup",
-      "30-Day Post-Launch Warranty",
+      "Post-Launch Warranty & Handover",
     ],
     techUsed: ["React", "Next.js", "TypeScript", "Tailwind CSS", "WordPress", "Node.js"],
     category: "development",
@@ -85,11 +85,11 @@ export const services: Service[] = [
     title: "Custom Software Development",
     short: "Bespoke SaaS, cloud platforms, and internal business systems built to scale.",
     description:
-      "End-to-end software engineering from architecture design to cloud deployment. We build scalable SaaS products, multi-tenant portals, workflow automation tools, and APIs.",
+      "End-to-end software engineering from architecture design to cloud deployment. We build scalable SaaS products, multi-tenant portals, workflow automation tools, and robust APIs.",
     businessBenefits: [
       "Replace fragmented spreadsheets with a single, secure automated workflow",
       "Full intellectual property (IP) and 100% source code ownership",
-      "Scalable cloud architecture that grows seamlessly from 1,000 to 1M+ users",
+      "Scalable cloud architecture that grows seamlessly with your transaction volume",
       "Drastically reduce operational overhead and eliminate manual human error",
     ],
     icon: Laptop,
@@ -106,7 +106,7 @@ export const services: Service[] = [
       "Automated CI/CD Deployment",
       "Comprehensive API & Code Documentation",
     ],
-    techUsed: ["TypeScript", "Node.js", "Python", ".NET", "PostgreSQL", "AWS / Azure"],
+    techUsed: ["TypeScript", "Node.js", "Python", ".NET Core", "PostgreSQL", "AWS / Azure"],
     category: "development",
   },
   {
@@ -119,7 +119,7 @@ export const services: Service[] = [
       "Reduce manufacturing downtime and eliminate inventory stockouts",
       "Real-time shop floor visibility and machine utilization metrics",
       "Seamless procurement, vendor management, and automated invoicing",
-      "Multi-currency, GST, and international tax compliance out of the box",
+      "Multi-currency, GST, and statutory compliance out of the box",
     ],
     icon: Factory,
     image: industrial,
@@ -127,13 +127,13 @@ export const services: Service[] = [
       "Production planning & MRP",
       "Inventory & BOM management",
       "Procurement & vendor portals",
-      "Real-time KPIs & IoT integration",
+      "Real-time KPIs & IoT telemetry",
     ],
     deliverables: [
       "Factory Workflow Audit",
-      "Custom Module Customization",
+      "Custom Module Tailoring",
       "Legacy Data Migration",
-      "On-Site / Remote Staff Training",
+      "Admin & Operator Training",
     ],
     techUsed: [".NET Core", "React", "PostgreSQL", "Docker", "Redis", "Azure"],
     category: "enterprise",
@@ -141,30 +141,30 @@ export const services: Service[] = [
   {
     slug: "hospital-management",
     title: "Hospital & Clinic Management",
-    short: "HIPAA-aware digital healthcare platforms for modern hospitals & clinics.",
+    short: "Comprehensive digital healthcare platforms for modern hospitals & clinics.",
     description:
       "Complete healthcare management including OPD, IPD, electronic health records (EHR), laboratory diagnostics, pharmacy inventory, and automated patient billing.",
     businessBenefits: [
-      "Cut patient wait times by up to 35% through digital check-ins & queue management",
-      "100% accurate, tamper-proof digital patient health records & test histories",
+      "Cut patient wait times through digital check-ins & queue management",
+      "Tamper-proof digital patient health records & test histories",
       "Eliminate billing discrepancies with insurance integration and auto-claims",
-      "Strict data encryption and HIPAA/NABH compliance safeguards",
+      "Strict data encryption and role-based access safeguards",
     ],
     icon: HeartPulse,
     image: healthcare,
     features: [
       "EHR & OPD/IPD workflows",
       "Laboratory & pharmacy management",
-      "Billing, claims & insurance",
-      "Doctor schedule & telemedicine",
+      "Billing, claims & insurance integration",
+      "Doctor schedule & telemedicine portals",
     ],
     deliverables: [
       "Role-Based Access Control Setup",
       "Department-Wise Rollout Plan",
-      "Patient Portal & Mobile App",
-      "24/7 Dedicated Emergency SLA",
+      "Patient Portal & Staff Training",
+      "Guaranteed Incident Support SLA",
     ],
-    techUsed: ["React", "Node.js", "PostgreSQL", "WebRTC", "Docker", "AWS HealthLake"],
+    techUsed: ["React", "Node.js", "PostgreSQL", "WebRTC", "Docker", "AWS"],
     category: "enterprise",
   },
   {
@@ -172,20 +172,20 @@ export const services: Service[] = [
     title: "Institute Management System",
     short: "Unified ERP platform for universities, schools, colleges, and academies.",
     description:
-      "End-to-end academic management covering student admissions, fee collections, biometric attendance, learning management (LMS), and interactive parent-teacher portals.",
+      "End-to-end academic management covering student admissions, fee collections, biometric attendance, learning management (LMS), and interactive parent-teacher communication.",
     businessBenefits: [
-      "100% paperless administration and fee collection within 90 days",
-      "Instant WhatsApp & SMS notifications to parents for attendance & dues",
+      "Paperless administration and digital fee collection",
+      "Instant WhatsApp & SMS notifications for attendance & fee dues",
       "Automated grade cards, report generation, and student performance tracking",
-      "Multi-campus administration from a single centralized dashboard",
+      "Centralized multi-campus administration from a single dashboard",
     ],
     icon: GraduationCap,
     image: education,
     features: [
       "Admissions & student CRM",
       "Attendance, timetable & LMS",
-      "Fee collection & online payment",
-      "Parent & student mobile portal",
+      "Fee collection & online payment gateway",
+      "Parent & student portal",
     ],
     deliverables: [
       "Campus Data Digitization",
@@ -203,10 +203,10 @@ export const services: Service[] = [
     description:
       "Custom Shopify stores, WooCommerce platforms, and custom headless e-commerce architectures built for blazing speed, frictionless checkout, and high conversion rates.",
     businessBenefits: [
-      "Reduce checkout abandonment with 1-click payment flows & localized currencies",
+      "Reduce checkout abandonment with streamlined payment flows",
       "Automated inventory sync with accounting, ERP, and shipping providers",
       "Advanced product filters, search recommendations, and upselling widgets",
-      "Optimized for high-traffic seasonal sales (Black Friday, festive campaigns)",
+      "Optimized for seasonal sale traffic peaks",
     ],
     icon: ShoppingCart,
     image: marketing,
@@ -214,15 +214,15 @@ export const services: Service[] = [
       "Shopify & WooCommerce Setup",
       "Custom Headless Storefronts",
       "Multi-Currency & Tax Automation",
-      "Payment & Shipping API Integrations",
+      "Payment & Courier API Integrations",
     ],
     deliverables: [
       "Conversion-Optimized Store Theme",
       "Catalog Setup & Migration",
-      "Payment & Courier Integrations",
+      "Payment Gateway Integration",
       "Analytics & Cart Recovery Setup",
     ],
-    techUsed: ["Shopify Liquid", "Next.js Commerce", "Stripe / Razorpay", "Tailwind CSS"],
+    techUsed: ["Shopify Liquid", "Next.js Commerce", "Razorpay / Stripe", "Tailwind CSS"],
     category: "development",
   },
   {
@@ -233,7 +233,7 @@ export const services: Service[] = [
       "We design and deploy intelligent workflows, Zapier/Make integrations, custom bots, and RPA pipelines that connect your CRM, accounting, emails, and internal software.",
     businessBenefits: [
       "Save 15+ hours per team member every week on repetitive data tasks",
-      "Instant 2-way data sync between CRM, Google Workspace, Slack, and accounting",
+      "Instant 2-way data sync between CRM, Google Workspace, and accounting",
       "Zero human entry errors in invoicing, lead routing, and report generation",
       "Faster response times to inbound customer inquiries and quotation requests",
     ],
@@ -261,10 +261,10 @@ export const services: Service[] = [
     description:
       "Custom Retrieval-Augmented Generation (RAG) pipelines, proprietary document intelligence, AI copilots, customer support bots, and predictive business analytics.",
     businessBenefits: [
-      "Automate 70% of tier-1 customer support inquiries with verified AI agents",
+      "Automate repetitive tier-1 customer inquiries with verified AI agents",
       "Extract structured data from unstructured contracts, PDFs, and invoices instantly",
       "Private AI deployments that protect your intellectual property and customer data",
-      "Personalized recommendations that increase customer lifetime value (LTV)",
+      "Personalized recommendations that increase customer lifetime value",
     ],
     icon: BrainCircuit,
     image: ai,
@@ -272,13 +272,13 @@ export const services: Service[] = [
       "Custom RAG Knowledge Bases",
       "Proprietary AI Chatbots & Copilots",
       "Intelligent Document Processing (IDP)",
-      "Predictive Sales & Churn Analytics",
+      "Predictive Analytics & Reports",
     ],
     deliverables: [
       "Custom Vector Database Setup",
-      "Fine-Tuned LLM Prompts & Safeguards",
+      "Fine-Tuned Prompts & Safeguards",
       "Embedded UI Copilot Widget",
-      "Evaluation & Hallucination Testing",
+      "Evaluation & Output Verification",
     ],
     techUsed: ["OpenAI", "LangChain / LlamaIndex", "Pinecone", "Python", "FastAPI"],
     category: "automation",
@@ -292,7 +292,7 @@ export const services: Service[] = [
     businessBenefits: [
       "Predictable return on ad spend (ROAS) and qualified B2B lead generation",
       "Continuous A/B testing of ad creatives, headlines, and landing page funnels",
-      "Target decision-makers in USA, UK, Canada, Australia, and Middle East",
+      "Target decision-makers across national and international markets",
       "Transparent weekly reporting on CAC, pipeline value, and conversion rates",
     ],
     icon: Megaphone,
@@ -315,12 +315,12 @@ export const services: Service[] = [
   {
     slug: "seo-services",
     title: "Search Engine Optimization (SEO)",
-    short: "Dominate search engine rankings for high-intent commercial keywords.",
+    short: "Build organic search authority and visibility for commercial keywords.",
     description:
-      "Technical SEO audits, on-page optimization, content cluster strategy, high-authority backlink outreach, and local/international search domination.",
+      "Technical SEO audits, on-page optimization, content cluster strategy, ethical backlink outreach, and local/national search optimization following Google Webmaster guidelines.",
     businessBenefits: [
       "Attract sustainable, organic high-intent business leads 24/7 without ad spend",
-      "Outrank established competitors in competitive local and international markets",
+      "Improve visibility for core commercial keywords in target geographic markets",
       "Eliminate technical crawl errors, broken links, and slow Core Web Vitals",
       "Build long-term domain authority and brand credibility in Google search",
     ],
@@ -330,7 +330,7 @@ export const services: Service[] = [
       "Comprehensive Technical SEO Audits",
       "Keyword Research & Content Mapping",
       "On-Page Metadata & Schema Optimization",
-      "High-Quality Backlink Building",
+      "Ethical Authority Outreach & Content Strategy",
     ],
     deliverables: [
       "Full Technical Audit Report",
@@ -338,36 +338,36 @@ export const services: Service[] = [
       "Schema & Rich Snippet Implementation",
       "Monthly Keyword Ranking Reports",
     ],
-    techUsed: ["Ahrefs", "SEMrush", "Google Search Console", "Screaming Frog", "Schema.org"],
+    techUsed: ["Google Search Console", "GA4", "Ahrefs / SEMrush", "Screaming Frog", "Schema.org"],
     category: "growth",
   },
   {
     slug: "website-maintenance",
     title: "Website Maintenance & Support",
-    short: "Proactive 24/7 uptime monitoring, security patching, and ongoing updates.",
+    short: "Proactive uptime monitoring, security patching, and ongoing updates.",
     description:
-      "Reliable maintenance plans for businesses that cannot afford website downtime. Includes daily backups, security hardening, plugin updates, speed audits, and content edits.",
+      "Reliable maintenance plans for businesses that value uptime and security. Includes automated backups, security scans, plugin updates, speed audits, and minor design/content edits.",
     businessBenefits: [
-      "99.9% uptime guarantee with instant automated incident alerts",
+      "High uptime guarantee with automated incident alerts",
       "Zero risk of data loss with automated daily cloud backups & 1-click restore",
-      "Immediate protection against malicious attacks, malware, and vulnerabilities",
-      "Dedicated developer hours every month for feature updates and design tweaks",
+      "Protection against malicious attacks, malware, and framework vulnerabilities",
+      "Dedicated developer hours every month for content and design edits",
     ],
     icon: Wrench,
     image: industrial,
     features: [
-      "24/7 Uptime & Performance Monitoring",
-      "Daily Cloud Backups & Instant Restore",
+      "Uptime & Performance Monitoring",
+      "Daily Cloud Backups & Restore",
       "Security Hardening & Malware Scans",
-      "Dedicated Monthly Development Hours",
+      "Dedicated Monthly Developer Hours",
     ],
     deliverables: [
       "Monthly Health & Security Report",
       "Guaranteed SLA Response Time",
       "Software & Plugin Version Updates",
-      "Priority Emergency Support Hotline",
+      "Priority Incident Support",
     ],
-    techUsed: ["AWS S3", "Cloudflare", "GitHub Actions", "UptimeRobot", "Sentry"],
+    techUsed: ["AWS S3", "Cloudflare", "GitHub Actions", "Uptime Monitoring", "Sentry"],
     category: "development",
   },
   {
@@ -377,7 +377,7 @@ export const services: Service[] = [
     description:
       "From database schema design to containerized cloud deployments, we ship clean, maintainable Model-View-Controller applications engineered for reliability and high throughput.",
     businessBenefits: [
-      "Modular codebases that allow new features to ship 3× faster",
+      "Modular codebases that allow new features to ship faster",
       "Decoupled business logic ensuring zero vendor lock-in",
       "Production-ready test coverage with automated unit and integration tests",
       "Effortless maintenance and seamless developer handoff",
@@ -394,7 +394,7 @@ export const services: Service[] = [
       "Architectural Documentation",
       "Unit & Integration Test Suites",
       "Production Deployment Runbooks",
-      "Long-Term SLA Engineering Support",
+      "Structured SLA Engineering Support",
     ],
     techUsed: ["React", "TypeScript", ".NET Core", "Node.js", "Docker", "PostgreSQL"],
     category: "development",
@@ -405,27 +405,28 @@ export const industries = [
   {
     name: "Healthcare",
     icon: HeartPulse,
-    summary: "HIPAA-aware digital health platforms, EHR/EMR, OPD/IPD, and clinic booking systems.",
+    summary:
+      "Secure digital health platforms, EHR/EMR, OPD/IPD workflows, and clinic booking systems.",
     solutions: [
       "Electronic Health Records (EHR)",
       "Automated OPD/IPD workflows",
       "Telemedicine video consultations",
       "Insurance claims & lab tracking",
     ],
-    metric: "-28% patient wait times",
+    metric: "Streamlined patient queue management",
   },
   {
     name: "Real Estate",
     icon: Building2,
     summary:
-      "Interactive property portals, broker CRMs, 3D virtual tour integrations, and lead automation.",
+      "Interactive property portals, broker CRMs, virtual tour integrations, and lead automation.",
     solutions: [
-      "IDX/MLS property listing portals",
+      "Property listing & search portals",
       "Automated buyer & tenant lead qualification",
       "Virtual tour & floor plan viewers",
       "Mortgage & EMI calculation widgets",
     ],
-    metric: "+45% lead qualification speed",
+    metric: "Faster lead response time",
   },
   {
     name: "Education & EdTech",
@@ -438,20 +439,20 @@ export const industries = [
       "Automated fee collection & reminders",
       "Digital report cards & parent apps",
     ],
-    metric: "100% paperless administration",
+    metric: "100% paperless administration workflows",
   },
   {
     name: "Manufacturing & Industrial",
     icon: Factory,
     summary:
-      "Production planning, bill-of-materials (BOM), raw material procurement, and shop-floor IoT.",
+      "Production planning, bill-of-materials (BOM), raw material procurement, and shop-floor tracking.",
     solutions: [
       "Modular Industrial ERP systems",
       "Shop-floor machine utilization tracking",
       "Multi-warehouse inventory tracking",
       "Automated vendor procurement orders",
     ],
-    metric: "+32% manufacturing throughput",
+    metric: "Optimized production throughput",
   },
   {
     name: "E-Commerce & Retail",
@@ -464,7 +465,7 @@ export const industries = [
       "Cart abandonment recovery flows",
       "ERP & warehouse logistics integrations",
     ],
-    metric: "+38% mobile conversion rate",
+    metric: "Frictionless mobile checkout",
   },
   {
     name: "Construction & Engineering",
@@ -477,7 +478,7 @@ export const industries = [
       "Equipment & machinery logbook",
       "Client handover & document management",
     ],
-    metric: "99% on-schedule milestone delivery",
+    metric: "On-schedule milestone tracking",
   },
   {
     name: "Professional Services",
@@ -490,7 +491,7 @@ export const industries = [
       "Secure file sharing & e-signatures",
       "Calendar & consultation scheduling",
     ],
-    metric: "15+ hours saved weekly per team",
+    metric: "Eliminated repetitive manual documentation",
   },
   {
     name: "Startups & SaaS",
@@ -498,11 +499,11 @@ export const industries = [
     summary: "Rapid MVP product development, multi-tenant cloud architecture, and AI copilots.",
     solutions: [
       "Fast 6-to-8 week MVP build & launch",
-      "Stripe subscription billing integration",
+      "Stripe / Razorpay subscription billing",
       "Multi-tenant cloud architecture",
       "Custom AI copilot integrations",
     ],
-    metric: "6 weeks avg. MVP rollout",
+    metric: "6 weeks average MVP turnaround",
   },
 ];
 
@@ -532,43 +533,43 @@ export const whyChooseUsPillars = [
     icon: Users,
     title: "Customer-Focused Development",
     description:
-      "We don't just write code; we design around your end-users and commercial objectives to deliver measurable ROI.",
+      "We design around your target audience and commercial objectives to deliver measurable business ROI.",
   },
   {
     icon: Terminal,
     title: "Modern, Scalable Technologies",
     description:
-      "Built with React, Next.js, TypeScript, .NET Core, Python, and cloud infrastructure engineered for zero obsolescence.",
+      "Built with React, Next.js, TypeScript, .NET Core, Python, and cloud infrastructure engineered for longevity.",
   },
   {
     icon: Zap,
     title: "High-Performance Architecture",
     description:
-      "Sub-second page speeds, 99.9% uptime, and scalable architectures capable of supporting enterprise volume.",
+      "Sub-second page speeds, high availability, and clean responsive code capable of supporting enterprise traffic.",
   },
   {
     icon: Compass,
     title: "Transparent Communication",
     description:
-      "Direct access to senior developers, bi-weekly live sprint demos, real-time Slack/Teams channels, and no hidden surprises.",
+      "Direct communication with developers, bi-weekly live sprint demos, real-time Slack/WhatsApp updates, and no surprises.",
   },
   {
     icon: Shield,
     title: "Rigorous Quality Assurance",
     description:
-      "Automated unit tests, manual edge-case verification, cross-browser compatibility, and deep security audits before every release.",
+      "Manual edge-case verification, cross-browser compatibility, and deep security audits before every release.",
   },
   {
     icon: Clock,
-    title: "24/7 Ongoing Support & SLA",
+    title: "Dedicated Support & Defined SLAs",
     description:
-      "Reliable post-launch warranty, guaranteed response SLAs, proactive security patching, and continuous performance tuning.",
+      "Post-launch warranty, defined response times during covered hours, proactive security patching, and updates.",
   },
   {
     icon: Globe,
-    title: "International Project Delivery",
+    title: "National & International Delivery",
     description:
-      "Proven track record serving clients across USA, UK, Canada, Australia, and India with convenient timezone overlaps.",
+      "Reliable track record delivering projects for Indian enterprises, SMBs, and international agencies.",
   },
 ];
 
@@ -579,14 +580,14 @@ export const developmentProcess = [
     duration: "Week 1",
     description:
       "We analyze your business goals, target audience, competitive landscape, and technical requirements to draft a precise scope of work.",
-    deliverable: "Project Roadmap & Architecture Specs",
+    deliverable: "Project Roadmap & Scope Specification",
   },
   {
     step: "02",
-    title: "UI/UX & Interactive Prototyping",
+    title: "UI/UX & Prototyping",
     duration: "Week 2 - 3",
     description:
-      "Our designers craft high-fidelity Figma prototypes focusing on intuitive user journeys, accessibility, and high conversion rates.",
+      "Our designers craft modern Figma mockups focusing on intuitive user journeys, accessibility, and high conversion rates.",
     deliverable: "Interactive Figma Prototype & Design System",
   },
   {
@@ -594,7 +595,7 @@ export const developmentProcess = [
     title: "Agile Development Sprints",
     duration: "Weeks 4 - 8",
     description:
-      "Senior engineering pods build front-end and back-end logic in bi-weekly sprints, keeping you updated with live staging previews.",
+      "Engineers build front-end and back-end logic in bi-weekly sprints, keeping you updated with live staging previews.",
     deliverable: "Live Staging Environment & Sprint Demos",
   },
   {
@@ -602,15 +603,15 @@ export const developmentProcess = [
     title: "QA, Security & Performance Audits",
     duration: "Week 9",
     description:
-      "Rigorous automated and manual testing covering cross-device responsiveness, Core Web Vitals, API security, and load capacity.",
-    deliverable: "QA Test Matrix & Security Clearance",
+      "Rigorous automated and manual testing covering cross-device responsiveness, Core Web Vitals, and security headers.",
+    deliverable: "QA Test Matrix & Deployment Sign-off",
   },
   {
     step: "05",
-    title: "Deployment & 24/7 SLA Support",
+    title: "Deployment & SLA Support",
     duration: "Week 10+",
     description:
-      "Seamless production launch on cloud infrastructure with DNS configuration, analytics tracking, and ongoing SLA maintenance.",
+      "Production launch with DNS configuration, analytics setup, complete code handover, and ongoing maintenance coverage.",
     deliverable: "Production Handover & 100% Code Ownership",
   },
 ];
@@ -621,8 +622,8 @@ export const caseStudies = [
     industry: "Industrial Manufacturing",
     image: industrial,
     description:
-      "A centralized, modular ERP platform connecting production planning, inventory tracking, raw material procurement, and accounting across 4 manufacturing plants.",
-    result: "+32% manufacturing throughput, 40% faster rollout time",
+      "Modular ERP platform connecting production planning, inventory tracking, raw material procurement, and accounting across multi-plant manufacturing operations.",
+    result: "Demonstration Case: Streamlined shop-floor reporting and automated BOM calculation",
     technologies: [".NET Core", "React", "PostgreSQL", "Docker", "Redis"],
     featuresDelivered: [
       "Real-time Bill of Materials (BOM) calculation",
@@ -630,229 +631,305 @@ export const caseStudies = [
       "Shop-floor machine telemetry dashboard",
       "Multi-plant financial consolidation",
     ],
-    liveLink: "https://www.rapidtechlabs.in/contact",
+    liveLink: "/contact",
   },
   {
     title: "Northcare Hospitals Management",
     industry: "Healthcare & Clinics",
     image: healthcare,
     description:
-      "A HIPAA-aware hospital management ecosystem implemented across 6 clinic locations, unifying patient records, lab test reports, and insurance billing.",
-    result: "-28% patient wait times & near-zero billing discrepancies",
+      "Clinical and administrative management ecosystem unifying electronic medical records, laboratory diagnostics, and patient billing.",
+    result:
+      "Demonstration Case: Centralized OPD/IPD queue management & paperless diagnostic records",
     technologies: ["React", "Node.js", "PostgreSQL", "WebRTC", "AWS"],
     featuresDelivered: [
       "Digital patient check-in kiosk & queue display",
       "Integrated OPD/IPD electronic medical records",
       "Automated pharmacy stock alerts",
-      "Instant insurance claim validation",
+      "Standard billing and insurance claim workflows",
     ],
-    liveLink: "https://www.rapidtechlabs.in/contact",
+    liveLink: "/contact",
   },
   {
     title: "Brightline Institute Cloud Platform",
     industry: "Higher Education",
     image: education,
     description:
-      "Modern academic management software replacing legacy paper workflows with digital admissions, fee collections, attendance, and parent-teacher communication.",
-    result: "100% paperless administration achieved within 90 days",
+      "Modern academic management software replacing legacy paper workflows with digital admissions, fee collections, attendance, and parent communication.",
+    result: "Demonstration Case: 100% digital fee receipts & biometric attendance notifications",
     technologies: ["Next.js", "TypeScript", "Python", "Tailwind CSS"],
     featuresDelivered: [
       "Online student admission & document verification",
       "Automated fee receipts & gateway integration",
-      "Biometric attendance sync with parent SMS alerts",
+      "Biometric attendance sync with parent alerts",
       "Digital student report cards & grading rubrics",
     ],
-    liveLink: "https://www.rapidtechlabs.in/contact",
+    liveLink: "/contact",
   },
   {
     title: "FinPivot AI Copilot & Analytics",
     industry: "FinTech & SaaS",
     image: ai,
     description:
-      "An enterprise generative AI copilot built on custom RAG architecture that allows wealth managers to query complex financial portfolios in natural language.",
-    result: "Production AI copilot delivered & validated in 9 weeks",
+      "Enterprise generative AI copilot built on custom RAG architecture that allows analysts to query complex document repositories in natural language.",
+    result: "Demonstration Case: Production RAG pipeline with sub-2-second document intelligence",
     technologies: ["OpenAI API", "Python", "FastAPI", "Pinecone", "React"],
     featuresDelivered: [
-      "Document intelligence over 10,000+ SEC filings",
-      "Natural language financial query engine",
+      "Document intelligence over financial reports",
+      "Natural language business query engine",
       "Role-based enterprise data safeguards",
       "Sub-2-second vector search response",
     ],
-    liveLink: "https://www.rapidtechlabs.in/contact",
+    liveLink: "/contact",
   },
   {
     title: "Loomstack B2B Growth Engine",
     industry: "Digital Marketing & CRO",
     image: marketing,
     description:
-      "Comprehensive SEO audit, landing page CRO redesign, and multi-channel Google/LinkedIn advertising campaign for an enterprise B2B SaaS platform.",
-    result: "2× qualified inbound sales pipeline in one single quarter",
+      "Comprehensive SEO audit, landing page CRO redesign, and multi-channel Google/LinkedIn acquisition funnels for B2B services.",
+    result: "Demonstration Case: Conversion-optimized landing page structure and search visibility",
     technologies: ["Next.js", "Google Ads", "LinkedIn Ads", "GA4", "Tailwind"],
     featuresDelivered: [
-      "High-converting B2B landing pages (42% lift)",
+      "High-converting B2B landing pages",
       "High-intent keyword SEO cluster strategy",
-      "Granular attribution & pipeline tracking",
-      "Automated lead enrichment & CRM sync",
+      "Attribution & pipeline tracking setup",
+      "Automated lead capture & CRM notification",
     ],
-    liveLink: "https://www.rapidtechlabs.in/contact",
+    liveLink: "/contact",
   },
   {
     title: "Volton Robotics Global Portal",
     industry: "Industrial Automation & Robotics",
     image: dev,
     description:
-      "Full-cycle MVP to enterprise scale development of an industrial robotics telemetry portal serving clients across 14 countries.",
-    result: "Scalable platform running 99.99% uptime across 14 countries",
+      "Telemetry dashboard and multi-tenant portal for connected industrial automation machinery with anomaly alerts.",
+    result:
+      "Demonstration Case: High-availability telemetry portal with real-time websocket monitoring",
     technologies: ["React", "TypeScript", "Node.js", "PostgreSQL", "AWS"],
     featuresDelivered: [
-      "Live robot telemetry & anomaly detection alerts",
+      "Machine telemetry & anomaly detection alerts",
       "Multi-tenant customer administration portal",
       "Automated firmware update scheduling",
       "Enterprise REST API for client integrations",
     ],
-    liveLink: "https://www.rapidtechlabs.in/contact",
+    liveLink: "/contact",
   },
 ];
 
 export const pricingPackages = {
   websiteDevelopment: [
     {
-      name: "Starter Business",
-      priceUSD: "$799",
-      priceINR: "₹65,000",
+      name: "Launch Website",
+      priceINR: "₹19,999",
+      priceUSD: "$249",
+      billingPeriod: "one-time",
+      chargeType: "One-time investment",
       description:
-        "Ideal for growing businesses, startups, and service firms seeking a high-converting digital presence.",
+        "Ideal for individuals, small businesses and startups looking for a fast, modern digital launch.",
       popular: false,
+      recommended: false,
       features: [
-        "Up to 5 Custom-Designed Responsive Pages",
-        "Mobile-First, High-Performance Architecture",
-        "Lead Capture Enquiry Form & WhatsApp Integration",
-        "On-Page SEO Optimization & Google Indexing",
-        "SSL Certificate & Cloudflare Security Setup",
-        "Social Media & Google Map Integration",
-        "30-Day Post-Launch Support & Warranty",
+        "Up to 3 responsive website pages",
+        "Professional modern UI design",
+        "Mobile-first responsive layout",
+        "WhatsApp integration",
+        "Contact and enquiry form",
+        "Basic on-page SEO",
+        "Google Maps integration",
+        "SSL setup",
+        "15-day post-launch support",
+      ],
+      ctaText: "Choose Launch",
+      serviceCode: "website-launch",
+    },
+    {
+      name: "Starter Business",
+      priceINR: "₹39,999",
+      priceUSD: "$499",
+      billingPeriod: "one-time",
+      chargeType: "One-time investment",
+      description:
+        "Ideal for growing businesses and professional service providers requiring strong brand presence.",
+      popular: false,
+      recommended: false,
+      features: [
+        "Up to 5 custom-designed responsive pages",
+        "Mobile-first high-performance architecture",
+        "Lead capture enquiry form and WhatsApp integration",
+        "On-page SEO optimization",
+        "Google indexing setup",
+        "SSL and Cloudflare security configuration",
+        "Social media integration",
+        "Google Maps integration",
+        "30-day post-launch support",
       ],
       ctaText: "Choose Starter",
       serviceCode: "website-starter",
     },
     {
       name: "Growth Professional",
-      priceUSD: "$1,899",
-      priceINR: "₹1,55,000",
+      priceINR: "₹99,999",
+      priceUSD: "$1,199",
+      billingPeriod: "one-time",
+      chargeType: "One-time investment",
       description:
-        "Our most popular package for established companies demanding premium design, speed, and sales conversions.",
+        "Complete full-funnel digital presence engineered for aggressive lead generation and high conversion.",
       popular: true,
+      recommended: false,
+      badge: "MOST POPULAR",
       features: [
-        "Up to 12 Custom-Designed Pages & Sub-services",
-        "High-Converting Landing Pages with A/B CRO Layouts",
-        "Content Management System (CMS) Integration",
-        "Interactive Pricing / Portfolio Showcases",
-        "Core Web Vitals 90+ Speed Guarantee",
-        "Advanced Lead Generation & CRM / Email Integration",
-        "Google Analytics 4 & Meta Pixel Setup",
-        "60-Day Post-Launch Support & Warranty",
+        "Up to 12 custom-designed pages",
+        "Landing pages optimized for conversions",
+        "CMS integration",
+        "Dynamic portfolio and service showcases",
+        "Performance optimization",
+        "Google Analytics 4 and Meta Pixel integration",
+        "Advanced lead generation",
+        "CRM and email integration",
+        "SEO-friendly architecture",
+        "60-day post-launch support",
       ],
       ctaText: "Choose Growth Pro",
       serviceCode: "website-growth",
     },
     {
       name: "Enterprise Custom",
-      priceUSD: "$3,499+",
-      priceINR: "₹2,85,000+",
+      priceINR: "Starting ₹3,50,000",
+      priceUSD: "Starting $4,200",
+      billingPeriod: "custom",
+      chargeType: "Project-based milestone pricing",
       description:
-        "Full-scale digital platforms, bespoke web applications, dynamic customer portals, and e-commerce.",
+        "For businesses requiring advanced digital platforms, custom software, portals, and complex integrations.",
       popular: false,
+      recommended: false,
       features: [
-        "Unlimited Pages & Scalable Architecture",
-        "Custom Backend, APIs & Database Engineering",
-        "User Authentication & Client Self-Service Portal",
-        "Multi-Currency Payment Gateway Integration",
-        "Custom Workflow Automation & Third-Party APIs",
-        "Rigorous Security Hardening & Penetration Testing",
-        "Dedicated Engineering Pod & Weekly Sprints",
-        "90-Day VIP Dedicated Post-Launch SLA",
+        "Custom web applications",
+        "Scalable backend and database architecture",
+        "API development and third-party integrations",
+        "Authentication and user management",
+        "Customer dashboards and portals",
+        "Payment gateway integration",
+        "Custom workflow automation",
+        "Security testing and hardening",
+        "Dedicated development support",
+        "Project-based milestones and SLA",
       ],
       ctaText: "Request Enterprise Quote",
       serviceCode: "website-enterprise",
+      note: "Calculated according to custom project requirements",
     },
   ],
   seoAndMarketing: [
     {
       name: "SEO Foundation",
-      priceUSD: "$499/mo",
-      priceINR: "₹40,000/mo",
+      priceINR: "₹19,999",
+      priceUSD: "$249",
+      billingPeriod: "monthly",
+      chargeType: "Billed Monthly",
       description:
-        "Essential technical SEO, keyword optimization, and continuous ranking improvements.",
+        "Essential technical health and local/national organic search visibility for steady organic traffic.",
       popular: false,
+      recommended: false,
       features: [
-        "Complete Technical Site Health Audit",
-        "Target Keyword Strategy (Up to 15 Keywords)",
-        "On-Page Optimization & Meta Tag Tuning",
-        "Google Search Console & GA4 Optimization",
-        "Broken Link & Redirect Remediation",
-        "Monthly Ranking & Traffic Audit Report",
+        "Complete technical SEO audit",
+        "Target keyword research up to 15 keywords",
+        "On-page SEO optimization",
+        "Meta title and description optimization",
+        "Google Search Console setup",
+        "Google Analytics 4 configuration",
+        "Broken link analysis",
+        "Monthly SEO performance report",
       ],
-      ctaText: "Start SEO Foundation",
+      ctaText: "Select SEO Foundation",
       serviceCode: "seo-foundation",
     },
     {
       name: "Growth Accelerator",
-      priceUSD: "$999/mo",
-      priceINR: "₹80,000/mo",
+      priceINR: "₹49,999",
+      priceUSD: "$599",
+      billingPeriod: "monthly",
+      chargeType: "Billed Monthly",
       description:
-        "High-impact combination of technical SEO, content clusters, and high-authority link acquisition.",
-      popular: true,
+        "Comprehensive organic growth engine combining technical SEO, content clusters, and ethical authority outreach.",
+      popular: false,
+      recommended: true,
+      badge: "RECOMMENDED",
       features: [
-        "Up to 35 High-Intent Target Keywords",
-        "Content Marketing & SEO Blog Publishing (4/mo)",
-        "High-Authority Backlink Outreach Campaign",
-        "Competitor Keyword Gap & Backlink Analysis",
-        "Conversion Rate Optimization (CRO) Recommendations",
-        "Bi-Weekly Strategy Calls & Custom Dashboard",
+        "Target keyword strategy up to 35 keywords",
+        "Four SEO-optimized articles per month",
+        "Technical SEO improvements",
+        "Content cluster development",
+        "Ethical backlink outreach",
+        "Competitor keyword analysis",
+        "Conversion optimization recommendations",
+        "Bi-weekly strategy meetings",
+        "Monthly performance dashboard",
       ],
-      ctaText: "Accelerate Growth",
+      ctaText: "Select Growth Accelerator",
       serviceCode: "growth-accelerator",
+      disclaimer: "No artificial ranking guarantees; verified white-hat Google compliance.",
     },
   ],
   maintenancePlans: [
     {
       name: "Standard Care",
-      priceUSD: "$199/mo",
-      priceINR: "₹15,000/mo",
+      priceINR: "₹5,999",
+      priceUSD: "$75",
+      billingPeriod: "monthly",
+      chargeType: "Billed Monthly",
       description:
-        "Essential security, daily backups, and ongoing uptime monitoring for peace of mind.",
+        "Essential website uptime monitoring, daily backups, and framework security updates for business continuity.",
       popular: false,
+      recommended: false,
       features: [
-        "24/7 Automated Uptime Monitoring",
-        "Daily Cloud Backups with 1-Click Restore",
-        "Security Scanning & Vulnerability Patching",
-        "Plugin, CMS & Framework Updates",
-        "3 Hours of Content / Design Edits Monthly",
-        "Email & Ticketing Support (24h SLA)",
+        "Website uptime monitoring",
+        "Daily automated backups",
+        "Security monitoring",
+        "CMS and framework updates",
+        "Three hours of minor content/design changes",
+        "Email support",
+        "Standard response within one business day",
       ],
-      ctaText: "Select Standard",
+      ctaText: "Choose Standard Care",
       serviceCode: "maint-standard",
     },
     {
-      name: "Proactive 24/7 SLA",
-      priceUSD: "$499/mo",
-      priceINR: "₹40,000/mo",
+      name: "Proactive SLA",
+      priceINR: "₹24,999",
+      priceUSD: "$299",
+      billingPeriod: "monthly",
+      chargeType: "Billed Monthly",
       description:
-        "Dedicated developer hours, emergency priority hotline, speed optimization, and ongoing enhancements.",
+        "Advanced uptime monitoring, security firewall, dedicated developer hours, and rapid incident response.",
       popular: true,
+      recommended: false,
+      badge: "HIGH AVAILABILITY",
       features: [
-        "99.9% Uptime Guarantee with Instant Alerts",
-        "Real-Time Security Firewall & DDoS Mitigation",
-        "10 Hours of Dedicated Developer Time Monthly",
-        "Quarterly Core Web Vitals Performance Audit",
-        "Staging Environment & Safe Updates Testing",
-        "Priority Hotline Support (< 2h Urgent SLA)",
+        "Advanced uptime monitoring",
+        "Security firewall configuration",
+        "Ten dedicated developer hours monthly",
+        "Performance optimization",
+        "Quarterly Core Web Vitals audit",
+        "Staging environment",
+        "Safe deployment and update testing",
+        "Priority incident support",
+        "Urgent incident response target within two hours during covered support hours",
       ],
       ctaText: "Select Proactive SLA",
       serviceCode: "maint-proactive",
     },
   ],
 };
+
+export const pricingTransparencyPoints = [
+  "Website hosting and domain registration are separately quoted unless explicitly included.",
+  "Third-party subscriptions, paid APIs, and commercial integrations are billed separately.",
+  "Advertising budgets (Google/Meta ad spend) are not included in marketing management fees.",
+  "GST is additional where applicable under Indian tax regulations.",
+  "Custom requirements, additional revisions, or out-of-scope modules may affect the final quotation.",
+  "All project deliverables, milestone dates, and revision limits will be defined in the formal proposal.",
+];
 
 export const softwareProduct = {
   name: "DocuGen Engine by RapidTechLabs",
@@ -862,9 +939,9 @@ export const softwareProduct = {
     "DocuGen is our high-speed, enterprise-grade document automation platform. It allows businesses to automatically generate pixel-perfect PDFs, commercial invoices, custom proposals, quotations, and contracts from data or CRM triggers in milliseconds.",
   highlights: [
     {
-      title: "Lightning-Fast PDF Engine",
+      title: "Fast PDF Generation Engine",
       description:
-        "Generate 1,000+ formatted PDF invoices or proposals per minute with sub-second latency.",
+        "Generate formatted PDF invoices, quotes, and reports from structured data in milliseconds.",
     },
     {
       title: "Smart Document Templates",
@@ -874,7 +951,7 @@ export const softwareProduct = {
     {
       title: "Automated Invoicing & Quotes",
       description:
-        "One-click generation of GST/VAT compliant invoices, commercial quotes, and pro-forma bills.",
+        "One-click generation of GST-compliant invoices, commercial quotes, and pro-forma bills.",
     },
     {
       title: "Proposal & Contract Workflows",
@@ -895,20 +972,20 @@ export const softwareProduct = {
   pricing: [
     {
       tier: "Starter Cloud",
-      priceUSD: "$49/mo",
       priceINR: "₹3,999/mo",
+      priceUSD: "$49/mo",
       docs: "Up to 1,000 documents / month",
       features: [
         "Standard Invoice & Quote Templates",
         "PDF Export & Email Dispatch",
         "API & Webhook Trigger Support",
-        "Community & Email Support",
+        "Email Support within 1 business day",
       ],
     },
     {
       tier: "Business Pro",
-      priceUSD: "$149/mo",
       priceINR: "₹11,999/mo",
+      priceUSD: "$149/mo",
       popular: true,
       docs: "Up to 10,000 documents / month",
       features: [
@@ -920,14 +997,14 @@ export const softwareProduct = {
     },
     {
       tier: "Dedicated Enterprise",
-      priceUSD: "Custom",
-      priceINR: "Custom",
+      priceINR: "Custom Quote",
+      priceUSD: "Custom Quote",
       docs: "Unlimited documents / on-premise",
       features: [
         "Self-Hosted Docker Deployment",
         "Dedicated Private Cloud Instance",
         "Custom ERP / CRM Connectors",
-        "24/7 Enterprise SLA Support",
+        "Dedicated Support SLA",
       ],
     },
   ],
@@ -937,7 +1014,7 @@ export const agencyPartnership = {
   eyebrow: "White-Label Partner Program",
   title: "A Trusted Technical Development Partner for Digital Agencies",
   subtitle:
-    "Scale your agency's capacity without increasing in-house payroll. We serve as the discreet, high-caliber engineering backbone for agencies across the USA, UK, Canada, and Australia.",
+    "Scale your agency's delivery capacity without increasing in-house payroll. We serve as the discreet, high-caliber engineering backbone for agencies across India, USA, UK, Canada, and Australia.",
   capabilities: [
     {
       title: "100% White-Label Delivery",
@@ -952,70 +1029,64 @@ export const agencyPartnership = {
     {
       title: "Dedicated Senior Engineering Pods",
       description:
-        "No junior freelancers. You get dedicated, seasoned full-stack engineers embedded into your Slack, Jira, or ClickUp.",
+        "No junior freelancers. You get seasoned full-stack engineers embedded into your Slack, Jira, or ClickUp.",
     },
     {
       title: "Predictable Agency Margins",
       description:
-        "Fixed-price milestone estimates and competitive hourly retainer packages enable your agency to achieve 40%–60% gross profit margins.",
+        "Fixed-price milestone estimates and competitive hourly retainer packages enable your agency to achieve strong gross profit margins.",
     },
     {
-      title: "Time-Zone Overlap & Rapid Turnaround",
+      title: "Follow-The-Sun Turnaround",
       description:
-        "Follow-the-sun workflow: brief us during your evening, wake up to completed pull requests and deployed staging builds.",
+        "Collaborative workflow: brief us during your evening, review completed pull requests and deployed staging builds next day.",
     },
     {
       title: "Versatile Stack Coverage",
       description:
-        "From custom React/Next.js web apps and Shopify Plus to WordPress, .NET backends, and headless APIs.",
+        "From custom React/Next.js web apps and Shopify to WordPress, .NET backends, and headless APIs.",
     },
   ],
-  targetRegions: ["United States", "United Kingdom", "Canada", "Australia", "Europe"],
+  targetRegions: ["India", "United States", "United Kingdom", "Canada", "Australia"],
 };
 
+// Genuine operational commitments replacing unsupported numerical stats
 export const stats = [
-  { value: "100+", label: "Projects Delivered" },
-  { value: "50+", label: "Global Clients" },
-  { value: "99%", label: "Client Satisfaction" },
-  { value: "24/7", label: "Engineering Support" },
+  { value: "100%", label: "Source Code Ownership" },
+  { value: "Agile", label: "Bi-Weekly Sprint Demos" },
+  { value: "< 24h", label: "Discovery Response Time" },
+  { value: "SLA", label: "Defined Support Coverage" },
 ];
 
+// Clearly labeled illustrative project references
 export const testimonials = [
   {
-    name: "Anita Sharma",
-    role: "COO, Meridian Manufacturing",
+    name: "Enterprise ERP Implementation",
+    role: "Industrial Manufacturing Vertical",
     quote:
-      "RapidTechLabs delivered our ERP rollout 40% faster than projected. The platform has become the operating system for our factories.",
+      "A modular ERP rollout replacing fragmented manual spreadsheets with structured production planning, inventory BOM calculation, and real-time shop-floor tracking.",
+    type: "Demonstration Project Case Study",
   },
   {
-    name: "Dr. Rajiv Menon",
-    role: "Director, Northcare Hospitals",
+    name: "Hospital & Diagnostic Platform",
+    role: "Healthcare & Clinical Services",
     quote:
-      "Our HMS rollout across 6 hospitals was seamless. Patient wait times dropped 28% and billing accuracy is near-perfect.",
+      "A HIPAA-aware hospital management ecosystem implemented across multi-specialty clinics, unifying electronic health records, diagnostic lab tests, and automated billing.",
+    type: "Demonstration Project Case Study",
   },
   {
-    name: "Sofia Alvarez",
-    role: "Principal, Brightline Institute",
+    name: "Academic Institute Management",
+    role: "Higher Education Sector",
     quote:
-      "Parents and teachers love the new system. Administration is finally paperless and data-driven.",
+      "Digital academic management software replacing legacy paper workflows with online student admissions, automated fee receipts, and parent communication.",
+    type: "Demonstration Project Case Study",
   },
   {
-    name: "Marcus Lee",
-    role: "CTO, FinPivot",
+    name: "B2B SaaS Growth Architecture",
+    role: "Technology & Software Practice",
     quote:
-      "Their AI integration team shipped a production-grade copilot in 9 weeks. Best engineering partner we've worked with.",
-  },
-  {
-    name: "Emily Carter",
-    role: "VP Marketing, Loomstack",
-    quote:
-      "Inbound leads doubled in one quarter. The team is sharp, data-obsessed, and a joy to collaborate with.",
-  },
-  {
-    name: "Hiroshi Tanaka",
-    role: "Founder, Volton Robotics",
-    quote:
-      "From MVP to scale, RapidTechLabs has been our extended engineering team. Premium quality, every sprint.",
+      "Technical SEO foundation, Core Web Vitals optimization, and conversion-focused landing page engineering tailored to commercial B2B acquisition funnels.",
+    type: "Demonstration Project Case Study",
   },
 ];
 
@@ -1023,12 +1094,12 @@ export const faqs = [
   {
     category: "Pricing & Engagement",
     q: "How do you price your web and software development engagements?",
-    a: "We offer three transparent commercial models: 1) Fixed-Scope Milestone Pricing for projects with defined requirements; 2) Monthly Dedicated Engineering Squads for fast-growing companies and agencies; and 3) Flexible Time & Materials for evolving software projects. Discovery consultations and detailed quotation breakdowns are 100% free.",
+    a: "We offer transparent commercial models: 1) Fixed-Scope Milestone Packages (Launch at ₹19,999, Starter Business at ₹39,999, Growth Professional at ₹99,999, and Custom Enterprise starting ₹3,50,000); 2) Monthly Retainers for SEO and ongoing Maintenance; and 3) Flexible Milestone-based Software Quotations. Discovery consultations and detailed scopes of work are 100% free.",
   },
   {
-    category: "International Delivery",
-    q: "How do you collaborate with clients across USA, UK, Canada, and Australia?",
-    a: "We are a remote-first international team with daily overlapping business hours across North American, European, and Australian timezones. We communicate seamlessly via Slack, Microsoft Teams, Zoom, or Google Meet, provide weekly staging demos, and track progress transparently in Jira or ClickUp.",
+    category: "GST & Invoicing",
+    q: "Are the listed prices inclusive of GST?",
+    a: "Prices listed are exclusive of GST. Applicable GST (18%) is charged on formal tax invoices for Indian entities, with full Input Tax Credit (ITC) compliance. Domain registration, hosting, third-party paid APIs, and advertising budgets are billed separately.",
   },
   {
     category: "Quality & Security",
@@ -1038,12 +1109,12 @@ export const faqs = [
   {
     category: "Timelines & Delivery",
     q: "What does a typical project timeline look like from kick-off to launch?",
-    a: "Corporate websites and conversion-focused landing pages typically ship in 2 to 4 weeks. Custom web applications and MVP software products average 6 to 10 weeks. Large enterprise ERP and hospital platform rollouts span 3 to 6 months depending on module complexity.",
+    a: "Launch and Starter websites typically ship in 1 to 3 weeks. Growth Professional websites take 3 to 5 weeks. Custom software, complex portals, and enterprise ERP systems span 6 to 12 weeks depending on scope.",
   },
   {
     category: "Support & Maintenance",
     q: "What post-launch support and warranty do you provide?",
-    a: "Every project includes a 30-to-90-day post-launch warranty covering bug fixes and technical adjustments at no extra charge. We also offer ongoing monthly maintenance and SLA plans that include 24/7 uptime monitoring, security patching, cloud backups, and dedicated developer hours.",
+    a: "Every project includes a 15 to 60-day post-launch warranty covering bug fixes and technical adjustments at no extra charge. We also offer monthly maintenance plans (Standard Care at ₹5,999/mo and Proactive SLA at ₹24,999/mo) with guaranteed response times during covered business hours.",
   },
   {
     category: "Agency Partnerships",
@@ -1051,8 +1122,8 @@ export const faqs = [
     a: "We act as your behind-the-scenes engineering team. We work strictly under your agency brand, using your email domains, client dashboards, and Git repositories. We never solicit your clients or reveal our involvement without your explicit permission.",
   },
   {
-    category: "Software Products",
-    q: "Can we try a live demo or pilot RapidTechLabs' DocuGen software?",
-    a: "Yes! You can explore an interactive demo directly on our website or schedule a 15-minute guided walkthrough with our technical team. We also offer 14-day risk-free pilot trials for qualified enterprise teams.",
+    category: "SEO Results",
+    q: "Do you guarantee #1 ranking on Google for SEO services?",
+    a: "No ethical agency can guarantee specific #1 positions because Google's algorithm evaluates hundreds of evolving signals. What we guarantee is rigorous, 100% white-hat technical SEO, high-intent keyword mapping, Core Web Vitals optimization, and high-quality content that steadily builds domain authority and organic visibility.",
   },
 ];

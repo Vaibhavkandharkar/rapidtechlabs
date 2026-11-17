@@ -225,8 +225,8 @@ export function Footer() {
               <Phone size={14} className="text-cyan" /> +91 9325378590
             </li>
             <li className="flex items-center gap-2">
-              <MapPin size={14} className="text-cyan" /> Global · Remote-first (US, UK, CA, AU
-              Friendly)
+              <MapPin size={14} className="text-cyan" /> India & Global Remote-First (Pan-India
+              Coverage)
             </li>
           </ul>
         </div>

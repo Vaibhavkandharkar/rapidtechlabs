@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { PageHero, Section } from "@/components/Section";
 import { caseStudies } from "@/data/site";
-import { ArrowRight, CheckCircle2, ExternalLink, Sparkles, ShieldCheck } from "lucide-react";
+import { ArrowRight, CheckCircle2, ExternalLink, Sparkles, ShieldCheck, Info } from "lucide-react";
 import { generateMeta, webPageSchema, breadcrumbSchema } from "@/lib/seo";
 import { ProjectEnquiryForm } from "@/components/ProjectEnquiryForm";
 import { CTASection } from "@/components/CTASection";
@@ -10,9 +10,9 @@ import { CTASection } from "@/components/CTASection";
 export const Route = createFileRoute("/portfolio")({
   head: () =>
     generateMeta({
-      title: "Portfolio & Case Studies — Verified Client Results | RapidTechLabs",
+      title: "Portfolio & Case Studies — Demonstrated Technical Solutions | RapidTechLabs",
       description:
-        "Explore selected production work across manufacturing ERP, hospital platforms, university systems, AI copilots, and high-performance websites across 14 countries.",
+        "Explore production case studies across manufacturing ERP, hospital platforms, university systems, AI copilots, and high-performance websites. Verified deliverables and tech stacks.",
       path: "/portfolio",
     }),
   component: PortfolioPage,
@@ -32,8 +32,8 @@ function PortfolioPage() {
     <>
       <PageHero
         eyebrow="Portfolio & Case Studies"
-        title="Proven Platforms Running in Production Worldwide"
-        subtitle="We measure success by commercial outcomes: higher throughput, reduced patient wait times, automated paperless workflows, and scalable revenue growth."
+        title="Demonstrated Technical Solutions & Architectures"
+        subtitle="Representative software architectures engineered to deliver tangible business value: operational automation, paperless workflows, and scalable commercial infrastructure."
       />
 
       {/* Filter Tabs */}
@@ -56,6 +56,17 @@ function PortfolioPage() {
       </div>
 
       <Section>
+        {/* Transparency note */}
+        <div className="mb-10 p-5 rounded-2xl bg-secondary/50 border border-border flex items-start gap-3 max-w-3xl mx-auto text-xs text-muted-foreground leading-relaxed">
+          <Info size={18} className="text-primary shrink-0 mt-0.5" />
+          <span>
+            <strong>Transparency Notice:</strong> The case studies below illustrate typical
+            functional scopes, modular architecture, and technologies delivered across diverse
+            industries. Live product demonstrations and references are available during direct
+            discovery calls under mutual NDA.
+          </span>
+        </div>
+
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredProjects.map((c) => (
             <article
@@ -87,7 +98,7 @@ function PortfolioPage() {
 
                   <div className="mt-4 p-3 rounded-xl bg-secondary/50 border border-border">
                     <span className="text-[10px] font-bold uppercase tracking-wider text-accent block mb-0.5">
-                      Verified Result
+                      Scope Outcome
                     </span>
                     <span className="text-xs font-semibold text-foreground">{c.result}</span>
                   </div>
@@ -140,8 +151,8 @@ function PortfolioPage() {
         className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 py-16 scroll-mt-20"
       >
         <ProjectEnquiryForm
-          title="Have a Project in Mind? Let's Build It Together."
-          subtitle="Tell us about your requirements, timeline, and industry. Our engineering leadership will prepare a clear scope and roadmap within 24 hours."
+          title="Have a Project in Mind? Let's Discuss Architecture & Scope."
+          subtitle="Tell us about your requirements, timeline, and industry. Our technical leadership will prepare a clear milestone roadmap and quotation within 24 hours."
         />
       </section>
 
@@ -150,7 +161,7 @@ function PortfolioPage() {
         title="Want to see an interactive live demo of any platform?"
         subtitle="Schedule a 15-minute screen share with our solution engineering team to explore the admin dashboards, architecture, and live features."
         primaryText="Schedule Platform Demo"
-        secondaryText="Book Instant Video Call"
+        secondaryText="Book Video Meeting"
       />
 
       {/* JSON-LD Structured Data */}
@@ -161,7 +172,7 @@ function PortfolioPage() {
             webPageSchema({
               name: "Portfolio & Case Studies — RapidTechLabs",
               description:
-                "Selected production work across manufacturing, healthcare, education, AI and growth marketing.",
+                "Demonstrated software architectures across manufacturing, healthcare, education, AI and growth marketing.",
               path: "/portfolio",
             }),
           ),

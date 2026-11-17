@@ -1,17 +1,8 @@
 import { Link } from "@tanstack/react-router";
 import { useState } from "react";
-import { Menu, X, Video, Sparkles, ArrowRight } from "lucide-react";
+import { Menu, X, Video, ArrowRight } from "lucide-react";
 import logo from "@/assets/logo.png";
 import { InstantMeeting } from "@/components/InstantMeeting";
-
-const nav = [
-  { to: "/", label: "Home" },
-  { to: "/services", label: "Services" },
-  { to: "/portfolio", label: "Portfolio" },
-  { to: "/about", label: "About" },
-  { to: "/testimonials", label: "Testimonials" },
-  { to: "/contact", label: "Contact" },
-];
 
 export function Header() {
   const [open, setOpen] = useState(false);
@@ -31,29 +22,54 @@ export function Header() {
           </span>
         </Link>
         <nav className="hidden lg:flex items-center gap-1">
-          {nav.map((n) => (
-            <Link
-              key={n.to}
-              to={n.to}
-              className="px-3 py-2 rounded-md text-sm font-medium text-foreground/80 hover:text-foreground hover:bg-secondary transition-colors"
-              activeProps={{ className: "text-primary font-semibold" }}
-              activeOptions={{ exact: n.to === "/" }}
-            >
-              {n.label}
-            </Link>
-          ))}
+          <Link
+            to="/"
+            className="px-3 py-2 rounded-md text-sm font-medium text-foreground/80 hover:text-foreground hover:bg-secondary transition-colors"
+            activeProps={{ className: "text-primary font-semibold" }}
+            activeOptions={{ exact: true }}
+          >
+            Home
+          </Link>
+          <Link
+            to="/services"
+            className="px-3 py-2 rounded-md text-sm font-medium text-foreground/80 hover:text-foreground hover:bg-secondary transition-colors"
+            activeProps={{ className: "text-primary font-semibold" }}
+          >
+            Services
+          </Link>
+          <a
+            href="/#pricing"
+            className="px-3 py-2 rounded-md text-sm font-medium text-foreground/80 hover:text-foreground hover:bg-secondary transition-colors"
+          >
+            Pricing & Packages
+          </a>
+          <Link
+            to="/portfolio"
+            className="px-3 py-2 rounded-md text-sm font-medium text-foreground/80 hover:text-foreground hover:bg-secondary transition-colors"
+            activeProps={{ className: "text-primary font-semibold" }}
+          >
+            Portfolio
+          </Link>
           <a
             href="/#software-products"
             className="px-3 py-2 rounded-md text-sm font-medium text-foreground/80 hover:text-foreground hover:bg-secondary transition-colors"
           >
             DocuGen
           </a>
-          <a
-            href="/#pricing"
+          <Link
+            to="/about"
             className="px-3 py-2 rounded-md text-sm font-medium text-foreground/80 hover:text-foreground hover:bg-secondary transition-colors"
+            activeProps={{ className: "text-primary font-semibold" }}
           >
-            Pricing
-          </a>
+            About
+          </Link>
+          <Link
+            to="/contact"
+            className="px-3 py-2 rounded-md text-sm font-medium text-foreground/80 hover:text-foreground hover:bg-secondary transition-colors"
+            activeProps={{ className: "text-primary font-semibold" }}
+          >
+            Contact
+          </Link>
         </nav>
         <div className="hidden lg:flex items-center gap-2">
           <InstantMeeting
@@ -63,12 +79,12 @@ export function Header() {
               </button>
             }
           />
-          <Link
-            to="/contact"
+          <a
+            href="/#pricing"
             className="inline-flex items-center gap-1.5 rounded-lg bg-gradient-brand px-4 py-2 text-sm font-semibold text-white shadow-glow hover:opacity-95 transition"
           >
-            <span>Request a Quote</span> <ArrowRight size={14} />
-          </Link>
+            <span>View Packages</span> <ArrowRight size={14} />
+          </a>
         </div>
         <button
           className="lg:hidden p-2 text-foreground"
@@ -81,16 +97,34 @@ export function Header() {
       {open && (
         <div className="lg:hidden border-t border-border bg-background">
           <div className="px-4 py-3 flex flex-col gap-1">
-            {nav.map((n) => (
-              <Link
-                key={n.to}
-                to={n.to}
-                onClick={() => setOpen(false)}
-                className="px-3 py-2 rounded-md text-sm font-medium hover:bg-secondary"
-              >
-                {n.label}
-              </Link>
-            ))}
+            <Link
+              to="/"
+              onClick={() => setOpen(false)}
+              className="px-3 py-2 rounded-md text-sm font-medium hover:bg-secondary"
+            >
+              Home
+            </Link>
+            <Link
+              to="/services"
+              onClick={() => setOpen(false)}
+              className="px-3 py-2 rounded-md text-sm font-medium hover:bg-secondary"
+            >
+              Services
+            </Link>
+            <a
+              href="/#pricing"
+              onClick={() => setOpen(false)}
+              className="px-3 py-2 rounded-md text-sm font-medium hover:bg-secondary font-semibold text-primary"
+            >
+              Pricing & Packages
+            </a>
+            <Link
+              to="/portfolio"
+              onClick={() => setOpen(false)}
+              className="px-3 py-2 rounded-md text-sm font-medium hover:bg-secondary"
+            >
+              Portfolio
+            </Link>
             <a
               href="/#software-products"
               onClick={() => setOpen(false)}
@@ -98,13 +132,20 @@ export function Header() {
             >
               DocuGen Engine
             </a>
-            <a
-              href="/#pricing"
+            <Link
+              to="/about"
               onClick={() => setOpen(false)}
               className="px-3 py-2 rounded-md text-sm font-medium hover:bg-secondary"
             >
-              Pricing & Packages
-            </a>
+              About
+            </Link>
+            <Link
+              to="/contact"
+              onClick={() => setOpen(false)}
+              className="px-3 py-2 rounded-md text-sm font-medium hover:bg-secondary"
+            >
+              Contact
+            </Link>
             <div className="pt-2 flex flex-col gap-2">
               <InstantMeeting
                 trigger={
@@ -113,13 +154,13 @@ export function Header() {
                   </button>
                 }
               />
-              <Link
-                to="/contact"
+              <a
+                href="/#enquiry-form"
                 onClick={() => setOpen(false)}
                 className="rounded-lg bg-gradient-brand px-4 py-2.5 text-sm font-semibold text-white text-center shadow-glow"
               >
-                Request a Free Quote
-              </Link>
+                Request Custom Quote
+              </a>
             </div>
           </div>
         </div>

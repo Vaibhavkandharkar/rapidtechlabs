@@ -129,7 +129,7 @@ function ContactPage() {
               </div>
               <div className="flex items-center gap-2">
                 <Globe size={16} className="text-accent shrink-0" />
-                <span>Full overlap with US, UK & Australian hours</span>
+                <span>Pan-India and international timezone availability</span>
               </div>
             </div>
           </aside>

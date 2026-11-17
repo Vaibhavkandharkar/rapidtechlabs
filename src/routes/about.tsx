@@ -10,9 +10,9 @@ import { CTASection } from "@/components/CTASection";
 export const Route = createFileRoute("/about")({
   head: () =>
     generateMeta({
-      title: "About RapidTechLabs — Premium Engineering Partner for Ambitious Teams",
+      title: "About RapidTechLabs — Engineering Partner for Modern Businesses",
       description:
-        "Meet the senior engineering team building enterprise platforms across ERP, healthcare, education and AI. 100+ projects delivered, 50+ global clients, 99% satisfaction.",
+        "Meet the senior engineering team building enterprise websites, custom software, ERP, and AI platforms. Transparent milestone pricing and guaranteed code ownership.",
       path: "/about",
     }),
   component: AboutPage,
@@ -42,15 +42,15 @@ function AboutPage() {
           <div>
             <h2 className="text-3xl font-bold text-foreground">Our Story & Mission</h2>
             <p className="mt-4 text-muted-foreground text-lg leading-relaxed">
-              RapidTechLabs was founded on a simple belief: most enterprise software is
-              unnecessarily slow, overly generic, and disconnected from genuine commercial outcomes.
-              We set out to change that — with agile, senior-led engineering pods that take complete
-              ownership from architecture to post-launch SLA.
+              RapidTechLabs was founded on a simple belief: businesses deserve modern, high-speed,
+              well-architected digital platforms without exorbitant enterprise overheads or opaque
+              agency retainers. We operate with agile, senior-led engineering pods that take
+              complete ownership from architecture to post-launch support.
             </p>
             <p className="mt-4 text-muted-foreground text-lg leading-relaxed">
-              Today, we serve as the accountable technology development partner for manufacturers,
-              healthcare systems, academic institutes, and fast-growing businesses across 14
-              countries — including North America, Europe, Australia, and Asia.
+              Today, we serve as the accountable technology development partner for growing
+              businesses, healthcare systems, academic institutes, and digital marketing agencies
+              across India and international markets.
             </p>
           </div>
         </div>
@@ -67,7 +67,7 @@ function AboutPage() {
             {
               icon: Users,
               title: "Senior Engineers by Default",
-              body: "Every sprint is led by software engineers with 8+ years of production experience. No junior bait-and-switch.",
+              body: "Every sprint is led by software engineers with production experience. No junior bait-and-switch.",
             },
             {
               icon: Sparkles,
@@ -90,11 +90,17 @@ function AboutPage() {
       </Section>
 
       <Section>
-        <div className="rounded-3xl bg-gradient-hero text-white p-10 sm:p-14 shadow-glow">
+        <div className="rounded-3xl bg-gradient-hero text-white p-10 sm:p-14 shadow-glow max-w-5xl mx-auto">
+          <div className="text-center mb-8">
+            <span className="text-xs uppercase tracking-widest text-cyan font-bold">
+              Our Service Standards
+            </span>
+            <h3 className="text-2xl font-bold mt-1">Guaranteed Operational Commitments</h3>
+          </div>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             {stats.map((s) => (
               <div key={s.label}>
-                <div className="text-4xl font-bold text-cyan">{s.value}</div>
+                <div className="text-3xl sm:text-4xl font-bold text-cyan">{s.value}</div>
                 <div className="mt-2 text-sm text-white/70">{s.label}</div>
               </div>
             ))}
@@ -112,12 +118,12 @@ function AboutPage() {
       >
         <ul className="grid md:grid-cols-2 gap-4 max-w-4xl mx-auto">
           {[
-            "Transparent communication and weekly sprint staging demos",
+            "Transparent communication and bi-weekly sprint staging demos",
             "Security & compliance as baseline: strict NDAs and 100% IP transfer",
-            "Long-term SLA support contracts with named senior engineers",
+            "Structured SLA support contracts with guaranteed response times",
             "Knowledge transfer and complete documentation baked into every engagement",
             "Flexible commercial models: fixed-milestone, T&M, or dedicated squads",
-            "Global international delivery with follow-the-sun timezone coverage",
+            "Competitive Indian market pricing with no hidden charges",
           ].map((t) => (
             <li
               key={t}
@@ -134,7 +140,7 @@ function AboutPage() {
         title="Looking for a high-caliber technical development partner?"
         subtitle="Schedule a technical discovery session with our solutions architects to discuss your roadmap and requirements."
         primaryText="Discuss Your Project"
-        secondaryText="Book Instant Video Call"
+        secondaryText="Book Video Meeting"
       />
 
       {/* JSON-LD Structured Data */}
@@ -145,7 +151,7 @@ function AboutPage() {
             webPageSchema({
               name: "About RapidTechLabs",
               description:
-                "Meet the team building enterprise platforms across ERP, healthcare, education and AI.",
+                "Meet the team building enterprise websites, custom software, ERP, and AI platforms.",
               path: "/about",
             }),
           ),
