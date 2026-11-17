@@ -243,7 +243,7 @@ function Home() {
         </div>
       </Section>
 
-      {/* SOFTWARE PRODUCTS PROMOTION (DocuGen Engine) */}
+      {/* SOFTWARE PRODUCTS PROMOTION (PaperGen) */}
       <SoftwareProductSection />
 
       {/* WHY CHOOSE US */}
@@ -530,10 +530,10 @@ function Home() {
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(
             softwareAppSchema({
-              name: "DocuGen Engine by RapidTechLabs",
+              name: "PaperGen by RapidTechLabs",
               description:
-                "Automated document, invoice, quotation and proposal generation platform for modern enterprises.",
-              applicationCategory: "BusinessApplication",
+                "Automated question paper, exam worksheet and document generation platform deployed live on the cloud.",
+              applicationCategory: "EducationalBusinessApplication",
             }),
           ),
         }}

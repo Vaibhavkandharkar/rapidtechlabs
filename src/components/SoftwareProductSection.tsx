@@ -25,13 +25,13 @@ import {
 } from "@/components/ui/dialog";
 
 export function SoftwareProductSection() {
-  const [activeTab, setActiveTab] = useState<"invoice" | "quotation" | "proposal">("invoice");
+  const [activeTab, setActiveTab] = useState<"exampaper" | "worksheet" | "invoice">("exampaper");
   const [demoOpen, setDemoOpen] = useState(false);
 
   // Dynamic interactive demo state
-  const [clientName, setClientName] = useState("Acme Global Corp");
-  const [invoiceAmount, setInvoiceAmount] = useState("$3,450.00");
-  const [invoiceNumber, setInvoiceNumber] = useState("INV-2026-0842");
+  const [institutionName, setInstitutionName] = useState("Delhi Public Academy");
+  const [subjectTitle, setSubjectTitle] = useState("Advanced Physics & Mathematics");
+  const [totalMarks, setTotalMarks] = useState("100 Marks (3 Hours)");
 
   return (
     <section id="software-products" className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20">
@@ -43,9 +43,26 @@ export function SoftwareProductSection() {
           {softwareProduct.name}
         </h2>
         <p className="mt-3 text-muted-foreground text-lg">
-          {softwareProduct.tagline}. Eliminate manual document preparation and generate
-          pixel-perfect PDFs, commercial proposals, and invoices in seconds.
+          {softwareProduct.tagline}. Generate standardized, beautiful question papers, school
+          worksheets, test blueprints, and institutional invoices in seconds.
         </p>
+        <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
+          <a
+            href={softwareProduct.liveUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 rounded-xl bg-gradient-brand px-5 py-2.5 text-sm font-semibold text-white shadow-glow hover:brightness-110 transition"
+          >
+            <span>Launch Live App (paper-gen-five.vercel.app)</span>
+            <ExternalLink size={15} />
+          </a>
+          <button
+            onClick={() => setDemoOpen(true)}
+            className="inline-flex items-center gap-2 rounded-xl border border-border bg-card px-5 py-2.5 text-sm font-semibold hover:bg-secondary transition"
+          >
+            <Eye size={16} /> Interactive Sandbox
+          </button>
+        </div>
       </div>
 
       {/* Main product feature showcase grid */}
@@ -53,7 +70,12 @@ export function SoftwareProductSection() {
         {/* Left: Overview and highlights */}
         <div className="lg:col-span-6 space-y-6">
           <div className="rounded-2xl bg-card border border-border p-6 sm:p-8 shadow-card">
-            <h3 className="text-xl font-bold text-foreground">Why Teams Choose DocuGen</h3>
+            <div className="flex items-center justify-between mb-2">
+              <h3 className="text-xl font-bold text-foreground">Why Teams Choose PaperGen</h3>
+              <span className="text-[11px] font-bold text-emerald-500 bg-emerald-500/10 px-2.5 py-0.5 rounded-full">
+                Active Live Deployment
+              </span>
+            </div>
             <p className="mt-3 text-muted-foreground text-sm sm:text-base leading-relaxed">
               {softwareProduct.overview}
             </p>
@@ -73,17 +95,20 @@ export function SoftwareProductSection() {
             </div>
 
             <div className="mt-8 pt-6 border-t border-border flex flex-wrap gap-3">
-              <button
-                onClick={() => setDemoOpen(true)}
-                className="inline-flex items-center gap-2 rounded-xl bg-gradient-brand px-5 py-2.5 text-sm font-semibold text-white shadow-glow hover:brightness-110 transition"
+              <a
+                href={softwareProduct.liveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-xl bg-primary px-5 py-2.5 text-sm font-semibold text-white shadow-glow hover:brightness-110 transition"
               >
-                <Eye size={16} /> Try Interactive Demo
-              </button>
+                <span>Open paperGen Software</span>
+                <ExternalLink size={14} />
+              </a>
               <a
                 href="#enquiry-form"
                 className="inline-flex items-center gap-2 rounded-xl border border-border bg-card px-5 py-2.5 text-sm font-semibold hover:bg-secondary transition"
               >
-                Schedule Technical Walkthrough
+                Request Custom Institutional Setup
               </a>
             </div>
           </div>
@@ -95,20 +120,26 @@ export function SoftwareProductSection() {
             <div className="flex items-center justify-between pb-4 border-b border-border">
               <div className="flex items-center gap-2">
                 <FileText size={18} className="text-primary" />
-                <span className="font-semibold text-sm">Live Document Sandbox</span>
+                <span className="font-semibold text-sm">PaperGen Live Sandbox</span>
               </div>
               <div className="flex gap-1.5 p-1 rounded-lg bg-secondary">
-                {(["invoice", "quotation", "proposal"] as const).map((tab) => (
+                {(
+                  [
+                    { id: "exampaper", label: "Exam Paper" },
+                    { id: "worksheet", label: "Worksheet" },
+                    { id: "invoice", label: "Invoice" },
+                  ] as const
+                ).map((tab) => (
                   <button
-                    key={tab}
-                    onClick={() => setActiveTab(tab)}
-                    className={`px-3 py-1 rounded text-xs font-semibold capitalize transition ${
-                      activeTab === tab
+                    key={tab.id}
+                    onClick={() => setActiveTab(tab.id)}
+                    className={`px-3 py-1 rounded text-xs font-semibold transition ${
+                      activeTab === tab.id
                         ? "bg-card text-foreground shadow-sm"
                         : "text-muted-foreground hover:text-foreground"
                     }`}
                   >
-                    {tab}
+                    {tab.label}
                   </button>
                 ))}
               </div>
@@ -117,20 +148,24 @@ export function SoftwareProductSection() {
             {/* Quick Interactive Inputs */}
             <div className="grid grid-cols-2 gap-2 my-4 text-xs">
               <div>
-                <label className="text-muted-foreground block mb-1">Recipient Organization</label>
+                <label className="text-muted-foreground block mb-1">
+                  {activeTab === "invoice" ? "Billed Client / Company" : "School / Academy Name"}
+                </label>
                 <input
                   type="text"
-                  value={clientName}
-                  onChange={(e) => setClientName(e.target.value)}
+                  value={institutionName}
+                  onChange={(e) => setInstitutionName(e.target.value)}
                   className="w-full rounded-lg border border-input bg-background px-2.5 py-1.5 text-xs font-medium"
                 />
               </div>
               <div>
-                <label className="text-muted-foreground block mb-1">Document Total</label>
+                <label className="text-muted-foreground block mb-1">
+                  {activeTab === "invoice" ? "Invoice Scope" : "Subject & Grade"}
+                </label>
                 <input
                   type="text"
-                  value={invoiceAmount}
-                  onChange={(e) => setInvoiceAmount(e.target.value)}
+                  value={subjectTitle}
+                  onChange={(e) => setSubjectTitle(e.target.value)}
                   className="w-full rounded-lg border border-input bg-background px-2.5 py-1.5 text-xs font-medium"
                 />
               </div>
@@ -141,81 +176,117 @@ export function SoftwareProductSection() {
               <div className="flex justify-between items-start pb-4 border-b border-border">
                 <div>
                   <div className="font-bold text-base text-foreground font-sans">
-                    RapidTechLabs Inc.
+                    {institutionName || "Apex Model Academy"}
                   </div>
-                  <div className="text-muted-foreground">Document Solutions Division</div>
-                  <div className="text-muted-foreground">contact.rapidtechlabs@gmail.com</div>
+                  <div className="text-muted-foreground">
+                    {activeTab === "invoice"
+                      ? "RapidTechLabs Cloud Billing Dept."
+                      : "Department of Academic Examinations"}
+                  </div>
+                  <div className="text-muted-foreground text-[10px]">
+                    Powered by PaperGen Engine • paper-gen-five.vercel.app
+                  </div>
                 </div>
                 <div className="text-right">
                   <span className="inline-block px-2 py-0.5 rounded bg-primary/10 text-primary font-bold uppercase tracking-wider text-[10px]">
-                    {activeTab}
+                    {activeTab === "exampaper"
+                      ? "Annual Exam"
+                      : activeTab === "worksheet"
+                        ? "Practice Sheet"
+                        : "Official Invoice"}
                   </span>
-                  <div className="font-bold text-foreground mt-1">{invoiceNumber}</div>
+                  <div className="font-bold text-foreground mt-1">
+                    {activeTab === "invoice" ? "INV-2026-904" : "CODE: PAP-2026-B"}
+                  </div>
                   <div className="text-muted-foreground text-[10px]">Date: 2026-11-17</div>
                 </div>
               </div>
 
               <div>
                 <span className="text-muted-foreground block text-[10px] uppercase font-bold tracking-wider">
-                  Billed To:
+                  {activeTab === "invoice" ? "Bill Details:" : "Subject & Blueprint:"}
                 </span>
                 <div className="font-bold text-foreground text-sm font-sans">
-                  {clientName || "Valued Enterprise Client"}
+                  {subjectTitle || "Mathematics & Science Assessment"}
                 </div>
                 <div className="text-muted-foreground">
-                  Enterprise Software & Development Contract
+                  {activeTab === "invoice"
+                    ? "PaperGen SaaS Enterprise Subscription (Annual)"
+                    : totalMarks}
                 </div>
               </div>
 
-              <div className="rounded-lg bg-secondary/50 p-3 space-y-1.5">
-                <div className="flex justify-between text-muted-foreground font-semibold border-b border-border pb-1">
-                  <span>Scope Description</span>
-                  <span>Qty / Amount</span>
+              <div className="rounded-lg bg-secondary/50 p-3 space-y-1.5 font-sans">
+                <div className="flex justify-between text-muted-foreground font-semibold border-b border-border pb-1 text-[11px]">
+                  <span>{activeTab === "invoice" ? "Service Description" : "Section Details"}</span>
+                  <span>{activeTab === "invoice" ? "Amount" : "Weightage"}</span>
                 </div>
-                <div className="flex justify-between text-foreground">
+                <div className="flex justify-between text-foreground text-xs">
                   <span>
-                    {activeTab === "invoice"
-                      ? "Enterprise SaaS Platform License (Q4)"
-                      : activeTab === "quotation"
-                        ? "Custom ERP Module Implementation"
-                        : "Full-Stack Web Development Scope"}
+                    {activeTab === "exampaper"
+                      ? "Section A: Multiple Choice Questions (20 Qs)"
+                      : activeTab === "worksheet"
+                        ? "Part 1: Concept Drills & Formulas"
+                        : "PaperGen Institutional Cloud License"}
                   </span>
-                  <span className="font-bold">{invoiceAmount}</span>
+                  <span className="font-bold">
+                    {activeTab === "invoice" ? "₹11,999/mo" : "20 Marks"}
+                  </span>
+                </div>
+                <div className="flex justify-between text-foreground text-xs">
+                  <span>
+                    {activeTab === "exampaper"
+                      ? "Section B: Long Analytical Problems (8 Qs)"
+                      : activeTab === "worksheet"
+                        ? "Part 2: Practical Lab Scenarios"
+                        : "High-Resolution PDF Rendering API"}
+                  </span>
+                  <span className="font-bold">
+                    {activeTab === "invoice" ? "Included" : "80 Marks"}
+                  </span>
                 </div>
               </div>
 
               <div className="flex justify-between items-center pt-2 border-t border-border">
                 <span className="text-muted-foreground text-[10px]">
-                  DocuGen Hash: #9e4a8b72-2026
+                  PaperGen Hash: #pg-9e4a8b-live
                 </span>
-                <div className="text-right">
-                  <span className="text-muted-foreground text-[10px]">Total Due: </span>
-                  <span className="font-bold text-sm text-foreground">{invoiceAmount}</span>
-                </div>
+                <a
+                  href={softwareProduct.liveUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-primary font-bold text-[11px] hover:underline inline-flex items-center gap-1 font-sans"
+                >
+                  Test on paper-gen-five.vercel.app <ExternalLink size={10} />
+                </a>
               </div>
             </div>
 
             <div className="mt-4 flex items-center justify-between text-xs text-muted-foreground">
               <span className="flex items-center gap-1.5">
-                <Zap size={14} className="text-primary" /> Rendered in 42ms via DocuGen API
+                <Zap size={14} className="text-primary" /> Generated in 35ms via PaperGen Cloud
+                Engine
               </span>
-              <button
-                onClick={() => setDemoOpen(true)}
+              <a
+                href={softwareProduct.liveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-primary font-semibold hover:underline flex items-center gap-1"
               >
-                Expand View <ExternalLink size={12} />
-              </button>
+                Launch Full App <ExternalLink size={12} />
+              </a>
             </div>
           </div>
         </div>
       </div>
 
-      {/* DocuGen Pricing Tiers */}
+      {/* PaperGen Pricing Tiers */}
       <div className="mt-12">
         <div className="text-center mb-8">
-          <h3 className="text-2xl font-bold text-foreground">DocuGen Cloud Subscription Plans</h3>
+          <h3 className="text-2xl font-bold text-foreground">PaperGen Cloud Subscription Plans</h3>
           <p className="text-muted-foreground text-sm mt-1">
-            Choose a recurring subscription or deploy on your own enterprise infrastructure.
+            Choose a recurring subscription or deploy a customized private instance for your school,
+            academy, or enterprise.
           </p>
         </div>
 
@@ -252,16 +323,24 @@ export function SoftwareProductSection() {
                 </ul>
               </div>
 
-              <div className="mt-8 pt-4 border-t border-border">
+              <div className="mt-8 pt-4 border-t border-border space-y-2">
                 <a
-                  href="#enquiry-form"
+                  href={softwareProduct.liveUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className={`w-full inline-flex items-center justify-center gap-2 rounded-xl py-2.5 text-xs font-semibold transition ${
                     tier.popular
                       ? "bg-gradient-brand text-white shadow-glow hover:brightness-110"
                       : "border border-border bg-card hover:bg-secondary text-foreground"
                   }`}
                 >
-                  Subscribe to {tier.tier} <ArrowRight size={14} />
+                  Try PaperGen Now <ExternalLink size={13} />
+                </a>
+                <a
+                  href="#enquiry-form"
+                  className="w-full inline-flex items-center justify-center gap-1.5 text-[11px] text-muted-foreground hover:text-foreground pt-1"
+                >
+                  Enquire for Institution Pricing <ArrowRight size={11} />
                 </a>
               </div>
             </div>
@@ -273,35 +352,48 @@ export function SoftwareProductSection() {
       <Dialog open={demoOpen} onOpenChange={setDemoOpen}>
         <DialogContent className="sm:max-w-xl">
           <DialogHeader>
-            <DialogTitle>DocuGen Engine — Interactive Document Demo</DialogTitle>
+            <DialogTitle>PaperGen — Question Paper & Document Engine</DialogTitle>
             <DialogDescription>
-              Test generating a dynamic PDF invoice or proposal in real time.
+              Test generating dynamic exam papers, worksheets, and documents in real time.
             </DialogDescription>
           </DialogHeader>
 
           <div className="space-y-4 py-2">
             <div className="p-4 rounded-xl bg-secondary/50 border border-border text-xs space-y-2">
               <div className="flex justify-between">
-                <span className="text-muted-foreground">Document Type:</span>
+                <span className="text-muted-foreground">Software Status:</span>
+                <span className="font-bold text-emerald-500 flex items-center gap-1">
+                  ● Live on Vercel
+                </span>
+              </div>
+              <div className="flex justify-between">
+                <span className="text-muted-foreground">Direct URL:</span>
+                <a
+                  href={softwareProduct.liveUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-semibold text-primary hover:underline"
+                >
+                  https://paper-gen-five.vercel.app/
+                </a>
+              </div>
+              <div className="flex justify-between">
+                <span className="text-muted-foreground">Document Mode:</span>
                 <span className="font-bold uppercase text-primary">{activeTab}</span>
               </div>
               <div className="flex justify-between">
-                <span className="text-muted-foreground">Client:</span>
-                <span className="font-semibold">{clientName}</span>
+                <span className="text-muted-foreground">Institution / Scope:</span>
+                <span className="font-semibold">{institutionName}</span>
               </div>
               <div className="flex justify-between">
-                <span className="text-muted-foreground">Subtotal & Tax:</span>
-                <span className="font-semibold">{invoiceAmount}</span>
-              </div>
-              <div className="flex justify-between">
-                <span className="text-muted-foreground">PDF Generation Status:</span>
-                <span className="text-emerald-500 font-bold">Ready to Export (24ms)</span>
+                <span className="text-muted-foreground">PDF Rendering Speed:</span>
+                <span className="text-emerald-500 font-bold">Vectorized Export (35ms)</span>
               </div>
             </div>
 
             <p className="text-xs text-muted-foreground">
-              Interested in integrating automated PDF, proposal or invoice generation into your
-              existing CRM, SaaS platform or enterprise database?
+              Want a customized PaperGen instance with your institution's logo, custom question
+              bank, syllabus templates, or automated grading export?
             </p>
 
             <div className="flex justify-end gap-2 pt-2">
@@ -312,11 +404,13 @@ export function SoftwareProductSection() {
                 Close Demo
               </button>
               <a
-                href="#enquiry-form"
-                onClick={() => setDemoOpen(false)}
-                className="rounded-xl bg-gradient-brand px-4 py-2 text-xs font-semibold text-white shadow-glow"
+                href={softwareProduct.liveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="rounded-xl bg-gradient-brand px-4 py-2 text-xs font-semibold text-white shadow-glow inline-flex items-center gap-1.5"
               >
-                Request API Access & Pilot
+                <span>Launch Live Web App</span>
+                <ExternalLink size={13} />
               </a>
             </div>
           </div>

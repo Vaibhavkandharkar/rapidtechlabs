@@ -35,9 +35,9 @@ export function Header() {
   const [activeDropdown, setActiveDropdown] = useState<"services" | "pricing" | "solutions" | null>(
     null,
   );
-  const [mobileExpanded, setMobileExpanded] = useState<
-    "services" | "pricing" | "solutions" | null
-  >(null);
+  const [mobileExpanded, setMobileExpanded] = useState<"services" | "pricing" | "solutions" | null>(
+    null,
+  );
 
   const navRef = useRef<HTMLDivElement>(null);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
@@ -135,7 +135,9 @@ export function Header() {
               <ChevronDown
                 size={14}
                 className={`transition-transform duration-200 ${
-                  activeDropdown === "services" ? "rotate-180 text-primary" : "text-muted-foreground"
+                  activeDropdown === "services"
+                    ? "rotate-180 text-primary"
+                    : "text-muted-foreground"
                 }`}
               />
             </button>
@@ -458,7 +460,9 @@ export function Header() {
                               Popular
                             </span>
                           </div>
-                          <div className="text-[10px] text-muted-foreground">Up to 12 pages + CMS</div>
+                          <div className="text-[10px] text-muted-foreground">
+                            Up to 12 pages + CMS
+                          </div>
                         </div>
                         <span className="font-extrabold text-xs text-primary">₹99,999</span>
                       </a>
@@ -472,7 +476,9 @@ export function Header() {
                           <div className="font-semibold text-xs text-foreground group-hover:text-primary transition">
                             Enterprise Custom
                           </div>
-                          <div className="text-[10px] text-muted-foreground">Portals & Software</div>
+                          <div className="text-[10px] text-muted-foreground">
+                            Portals & Software
+                          </div>
                         </div>
                         <span className="font-bold text-xs text-foreground">₹3.5L+</span>
                       </a>
@@ -511,7 +517,9 @@ export function Header() {
                               Top
                             </span>
                           </div>
-                          <div className="text-[10px] text-muted-foreground">35 keywords + links</div>
+                          <div className="text-[10px] text-muted-foreground">
+                            35 keywords + links
+                          </div>
                         </div>
                         <span className="font-extrabold text-xs text-primary">₹49,999/m</span>
                       </a>
@@ -539,7 +547,9 @@ export function Header() {
                           <div className="font-semibold text-xs text-foreground group-hover:text-primary transition">
                             Proactive SLA
                           </div>
-                          <div className="text-[10px] text-muted-foreground">10h dev + emergency</div>
+                          <div className="text-[10px] text-muted-foreground">
+                            10h dev + emergency
+                          </div>
                         </div>
                         <span className="font-bold text-xs text-foreground">₹24,999/m</span>
                       </a>
@@ -580,7 +590,9 @@ export function Header() {
               <ChevronDown
                 size={14}
                 className={`transition-transform duration-200 ${
-                  activeDropdown === "solutions" ? "rotate-180 text-primary" : "text-muted-foreground"
+                  activeDropdown === "solutions"
+                    ? "rotate-180 text-primary"
+                    : "text-muted-foreground"
                 }`}
               />
             </button>
@@ -599,13 +611,13 @@ export function Header() {
                     </div>
                     <div>
                       <div className="font-bold text-xs text-foreground group-hover:text-primary transition flex items-center gap-1.5">
-                        <span>DocuGen Engine</span>
+                        <span>PaperGen</span>
                         <span className="px-1.5 py-0.5 rounded text-[9px] bg-secondary text-accent font-bold uppercase">
-                          Software
+                          Live App
                         </span>
                       </div>
                       <div className="text-[11px] text-muted-foreground leading-snug mt-0.5">
-                        Automated document, invoice, quotation & proposal generation platform.
+                        Automated question paper, exam worksheet & document generation platform.
                       </div>
                     </div>
                   </a>
@@ -745,7 +757,9 @@ export function Header() {
                 <ChevronDown
                   size={15}
                   className={`transition-transform duration-200 ${
-                    mobileExpanded === "services" ? "rotate-180 text-primary" : "text-muted-foreground"
+                    mobileExpanded === "services"
+                      ? "rotate-180 text-primary"
+                      : "text-muted-foreground"
                   }`}
                 />
               </button>
@@ -822,7 +836,9 @@ export function Header() {
                 <ChevronDown
                   size={15}
                   className={`transition-transform duration-200 ${
-                    mobileExpanded === "pricing" ? "rotate-180 text-primary" : "text-muted-foreground"
+                    mobileExpanded === "pricing"
+                      ? "rotate-180 text-primary"
+                      : "text-muted-foreground"
                   }`}
                 />
               </button>
@@ -892,7 +908,9 @@ export function Header() {
                 <ChevronDown
                   size={15}
                   className={`transition-transform duration-200 ${
-                    mobileExpanded === "solutions" ? "rotate-180 text-primary" : "text-muted-foreground"
+                    mobileExpanded === "solutions"
+                      ? "rotate-180 text-primary"
+                      : "text-muted-foreground"
                   }`}
                 />
               </button>
@@ -903,7 +921,7 @@ export function Header() {
                     onClick={closeAll}
                     className="block text-xs py-1 text-muted-foreground hover:text-foreground"
                   >
-                    • DocuGen Engine (Document & Invoice Platform)
+                    • PaperGen (Question Paper & Document Platform)
                   </a>
                   <a
                     href="/#agency-partners"

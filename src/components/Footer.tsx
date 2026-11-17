@@ -185,7 +185,7 @@ export function Footer() {
             </li>
             <li>
               <a href="/#software-products" className="hover:text-white text-cyan font-medium">
-                DocuGen Engine (Software)
+                PaperGen (Software)
               </a>
             </li>
           </ul>

@@ -50,7 +50,7 @@ const packageOptions = [
   "Growth Accelerator (₹49,999 / mo - Recommended)",
   "Standard Care Maintenance (₹5,999 / mo)",
   "Proactive SLA Maintenance (₹24,999 / mo)",
-  "DocuGen Engine Subscription",
+  "PaperGen Software Subscription",
   "Agency White-Label Partnership",
   "Custom Software / ERP Project",
 ];
@@ -418,7 +418,7 @@ export function ProjectEnquiryForm({
                       {s.title}
                     </option>
                   ))}
-                  <option value="DocuGen Document Engine">DocuGen Document Engine</option>
+                  <option value="PaperGen Software Platform">PaperGen Software Platform</option>
                   <option value="White-Label Agency Partnership">
                     White-Label Agency Partnership
                   </option>

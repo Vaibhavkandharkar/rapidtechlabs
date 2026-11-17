@@ -932,41 +932,43 @@ export const pricingTransparencyPoints = [
 ];
 
 export const softwareProduct = {
-  name: "DocuGen Engine by RapidTechLabs",
-  badge: "Proprietary Software Product",
-  tagline: "Automated Document, Invoice & Proposal Generation Platform",
+  name: "PaperGen by RapidTechLabs",
+  shortName: "PaperGen",
+  badge: "Proprietary Software Product — Live App",
+  liveUrl: "https://paper-gen-five.vercel.app/",
+  tagline: "Automated Question Paper, Exam Worksheet & Document Generation Platform",
   overview:
-    "DocuGen is our high-speed, enterprise-grade document automation platform. It allows businesses to automatically generate pixel-perfect PDFs, commercial invoices, custom proposals, quotations, and contracts from data or CRM triggers in milliseconds.",
+    "PaperGen is our intelligent document automation and generation platform developed by RapidTechLabs. Deployed live on the cloud, PaperGen empowers educational institutions, coaching academies, universities, and enterprises to effortlessly create, customize, and generate formatted question papers, tests, commercial invoices, proposals, and dynamic PDFs in seconds.",
   highlights: [
     {
-      title: "Fast PDF Generation Engine",
+      title: "Live Cloud Application",
       description:
-        "Generate formatted PDF invoices, quotes, and reports from structured data in milliseconds.",
+        "Access paper-gen-five.vercel.app directly from any web browser without local installation requirements.",
     },
     {
-      title: "Smart Document Templates",
+      title: "Automated Paper & Document Creation",
       description:
-        "Design branded templates once in visual HTML/CSS; populate with dynamic customer data.",
+        "Instantly compile structured question papers, test sheets, exam blueprints, and business documents.",
     },
     {
-      title: "Automated Invoicing & Quotes",
+      title: "Dynamic Smart Templates",
       description:
-        "One-click generation of GST-compliant invoices, commercial quotes, and pro-forma bills.",
+        "Standardized academic and enterprise templates ready for customized headers, logos, and section rules.",
     },
     {
-      title: "Proposal & Contract Workflows",
+      title: "Fast Vectorized PDF Rendering",
       description:
-        "Generate comprehensive client proposals complete with itemized scopes, terms, and digital acceptance.",
+        "Generate print-ready, high-resolution PDFs and downloadable worksheets with crisp typography.",
     },
     {
-      title: "Customer Ledger & Management",
+      title: "Document History & Versioning",
       description:
-        "Keep client records, billing histories, and outstanding payment records organized in one hub.",
+        "Maintain an organized archive of generated papers, invoices, and templates with instant re-download capabilities.",
     },
     {
-      title: "Complete Document Audit History",
+      title: "Enterprise API & LMS Integration",
       description:
-        "Every generated document is versioned, timestamped, archived, and securely downloadable.",
+        "Connect PaperGen directly to your school LMS, institute ERP, or business management database.",
     },
   ],
   pricing: [
@@ -974,37 +976,37 @@ export const softwareProduct = {
       tier: "Starter Cloud",
       priceINR: "₹3,999/mo",
       priceUSD: "$49/mo",
-      docs: "Up to 1,000 documents / month",
+      docs: "Up to 1,000 papers & documents / month",
       features: [
-        "Standard Invoice & Quote Templates",
-        "PDF Export & Email Dispatch",
-        "API & Webhook Trigger Support",
+        "Standard Paper & Document Templates",
+        "Instant Cloud Access via Vercel",
+        "PDF Export & Watermark Controls",
         "Email Support within 1 business day",
       ],
     },
     {
-      tier: "Business Pro",
+      tier: "Business & Academy Pro",
       priceINR: "₹11,999/mo",
       priceUSD: "$149/mo",
       popular: true,
-      docs: "Up to 10,000 documents / month",
+      docs: "Up to 10,000 papers & documents / month",
       features: [
-        "Custom Branded Template Builder",
-        "Multi-Currency & Automatic Tax Rules",
-        "Client Ledger & Document History",
-        "Priority API Support & Webhooks",
+        "Custom Branded Institution Templates",
+        "Question Bank & Category Shuffling",
+        "Multi-User Faculty / Staff Accounts",
+        "Priority Technical Support & Webhooks",
       ],
     },
     {
       tier: "Dedicated Enterprise",
       priceINR: "Custom Quote",
       priceUSD: "Custom Quote",
-      docs: "Unlimited documents / on-premise",
+      docs: "Unlimited generation / on-premise",
       features: [
-        "Self-Hosted Docker Deployment",
-        "Dedicated Private Cloud Instance",
-        "Custom ERP / CRM Connectors",
-        "Dedicated Support SLA",
+        "Self-Hosted Docker or Private Cloud Deploy",
+        "Custom LMS / ERP Deep Integration",
+        "Role-Based Access & Security Audit",
+        "Dedicated Engineering SLA",
       ],
     },
   ],

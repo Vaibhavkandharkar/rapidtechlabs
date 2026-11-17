@@ -112,7 +112,7 @@ export function serviceSchema(opts: { name: string; description: string; service
   };
 }
 
-/** SoftwareApplication schema for DocuGen Engine. */
+/** SoftwareApplication schema for PaperGen software product. */
 export function softwareAppSchema(opts: {
   name: string;
   description: string;
