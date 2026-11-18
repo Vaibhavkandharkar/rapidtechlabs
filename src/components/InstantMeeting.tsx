@@ -312,72 +312,80 @@ export function InstantMeeting({ trigger }: { trigger?: React.ReactNode }) {
           </button>
         )}
       </DialogTrigger>
-      <DialogContent className="sm:max-w-lg max-h-[90vh] overflow-y-auto p-5 sm:p-6">
-        <DialogHeader>
-          <DialogTitle className="flex items-center gap-2 text-lg sm:text-xl">
+      <DialogContent className="w-[calc(100vw-1.5rem)] sm:w-full sm:max-w-lg max-h-[90dvh] overflow-y-auto overflow-x-hidden p-4 sm:p-6 rounded-2xl">
+        <DialogHeader className="text-left pr-7 space-y-1.5">
+          <DialogTitle className="flex items-center gap-2.5 text-base sm:text-xl leading-snug">
             <span className="w-8 h-8 rounded-lg bg-gradient-brand text-white grid place-items-center shrink-0">
               <Video size={16} />
             </span>
             <span>Google Meet with RapidTechLabs</span>
           </DialogTitle>
-          <DialogDescription className="text-xs sm:text-sm">
+          <DialogDescription className="text-xs sm:text-sm leading-relaxed break-words">
             Schedule a Google Meet directly with{" "}
-            <strong className="text-foreground">{GOOGLE_MEET_HOST_EMAIL}</strong> or start an
-            immediate call to discuss your project.
+            <strong className="text-foreground break-all">{GOOGLE_MEET_HOST_EMAIL}</strong> or start
+            an immediate call to discuss your project.
           </DialogDescription>
         </DialogHeader>
 
-        <Tabs defaultValue="instant" className="mt-2">
-          <TabsList className="grid grid-cols-2 w-full">
-            <TabsTrigger value="instant" className="text-xs sm:text-sm">
-              <Video size={14} className="mr-1.5 shrink-0" /> Book Google Meet
+        <Tabs defaultValue="instant" className="mt-1 sm:mt-2 w-full min-w-0">
+          <TabsList className="grid grid-cols-2 w-full h-auto p-1">
+            <TabsTrigger
+              value="instant"
+              className="text-[11px] sm:text-sm py-2 px-2 inline-flex items-center justify-center gap-1.5"
+            >
+              <Video size={14} className="shrink-0" />
+              <span className="truncate">Book Google Meet</span>
             </TabsTrigger>
-            <TabsTrigger value="schedule" className="text-xs sm:text-sm">
-              <Calendar size={14} className="mr-1.5 shrink-0" /> Quick Request
+            <TabsTrigger
+              value="schedule"
+              className="text-[11px] sm:text-sm py-2 px-2 inline-flex items-center justify-center gap-1.5"
+            >
+              <Calendar size={14} className="shrink-0" />
+              <span className="truncate">Quick Request</span>
             </TabsTrigger>
           </TabsList>
 
-          {/* TAB 1: SCHEDULE GOOGLE MEET */}
-          <TabsContent value="schedule" className="space-y-4 pt-4">
+          {/* TAB 2: QUICK REQUEST FORM */}
+          <TabsContent value="schedule" className="space-y-4 pt-3 sm:pt-4 min-w-0">
             {scheduled ? (
-              <div className="text-center py-3 space-y-4">
+              <div className="text-center py-2 sm:py-3 space-y-4">
                 <div className="mx-auto w-12 h-12 rounded-full bg-gradient-brand grid place-items-center shadow-glow">
                   <Check className="text-white" size={22} />
                 </div>
 
                 <div>
-                  <h4 className="font-bold text-lg text-foreground">
+                  <h4 className="font-bold text-base sm:text-lg text-foreground">
                     {scheduled.backendSynced
                       ? "Google Meet Confirmed!"
                       : "Your Google Meet Slot Is Ready!"}
                   </h4>
-                  <p className="mt-1 text-muted-foreground text-xs sm:text-sm leading-relaxed">
+                  <p className="mt-1 text-muted-foreground text-xs sm:text-sm leading-relaxed break-words">
                     {new Date(`${scheduled.dateKey}T00:00:00`).toLocaleDateString("en-IN", {
                       weekday: "long",
                       month: "short",
                       day: "numeric",
                     })}{" "}
                     at <strong className="text-foreground">{scheduled.timeLabel}</strong> with{" "}
-                    <strong className="text-foreground">{GOOGLE_MEET_HOST_EMAIL}</strong>.
+                    <strong className="text-foreground break-all">{GOOGLE_MEET_HOST_EMAIL}</strong>.
                   </p>
                 </div>
 
-                <div className="rounded-xl bg-secondary/50 border border-border p-3.5 text-left text-xs space-y-1.5">
-                  <div className="flex justify-between gap-2">
-                    <span className="text-muted-foreground">Host Google Meet:</span>
-                    <span className="font-semibold text-foreground break-all">
+                <div className="rounded-xl bg-secondary/50 border border-border p-3 sm:p-3.5 text-left text-xs space-y-2">
+                  <div className="flex flex-col sm:flex-row sm:justify-between gap-0.5 sm:gap-2">
+                    <span className="text-muted-foreground shrink-0">Host Google Meet:</span>
+                    <span className="font-semibold text-foreground break-all sm:text-right">
                       {GOOGLE_MEET_HOST_EMAIL}
                     </span>
                   </div>
-                  <div className="flex justify-between gap-2">
-                    <span className="text-muted-foreground">Attendee:</span>
-                    <span className="font-semibold text-foreground break-all">
+                  <div className="flex flex-col sm:flex-row sm:justify-between gap-0.5 sm:gap-2">
+                    <span className="text-muted-foreground shrink-0">Attendee:</span>
+                    <span className="font-semibold text-foreground break-all sm:text-right">
                       {scheduled.name} ({scheduled.email})
                     </span>
                   </div>
-                  <div className="flex justify-between gap-2">
-                    <span className="text-muted-foreground">Slot:</span>
-                    <span className="font-semibold text-primary">
+                  <div className="flex flex-col sm:flex-row sm:justify-between gap-0.5 sm:gap-2">
+                    <span className="text-muted-foreground shrink-0">Slot:</span>
+                    <span className="font-semibold text-primary sm:text-right">
                       {scheduled.dateKey} · {scheduled.timeLabel}
                     </span>
                   </div>
@@ -389,19 +397,22 @@ export function InstantMeeting({ trigger }: { trigger?: React.ReactNode }) {
                       href={scheduled.meetLink}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="w-full inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-brand px-4 py-3 text-sm font-semibold text-white shadow-glow hover:brightness-110 transition"
+                      className="w-full inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-brand px-4 py-3 text-xs sm:text-sm font-semibold text-white shadow-glow hover:brightness-110 transition text-center"
                     >
-                      <Video size={16} /> Join Google Meet Room <ExternalLink size={14} />
+                      <Video size={16} className="shrink-0" />
+                      <span>Join Google Meet Room</span>
+                      <ExternalLink size={14} className="shrink-0" />
                     </a>
                   ) : (
                     <a
                       href={GOOGLE_APPOINTMENT_URL || scheduled.calendarUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="w-full inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-brand px-4 py-3 text-sm font-semibold text-white shadow-glow hover:brightness-110 transition"
+                      className="w-full inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-brand px-4 py-3 text-xs sm:text-sm font-semibold text-white shadow-glow hover:brightness-110 transition text-center"
                     >
-                      <Calendar size={16} /> Confirm in Google Calendar (Google Meet){" "}
-                      <ExternalLink size={14} />
+                      <Calendar size={16} className="shrink-0" />
+                      <span>Confirm in Google Calendar (Google Meet)</span>
+                      <ExternalLink size={14} className="shrink-0" />
                     </a>
                   )}
 
@@ -409,9 +420,10 @@ export function InstantMeeting({ trigger }: { trigger?: React.ReactNode }) {
                     href={scheduledWhatsappUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-full inline-flex items-center justify-center gap-2 rounded-xl bg-[#25D366] hover:bg-[#1ebe5d] px-4 py-2.5 text-xs sm:text-sm font-semibold text-white transition"
+                    className="w-full inline-flex items-center justify-center gap-2 rounded-xl bg-[#25D366] hover:bg-[#1ebe5d] px-4 py-2.5 text-xs sm:text-sm font-semibold text-white transition text-center"
                   >
-                    <MessageSquare size={15} /> Ping Host on WhatsApp (+91 8806884168)
+                    <MessageSquare size={15} className="shrink-0" />
+                    <span>Ping Host on WhatsApp (+91 8806884168)</span>
                   </a>
 
                   <button
@@ -426,9 +438,10 @@ export function InstantMeeting({ trigger }: { trigger?: React.ReactNode }) {
                         meetLink: scheduled.meetLink,
                       })
                     }
-                    className="w-full inline-flex items-center justify-center gap-2 rounded-xl border border-border bg-card hover:bg-secondary px-4 py-2 text-xs font-semibold text-foreground transition"
+                    className="w-full inline-flex items-center justify-center gap-2 rounded-xl border border-border bg-card hover:bg-secondary px-4 py-2.5 text-xs font-semibold text-foreground transition"
                   >
-                    <Download size={14} /> Download Calendar Invite (.ics)
+                    <Download size={14} className="shrink-0" />
+                    <span>Download Calendar Invite (.ics)</span>
                   </button>
                 </div>
 
@@ -441,18 +454,18 @@ export function InstantMeeting({ trigger }: { trigger?: React.ReactNode }) {
                 </button>
               </div>
             ) : (
-              <form onSubmit={handleScheduleSubmit} className="space-y-4">
+              <form onSubmit={handleScheduleSubmit} className="space-y-3.5 sm:space-y-4 min-w-0">
                 {error && (
                   <div className="bg-red-500/10 border border-red-500/20 text-red-500 p-3 rounded-lg text-xs">
                     {error}
                   </div>
                 )}
 
-                <div>
+                <div className="min-w-0">
                   <label className="block text-[11px] font-semibold uppercase tracking-widest text-muted-foreground mb-2">
                     1. Pick a day
                   </label>
-                  <div className="flex gap-2 overflow-x-auto pb-1">
+                  <div className="flex gap-2 overflow-x-auto pb-1.5 -mx-1 px-1">
                     {dates.map((d) => {
                       const key = toLocalDateKey(d);
                       const active = key === dateKey;
@@ -461,7 +474,7 @@ export function InstantMeeting({ trigger }: { trigger?: React.ReactNode }) {
                           type="button"
                           key={key}
                           onClick={() => setDateKey(key)}
-                          className={`flex-shrink-0 rounded-xl border px-3 py-2 text-center min-w-[58px] transition ${
+                          className={`flex-shrink-0 rounded-xl border px-3 py-2 text-center min-w-[54px] sm:min-w-[58px] transition ${
                             active
                               ? "border-transparent bg-gradient-brand text-white shadow-glow"
                               : "border-border bg-card hover:bg-secondary"
@@ -477,11 +490,11 @@ export function InstantMeeting({ trigger }: { trigger?: React.ReactNode }) {
                   </div>
                 </div>
 
-                <div>
-                  <label className="flex items-center justify-between text-[11px] font-semibold uppercase tracking-widest text-muted-foreground mb-2">
+                <div className="min-w-0">
+                  <label className="flex flex-wrap items-center justify-between gap-1 text-[11px] font-semibold uppercase tracking-widest text-muted-foreground mb-2">
                     <span>2. Pick a time (IST)</span>
                     <span className="inline-flex items-center gap-1 normal-case tracking-normal text-[11px] font-medium">
-                      <Clock size={11} /> 30 min · Google Meet
+                      <Clock size={11} className="shrink-0" /> 30 min · Google Meet
                     </span>
                   </label>
                   <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
@@ -513,7 +526,7 @@ export function InstantMeeting({ trigger }: { trigger?: React.ReactNode }) {
                     onChange={(e) => setName(e.target.value)}
                     placeholder="Your full name *"
                     maxLength={120}
-                    className="rounded-lg border border-input bg-background px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring"
+                    className="w-full rounded-lg border border-input bg-background px-3 py-2.5 sm:py-2 text-base sm:text-sm focus:outline-none focus:ring-2 focus:ring-ring"
                   />
                   <input
                     name="email"
@@ -523,7 +536,7 @@ export function InstantMeeting({ trigger }: { trigger?: React.ReactNode }) {
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="Your email (for Meet invite) *"
                     maxLength={255}
-                    className="rounded-lg border border-input bg-background px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring"
+                    className="w-full rounded-lg border border-input bg-background px-3 py-2.5 sm:py-2 text-base sm:text-sm focus:outline-none focus:ring-2 focus:ring-ring"
                   />
                 </div>
 
@@ -535,7 +548,7 @@ export function InstantMeeting({ trigger }: { trigger?: React.ReactNode }) {
                     onChange={(e) => setPhone(e.target.value)}
                     placeholder="Phone / WhatsApp (optional)"
                     maxLength={30}
-                    className="rounded-lg border border-input bg-background px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring"
+                    className="w-full rounded-lg border border-input bg-background px-3 py-2.5 sm:py-2 text-base sm:text-sm focus:outline-none focus:ring-2 focus:ring-ring"
                   />
                   <input
                     name="topic"
@@ -543,49 +556,54 @@ export function InstantMeeting({ trigger }: { trigger?: React.ReactNode }) {
                     onChange={(e) => setTopic(e.target.value)}
                     placeholder="Topic (Website, ERP, SEO...)"
                     maxLength={140}
-                    className="rounded-lg border border-input bg-background px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring"
+                    className="w-full rounded-lg border border-input bg-background px-3 py-2.5 sm:py-2 text-base sm:text-sm focus:outline-none focus:ring-2 focus:ring-ring"
                   />
                 </div>
 
                 <button
                   type="submit"
                   disabled={loading}
-                  className="w-full inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-brand px-5 py-2.5 text-sm font-semibold text-white shadow-glow hover:brightness-110 disabled:opacity-70 transition"
+                  className="w-full inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-brand px-5 py-3 sm:py-2.5 text-sm font-semibold text-white shadow-glow hover:brightness-110 disabled:opacity-70 transition"
                 >
-                  <Video size={15} />
-                  {loading ? "Preparing Google Meet..." : "Schedule Google Meet"}
+                  <Video size={15} className="shrink-0" />
+                  <span>{loading ? "Preparing Google Meet..." : "Schedule Google Meet"}</span>
                 </button>
 
-                <div className="flex items-center justify-center gap-1.5 text-[11px] text-muted-foreground">
+                <div className="flex flex-wrap items-center justify-center gap-1.5 text-[11px] text-muted-foreground text-center">
                   <ShieldCheck size={13} className="text-primary shrink-0" />
-                  <span>Invite sent directly to {GOOGLE_MEET_HOST_EMAIL}</span>
+                  <span className="break-all">
+                    Invite sent directly to {GOOGLE_MEET_HOST_EMAIL}
+                  </span>
                 </div>
               </form>
             )}
           </TabsContent>
 
           {/* TAB 1 (DEFAULT): DIRECT GOOGLE CALENDAR APPOINTMENT + GOOGLE MEET */}
-          <TabsContent value="instant" className="space-y-4 pt-4">
+          <TabsContent value="instant" className="space-y-4 pt-3 sm:pt-4 min-w-0">
             <div className="rounded-2xl bg-gradient-soft border border-primary/20 p-4 sm:p-5 space-y-3">
-              <div className="flex items-center justify-between gap-2">
+              <div className="flex flex-wrap items-center justify-between gap-2">
                 <span className="text-[11px] font-bold uppercase tracking-widest text-accent">
                   Live Google Calendar &amp; Meet
                 </span>
-                <span className="inline-flex items-center gap-1 rounded-full bg-emerald-500/10 text-emerald-600 px-2.5 py-0.5 text-[10px] font-bold">
+                <span className="inline-flex items-center gap-1 rounded-full bg-emerald-500/10 text-emerald-600 px-2.5 py-0.5 text-[10px] font-bold shrink-0">
                   ● Auto Google Meet Link
                 </span>
               </div>
-              <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
+              <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed break-words">
                 Pick any open 30-minute slot directly on our live calendar (
-                <strong className="text-foreground">{GOOGLE_MEET_HOST_EMAIL}</strong>). Google
-                Calendar instantly emails your confirmation and unique Google Meet video link.
+                <strong className="text-foreground break-all">{GOOGLE_MEET_HOST_EMAIL}</strong>).
+                Google Calendar instantly emails your confirmation and unique Google Meet video
+                link.
               </p>
-              <div className="grid grid-cols-2 gap-2 pt-1 text-[11px] text-foreground/85">
-                <div className="rounded-lg bg-card border border-border px-3 py-2 flex items-center gap-1.5">
-                  <Clock size={13} className="text-primary shrink-0" /> 30 Min Free Consult
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-1 text-[11px] text-foreground/85">
+                <div className="rounded-lg bg-card border border-border px-3 py-2 flex items-center gap-2">
+                  <Clock size={13} className="text-primary shrink-0" />
+                  <span>30 Min Free Consult</span>
                 </div>
-                <div className="rounded-lg bg-card border border-border px-3 py-2 flex items-center gap-1.5">
-                  <ShieldCheck size={13} className="text-primary shrink-0" /> NDA Protected Call
+                <div className="rounded-lg bg-card border border-border px-3 py-2 flex items-center gap-2">
+                  <ShieldCheck size={13} className="text-primary shrink-0" />
+                  <span>NDA Protected Call</span>
                 </div>
               </div>
             </div>
@@ -595,28 +613,32 @@ export function InstantMeeting({ trigger }: { trigger?: React.ReactNode }) {
                 href={GOOGLE_APPOINTMENT_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-brand px-5 py-3 text-sm font-semibold text-white shadow-glow hover:brightness-110 transition"
+                className="w-full inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-brand px-4 sm:px-5 py-3 text-xs sm:text-sm font-semibold text-white shadow-glow hover:brightness-110 transition text-center leading-snug"
               >
-                <Calendar size={16} /> Pick Slot &amp; Book Google Meet <ExternalLink size={14} />
+                <Calendar size={16} className="shrink-0" />
+                <span>Pick Slot &amp; Book Google Meet</span>
+                <ExternalLink size={14} className="shrink-0" />
               </a>
 
               <a
                 href={instantWhatsappPingUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full inline-flex items-center justify-center gap-2 rounded-xl bg-[#25D366] hover:bg-[#1ebe5d] px-5 py-2.5 text-sm font-semibold text-white transition"
+                className="w-full inline-flex items-center justify-center gap-2 rounded-xl bg-[#25D366] hover:bg-[#1ebe5d] px-4 sm:px-5 py-2.5 text-xs sm:text-sm font-semibold text-white transition text-center leading-snug"
               >
-                <MessageSquare size={15} /> Need a Call Right Now? Ping on WhatsApp
+                <MessageSquare size={15} className="shrink-0" />
+                <span>Need a Call Right Now? Ping on WhatsApp</span>
               </a>
 
               <a
                 href={GOOGLE_MEET_NEW_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full inline-flex items-center justify-center gap-2 rounded-xl border border-border bg-card hover:bg-secondary px-5 py-2 text-xs font-semibold text-muted-foreground hover:text-foreground transition"
+                className="w-full inline-flex items-center justify-center gap-2 rounded-xl border border-border bg-card hover:bg-secondary px-4 sm:px-5 py-2.5 text-xs font-semibold text-muted-foreground hover:text-foreground transition text-center leading-snug"
               >
-                <Video size={14} className="text-primary" /> Or Start New Google Meet Room{" "}
-                <ExternalLink size={12} />
+                <Video size={14} className="text-primary shrink-0" />
+                <span>Or Start New Google Meet Room</span>
+                <ExternalLink size={12} className="shrink-0" />
               </a>
             </div>
           </TabsContent>
