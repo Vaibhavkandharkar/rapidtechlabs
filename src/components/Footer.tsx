@@ -76,16 +76,28 @@ export function Footer() {
           </p>
           <div className="mt-6 flex gap-3">
             {[
-              { Icon: Linkedin, href: "https://www.linkedin.com/company/rapidtechlabs" },
-              { Icon: Twitter, href: "https://twitter.com/rapidtechlabs" },
-              { Icon: Github, href: "https://github.com/rapidtechlabs" },
-            ].map(({ Icon, href }, i) => (
+              {
+                Icon: Linkedin,
+                href: "https://www.linkedin.com/company/rapidtechlabs",
+                label: "RapidTechLabs on LinkedIn",
+              },
+              {
+                Icon: Twitter,
+                href: "https://twitter.com/rapidtechlabs",
+                label: "RapidTechLabs on X (Twitter)",
+              },
+              {
+                Icon: Github,
+                href: "https://github.com/rapidtechlabs",
+                label: "RapidTechLabs on GitHub",
+              },
+            ].map(({ Icon, href, label }, i) => (
               <a
                 key={i}
                 href={href}
                 target="_blank"
                 rel="noreferrer"
-                aria-label="social link"
+                aria-label={label}
                 className="rounded-full bg-white/10 p-2 hover:bg-white/20 transition text-white"
               >
                 <Icon size={16} />

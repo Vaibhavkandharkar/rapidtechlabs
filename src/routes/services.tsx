@@ -11,9 +11,9 @@ import { CTASection } from "@/components/CTASection";
 export const Route = createFileRoute("/services")({
   head: () =>
     generateMeta({
-      title: "Software & Web Development Services — RapidTechLabs",
+      title: "Website Development, Custom Software, ERP & SEO Services — RapidTechLabs",
       description:
-        "Website development, custom software engineering, ERP, hospital & institute systems, AI copilots, SEO, and digital marketing. 100+ projects delivered.",
+        "Explore RapidTechLabs services: website development from ₹19,999, custom SaaS software, industrial ERP, hospital & institute management, AI automation, and technical SEO.",
       path: "/services",
     }),
   component: ServicesPage,

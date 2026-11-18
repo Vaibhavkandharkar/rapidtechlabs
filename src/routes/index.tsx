@@ -71,6 +71,7 @@ function Home() {
             className="w-full h-full object-cover"
             width={1600}
             height={1024}
+            fetchPriority="high"
           />
         </div>
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[oklch(0.18_0.08_250)]" />
