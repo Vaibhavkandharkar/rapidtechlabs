@@ -10,7 +10,7 @@
 export const SITE_URL = "https://www.rapidtechlabs.in";
 export const SITE_NAME = "RapidTechLabs";
 export const DEFAULT_OG_IMAGE = `${SITE_URL}/og-image.png`;
-export const CONTACT_EMAIL = "contact.rapidtechlabs@gmail.com";
+export const CONTACT_EMAIL = "sales@rapidtechlabs.in";
 export const CONTACT_PHONE = "+91 9325378590";
 
 // ─── meta generator ─────────────────────────────────────────────────────────

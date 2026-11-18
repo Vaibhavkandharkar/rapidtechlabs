@@ -198,13 +198,13 @@ export function ProjectEnquiryForm({
     }
   };
 
-  const mailtoLink = `mailto:contact.rapidtechlabs@gmail.com?subject=Project%20Enquiry:%20${encodeURIComponent(
+  const mailtoLink = `mailto:sales@rapidtechlabs.in?subject=Project%20Enquiry:%20${encodeURIComponent(
     formData.preferredPackage,
   )}&body=${encodeURIComponent(
     `Full Name: ${formData.fullName}\nBusiness Name: ${formData.businessName}\nEmail: ${formData.email}\nPhone: ${formData.phone}\nService: ${formData.service}\nPreferred Package: ${formData.preferredPackage}\nApprox Budget: ${formData.budget}\nCountry: ${formData.country}\n\nProject Requirements:\n${formData.description}`,
   )}`;
 
-  const whatsappLink = `https://wa.me/919325378590?text=${encodeURIComponent(
+  const whatsappLink = `https://wa.me/918806884168?text=${encodeURIComponent(
     `Hi RapidTechLabs! I would like to consult about:\nName: ${formData.fullName || "Prospective Client"}\nBusiness: ${formData.businessName || "Business"}\nService: ${formData.service}\nPackage: ${formData.preferredPackage}\nBudget: ${formData.budget}`,
   )}`;
 

@@ -478,7 +478,7 @@ export function PricingSection() {
               Request Custom Quotation
             </a>
             <a
-              href="https://wa.me/919325378590?text=Hi%20RapidTechLabs%2C%20I%20would%20like%20to%20consult%20about%20the%20best%20package%20for%20my%20business"
+              href="https://wa.me/918806884168?text=Hi%20RapidTechLabs%2C%20I%20would%20like%20to%20consult%20about%20the%20best%20package%20for%20my%20business"
               target="_blank"
               rel="noreferrer"
               className="inline-flex items-center gap-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white px-5 py-3 text-sm font-semibold transition"

@@ -12,6 +12,7 @@ import { reportLovableError } from "../lib/lovable-error-reporting";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { FloatingMeetingButton } from "@/components/InstantMeeting";
+import { FloatingWhatsAppButton } from "@/components/FloatingWhatsAppButton";
 
 function upsertMeta(attr: "name" | "property", key: string, content: string) {
   let el = document.head.querySelector(`meta[${attr}="${key}"]`) as HTMLMetaElement | null;
@@ -141,6 +142,7 @@ function RootComponent() {
           <Outlet />
         </main>
         <Footer />
+        <FloatingWhatsAppButton />
         <FloatingMeetingButton />
       </div>
     </QueryClientProvider>

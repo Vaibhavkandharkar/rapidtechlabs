@@ -49,10 +49,10 @@ function ContactPage() {
                 <div>
                   <div className="text-xs text-muted-foreground">General & Sales Email</div>
                   <a
-                    href="mailto:contact.rapidtechlabs@gmail.com"
+                    href="mailto:sales@rapidtechlabs.in"
                     className="font-semibold text-sm text-foreground hover:text-primary transition"
                   >
-                    contact.rapidtechlabs@gmail.com
+                    sales@rapidtechlabs.in
                   </a>
                 </div>
               </div>
@@ -86,7 +86,7 @@ function ContactPage() {
 
               <div className="pt-2">
                 <a
-                  href="https://wa.me/919325378590"
+                  href="https://wa.me/918806884168"
                   target="_blank"
                   rel="noreferrer"
                   className="w-full inline-flex items-center justify-center gap-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white px-4 py-2.5 text-xs font-semibold transition"

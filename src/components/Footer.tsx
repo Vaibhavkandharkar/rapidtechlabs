@@ -111,7 +111,7 @@ export function Footer() {
               Ownership
             </div>
             <div className="flex items-center gap-1.5">
-              <Mail size={14} className="text-cyan" /> contact.rapidtechlabs@gmail.com
+              <Mail size={14} className="text-cyan" /> sales@rapidtechlabs.in
             </div>
           </div>
         </div>
