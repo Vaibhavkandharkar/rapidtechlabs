@@ -164,7 +164,84 @@ export function breadcrumbSchema(items: Array<{ name: string; path: string }>) {
       "@type": "ListItem",
       position: i + 1,
       name: item.name,
-      item: `${SITE_URL}${item.path === "/" ? "" : item.path}`,
+      item: `${SITE_URL}${item.path === "/" ? "/" : item.path}`,
+    })),
+  };
+}
+
+/** BlogPosting / Article schema for rich search snippets. */
+export function blogPostingSchema(opts: {
+  headline: string;
+  description: string;
+  path: string;
+  image?: string;
+  datePublished: string;
+  dateModified?: string;
+  authorName: string;
+  keywords?: string[];
+  section?: string;
+}) {
+  const url = `${SITE_URL}${opts.path}`;
+  return {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: opts.headline,
+    description: opts.description,
+    url,
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": url,
+    },
+    image: opts.image ?? DEFAULT_OG_IMAGE,
+    datePublished: opts.datePublished,
+    dateModified: opts.dateModified ?? opts.datePublished,
+    articleSection: opts.section,
+    inLanguage: "en-IN",
+    keywords: opts.keywords?.join(", "),
+    author: {
+      "@type": "Organization",
+      name: opts.authorName,
+      url: SITE_URL,
+    },
+    publisher: {
+      "@type": "Organization",
+      name: SITE_NAME,
+      url: SITE_URL,
+      logo: {
+        "@type": "ImageObject",
+        url: `${SITE_URL}/logo.png`,
+      },
+    },
+  };
+}
+
+/** Blog / CollectionPage schema for the main /blog hub. */
+export function blogCollectionSchema(
+  posts: Array<{ title: string; slug: string; description: string; date: string }>,
+) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Blog",
+    name: `${SITE_NAME} Engineering & Growth Blog`,
+    description:
+      "Actionable guides on website development pricing, custom software, industrial ERP, hospital management, PaperGen EdTech, and technical SEO by RapidTechLabs.",
+    url: `${SITE_URL}/blog`,
+    inLanguage: "en-IN",
+    publisher: {
+      "@type": "Organization",
+      name: SITE_NAME,
+      url: SITE_URL,
+      logo: {
+        "@type": "ImageObject",
+        url: `${SITE_URL}/logo.png`,
+      },
+    },
+    blogPost: posts.map((p) => ({
+      "@type": "BlogPosting",
+      headline: p.title,
+      description: p.description,
+      url: `${SITE_URL}/blog/${p.slug}`,
+      datePublished: p.date,
     })),
   };
 }

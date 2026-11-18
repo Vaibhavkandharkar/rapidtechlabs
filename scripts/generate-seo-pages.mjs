@@ -3,6 +3,8 @@ import path from "node:path";
 
 const SITE_URL = "https://www.rapidtechlabs.in";
 const DIST_DIR = path.resolve(process.cwd(), "dist");
+const PUBLIC_DIR = path.resolve(process.cwd(), "public");
+const BLOG_DIR = path.resolve(process.cwd(), "src", "content", "blog");
 const TEMPLATE_PATH = path.join(DIST_DIR, "index.html");
 
 function escapeHtml(str) {
@@ -11,6 +13,15 @@ function escapeHtml(str) {
     .replaceAll("<", "&lt;")
     .replaceAll(">", "&gt;")
     .replaceAll('"', "&quot;");
+}
+
+function escapeXml(str) {
+  return String(str)
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&apos;");
 }
 
 function breadcrumbJsonLd(items) {
@@ -38,12 +49,209 @@ function webPageJsonLd({ name, description, path: routePath }) {
   };
 }
 
+function parseFrontmatter(raw) {
+  const normalized = raw.replace(/\r\n/g, "\n").trim();
+  const match = normalized.match(/^---\n([\s\S]*?)\n---\n?([\s\S]*)$/);
+  if (!match) return { data: {}, body: normalized };
+  const data = {};
+  for (const line of match[1].split("\n")) {
+    const idx = line.indexOf(":");
+    if (idx === -1) continue;
+    const k = line.slice(0, idx).trim();
+    const v = line.slice(idx + 1).trim();
+    if (k) data[k] = v;
+  }
+  return { data, body: match[2].trim() };
+}
+
+function renderInlineHtml(text) {
+  let out = escapeHtml(text);
+  out = out.replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>");
+  out = out.replace(/\*([^*]+)\*/g, "<em>$1</em>");
+  out = out.replace(/`([^`]+)`/g, "<code>$1</code>");
+  out = out.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>');
+  return out;
+}
+
+function markdownToStaticHtmlAndFaqs(body) {
+  const lines = body.split("\n");
+  const htmlParts = [];
+  const faqs = [];
+  let i = 0;
+  let inFaq = false;
+
+  while (i < lines.length) {
+    const line = lines[i].trim();
+    if (!line) {
+      i++;
+      continue;
+    }
+
+    if (line.startsWith("## ")) {
+      const heading = line.slice(3).trim();
+      if (heading.toLowerCase() === "frequently asked questions") {
+        inFaq = true;
+        htmlParts.push(`<h2>Frequently Asked Questions</h2>`);
+        i++;
+        continue;
+      }
+      inFaq = false;
+      htmlParts.push(`<h2>${escapeHtml(heading)}</h2>`);
+      i++;
+      continue;
+    }
+
+    if (inFaq && line.startsWith("### ")) {
+      const q = line.slice(4).trim();
+      i++;
+      const ans = [];
+      while (
+        i < lines.length &&
+        !lines[i].trim().startsWith("### ") &&
+        !lines[i].trim().startsWith("## ")
+      ) {
+        if (lines[i].trim()) ans.push(lines[i].trim());
+        i++;
+      }
+      const a = ans.join(" ");
+      if (q && a) {
+        faqs.push({ q, a });
+        htmlParts.push(`<h3>${escapeHtml(q)}</h3><p>${renderInlineHtml(a)}</p>`);
+      }
+      continue;
+    }
+
+    if (line.startsWith("### ")) {
+      htmlParts.push(`<h3>${escapeHtml(line.slice(4).trim())}</h3>`);
+      i++;
+      continue;
+    }
+
+    if (line.startsWith("> ")) {
+      const qLines = [];
+      while (i < lines.length && lines[i].trim().startsWith("> ")) {
+        qLines.push(lines[i].trim().slice(2).trim());
+        i++;
+      }
+      htmlParts.push(`<blockquote><p>${renderInlineHtml(qLines.join(" "))}</p></blockquote>`);
+      continue;
+    }
+
+    if (
+      line.startsWith("|") &&
+      i + 1 < lines.length &&
+      /^\|[\s:|-]+\|$/.test(lines[i + 1].trim())
+    ) {
+      const splitRow = (r) =>
+        r
+          .trim()
+          .replace(/^\|/, "")
+          .replace(/\|$/, "")
+          .split("|")
+          .map((c) => c.trim());
+      const headers = splitRow(line);
+      i += 2;
+      const rows = [];
+      while (i < lines.length && lines[i].trim().startsWith("|")) {
+        rows.push(splitRow(lines[i]));
+        i++;
+      }
+      const thead = `<thead><tr>${headers.map((h) => `<th>${renderInlineHtml(h)}</th>`).join("")}</tr></thead>`;
+      const tbody = `<tbody>${rows.map((r) => `<tr>${r.map((c) => `<td>${renderInlineHtml(c)}</td>`).join("")}</tr>`).join("")}</tbody>`;
+      htmlParts.push(`<table>${thead}${tbody}</table>`);
+      continue;
+    }
+
+    if (line.startsWith("- ") || line.startsWith("* ")) {
+      const items = [];
+      while (
+        i < lines.length &&
+        (lines[i].trim().startsWith("- ") || lines[i].trim().startsWith("* "))
+      ) {
+        items.push(`<li>${renderInlineHtml(lines[i].trim().slice(2).trim())}</li>`);
+        i++;
+      }
+      htmlParts.push(`<ul>${items.join("")}</ul>`);
+      continue;
+    }
+
+    if (/^\d+\.\s+/.test(line)) {
+      const items = [];
+      while (i < lines.length && /^\d+\.\s+/.test(lines[i].trim())) {
+        items.push(
+          `<li>${renderInlineHtml(
+            lines[i]
+              .trim()
+              .replace(/^\d+\.\s+/, "")
+              .trim(),
+          )}</li>`,
+        );
+        i++;
+      }
+      htmlParts.push(`<ol>${items.join("")}</ol>`);
+      continue;
+    }
+
+    const pLines = [];
+    while (
+      i < lines.length &&
+      lines[i].trim() &&
+      !lines[i].trim().startsWith("#") &&
+      !lines[i].trim().startsWith("> ") &&
+      !lines[i].trim().startsWith("- ") &&
+      !lines[i].trim().startsWith("* ") &&
+      !lines[i].trim().startsWith("|") &&
+      !/^\d+\.\s+/.test(lines[i].trim())
+    ) {
+      pLines.push(lines[i].trim());
+      i++;
+    }
+    if (pLines.length > 0) {
+      htmlParts.push(`<p>${renderInlineHtml(pLines.join(" "))}</p>`);
+    }
+  }
+
+  return { html: htmlParts.join("\n"), faqs };
+}
+
+function loadMarkdownBlogPosts() {
+  if (!fs.existsSync(BLOG_DIR)) return [];
+  const files = fs.readdirSync(BLOG_DIR).filter((f) => f.endsWith(".md"));
+
+  return files
+    .map((file) => {
+      const raw = fs.readFileSync(path.join(BLOG_DIR, file), "utf8");
+      const { data, body } = parseFrontmatter(raw);
+      const slug = data.slug || file.replace(/\.md$/, "");
+      const { html, faqs } = markdownToStaticHtmlAndFaqs(body);
+      const tags = (data.tags || "")
+        .split(",")
+        .map((t) => t.trim())
+        .filter(Boolean);
+
+      return {
+        title: data.title || slug,
+        slug,
+        description: data.description || "",
+        category: data.category || "Engineering",
+        date: data.date || "2026-11-18",
+        readTime: data.readTime || "5 min read",
+        author: data.author || "RapidTechLabs Engineering Team",
+        tags,
+        html,
+        faqs,
+      };
+    })
+    .sort((a, b) => b.date.localeCompare(a.date));
+}
+
 const navHtml = `
   <header>
     <nav aria-label="Primary navigation">
       <a href="/">RapidTechLabs</a>
       <a href="/services">Services</a>
       <a href="/portfolio">Portfolio &amp; Case Studies</a>
+      <a href="/blog">Blog</a>
       <a href="/about">About RapidTechLabs</a>
       <a href="/testimonials">Project Scenarios</a>
       <a href="/contact">Contact</a>
@@ -59,18 +267,23 @@ const footerHtml = `
       <a href="/">Home</a>
       <a href="/services">Services</a>
       <a href="/portfolio">Portfolio</a>
+      <a href="/blog">Blog</a>
       <a href="/about">About</a>
       <a href="/testimonials">Testimonials</a>
       <a href="/contact">Contact</a>
       <a href="/sitemap.xml">Sitemap</a>
+      <a href="/rss.xml">RSS Feed</a>
     </nav>
   </footer>
 `;
 
-const routes = [
+const blogPosts = loadMarkdownBlogPosts();
+
+const staticRoutes = [
   {
     routePath: "/",
     outFile: "index.html",
+    ogType: "website",
     title: "RapidTechLabs — Website Development, Custom Software & ERP Agency India",
     description:
       "Professional website development starting ₹19,999, custom software engineering, industrial ERP, hospital & institute management, SEO services, AI automation, and PaperGen software.",
@@ -125,8 +338,13 @@ const routes = [
           <p>Automated question paper, exam worksheet, and document generation platform available live at <a href="https://paper-gen-five.vercel.app/">paper-gen-five.vercel.app</a>.</p>
         </section>
         <section>
-          <h2>White-Label Agency Partner Program</h2>
-          <p>Dedicated senior engineering pods under strict mutual NDA for digital marketing and design agencies across India, USA, UK, Canada, and Australia.</p>
+          <h2>Latest Engineering &amp; SEO Guides</h2>
+          <ul>
+            ${blogPosts
+              .slice(0, 5)
+              .map((p) => `<li><a href="/blog/${p.slug}">${escapeHtml(p.title)}</a></li>`)
+              .join("\n")}
+          </ul>
         </section>
       </main>
     `,
@@ -134,6 +352,7 @@ const routes = [
   {
     routePath: "/services",
     outFile: "services.html",
+    ogType: "website",
     title: "Website Development, Custom Software, ERP & SEO Services — RapidTechLabs",
     description:
       "Explore RapidTechLabs services: website development from ₹19,999, custom SaaS software, industrial ERP, hospital & institute management, AI automation, and technical SEO.",
@@ -190,6 +409,7 @@ const routes = [
   {
     routePath: "/portfolio",
     outFile: "portfolio.html",
+    ogType: "website",
     title: "Portfolio & Case Studies — Demonstrated Technical Solutions | RapidTechLabs",
     description:
       "Explore demonstrated software architectures across manufacturing ERP, hospital platforms, institute systems, AI copilots, and high-performance websites built by RapidTechLabs.",
@@ -223,8 +443,56 @@ const routes = [
     `,
   },
   {
+    routePath: "/blog",
+    outFile: "blog.html",
+    ogType: "website",
+    title: "Blog — Website Pricing, Custom Software, ERP & SEO Guides | RapidTechLabs",
+    description:
+      "Practical guides on website development cost in India, custom industrial ERP, hospital management systems, PaperGen EdTech, and technical SEO by RapidTechLabs.",
+    schemas: [
+      {
+        "@context": "https://schema.org",
+        "@type": "Blog",
+        name: "RapidTechLabs Engineering & Growth Blog",
+        description:
+          "Actionable guides on website development pricing, custom software, industrial ERP, hospital management, PaperGen EdTech, and technical SEO.",
+        url: `${SITE_URL}/blog`,
+        inLanguage: "en-IN",
+        blogPost: blogPosts.map((p) => ({
+          "@type": "BlogPosting",
+          headline: p.title,
+          description: p.description,
+          url: `${SITE_URL}/blog/${p.slug}`,
+          datePublished: p.date,
+        })),
+      },
+      breadcrumbJsonLd([
+        { name: "Home", path: "/" },
+        { name: "Blog", path: "/blog" },
+      ]),
+    ],
+    bodyHtml: `
+      <main>
+        <h1>RapidTechLabs Blog — Engineering Insights, Pricing Guides &amp; Technical SEO</h1>
+        <p>Transparent pricing breakdowns, enterprise software blueprints, healthcare &amp; ERP architecture guides, and technical SEO checklists written by RapidTechLabs.</p>
+        <section>
+          <h2>Published Articles</h2>
+          <ul>
+            ${blogPosts
+              .map(
+                (p) =>
+                  `<li><article><h3><a href="/blog/${p.slug}">${escapeHtml(p.title)}</a></h3><p>${escapeHtml(p.description)}</p></article></li>`,
+              )
+              .join("\n")}
+          </ul>
+        </section>
+      </main>
+    `,
+  },
+  {
     routePath: "/about",
     outFile: "about.html",
+    ogType: "website",
     title: "About RapidTechLabs — Engineering Partner for Modern Businesses",
     description:
       "Meet the senior engineering team at RapidTechLabs building enterprise websites, custom software, ERP, and AI platforms with transparent milestone pricing and 100% code ownership.",
@@ -260,6 +528,7 @@ const routes = [
   {
     routePath: "/testimonials",
     outFile: "testimonials.html",
+    ogType: "website",
     title: "Client Case Studies & Project Scenarios — RapidTechLabs",
     description:
       "Explore technical project scenarios and demonstrated solutions engineered by RapidTechLabs across ERP, healthcare, education, and digital platforms.",
@@ -286,6 +555,7 @@ const routes = [
   {
     routePath: "/contact",
     outFile: "contact.html",
+    ogType: "website",
     title: "Contact RapidTechLabs — Book a Free Discovery Call Today",
     description:
       "Tell us about your project and get a tailored proposal within 24 business hours. Website development, custom software, ERP, SEO, AI integration, and agency partnerships.",
@@ -320,6 +590,73 @@ const routes = [
   },
 ];
 
+// Dynamically add every Markdown blog article as a pre-rendered static HTML route!
+const blogRoutes = blogPosts.map((post) => {
+  const url = `${SITE_URL}/blog/${post.slug}`;
+  const schemas = [
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      headline: post.title,
+      description: post.description,
+      url,
+      mainEntityOfPage: { "@type": "WebPage", "@id": url },
+      image: `${SITE_URL}/og-image.png`,
+      datePublished: post.date,
+      dateModified: post.date,
+      articleSection: post.category,
+      inLanguage: "en-IN",
+      keywords: post.tags.join(", "),
+      author: { "@type": "Organization", name: post.author, url: SITE_URL },
+      publisher: {
+        "@type": "Organization",
+        name: "RapidTechLabs",
+        url: SITE_URL,
+        logo: { "@type": "ImageObject", url: `${SITE_URL}/logo.png` },
+      },
+    },
+    breadcrumbJsonLd([
+      { name: "Home", path: "/" },
+      { name: "Blog", path: "/blog" },
+      { name: post.title, path: `/blog/${post.slug}` },
+    ]),
+  ];
+
+  if (post.faqs.length > 0) {
+    schemas.push({
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity: post.faqs.map((f) => ({
+        "@type": "Question",
+        name: f.q,
+        acceptedAnswer: { "@type": "Answer", text: f.a },
+      })),
+    });
+  }
+
+  return {
+    routePath: `/blog/${post.slug}`,
+    outFile: path.join("blog", `${post.slug}.html`),
+    ogType: "article",
+    title: `${post.title} | RapidTechLabs`,
+    description: post.description,
+    keywords: post.tags.join(", "),
+    schemas,
+    bodyHtml: `
+      <main>
+        <article>
+          <p><a href="/blog">← Back to RapidTechLabs Blog</a> · ${escapeHtml(post.category)} · ${escapeHtml(post.readTime)}</p>
+          <h1>${escapeHtml(post.title)}</h1>
+          <p>${escapeHtml(post.description)}</p>
+          ${post.html}
+        </article>
+      </main>
+    `,
+  };
+});
+
+const allRoutes = [...staticRoutes, ...blogRoutes];
+
 function buildRouteHtml(template, route) {
   const canonicalUrl = `${SITE_URL}${route.routePath === "/" ? "/" : route.routePath}`;
   const safeTitle = escapeHtml(route.title);
@@ -334,9 +671,21 @@ function buildRouteHtml(template, route) {
     `<meta name="description" content="${safeDesc}" />`,
   );
 
+  if (route.keywords) {
+    html = html.replace(
+      /<meta\s+name="keywords"\s+content="[\s\S]*?"\s*\/>/,
+      `<meta name="keywords" content="${escapeHtml(route.keywords)}" />`,
+    );
+  }
+
   html = html.replace(
     /<link\s+rel="canonical"\s+href="[\s\S]*?"\s*\/>/,
     `<link rel="canonical" href="${canonicalUrl}" />`,
+  );
+
+  html = html.replace(
+    /<meta\s+property="og:type"\s+content="[\s\S]*?"\s*\/>/,
+    `<meta property="og:type" content="${route.ogType ?? "website"}" />`,
   );
 
   html = html.replace(
@@ -370,11 +719,50 @@ function buildRouteHtml(template, route) {
 
   html = html.replace("<!-- ROUTE_SCHEMA_SLOT -->", schemaScripts);
 
-  // Inject semantic SEO snapshot inside #root (replaced immediately by React on mount)
   const seoSnapshot = `<div id="root"><div style="max-width:1100px;margin:0 auto;padding:24px;font-family:Inter,system-ui,sans-serif">${navHtml}${route.bodyHtml}${footerHtml}</div></div>`;
   html = html.replace('<div id="root"></div>', seoSnapshot);
 
   return html;
+}
+
+function generateSitemapXml() {
+  const coreUrls = [
+    { loc: `${SITE_URL}/`, changefreq: "weekly", priority: "1.0", withImage: true },
+    { loc: `${SITE_URL}/services`, changefreq: "weekly", priority: "0.9" },
+    { loc: `${SITE_URL}/blog`, changefreq: "daily", priority: "0.9" },
+    { loc: `${SITE_URL}/portfolio`, changefreq: "weekly", priority: "0.8" },
+    { loc: `${SITE_URL}/about`, changefreq: "monthly", priority: "0.8" },
+    { loc: `${SITE_URL}/testimonials`, changefreq: "monthly", priority: "0.7" },
+    { loc: `${SITE_URL}/contact`, changefreq: "monthly", priority: "0.9" },
+  ];
+
+  const blogUrls = blogPosts.map((p) => ({
+    loc: `${SITE_URL}/blog/${p.slug}`,
+    changefreq: "weekly",
+    priority: "0.8",
+  }));
+
+  const entries = [...coreUrls, ...blogUrls]
+    .map((u) => {
+      const imgBlock = u.withImage
+        ? `\n    <image:image>\n      <image:loc>${SITE_URL}/og-image.png</image:loc>\n      <image:title>RapidTechLabs — Website Development, Custom Software &amp; ERP Agency</image:title>\n    </image:image>`
+        : "";
+      return `  <url>\n    <loc>${escapeXml(u.loc)}</loc>\n    <changefreq>${u.changefreq}</changefreq>\n    <priority>${u.priority}</priority>${imgBlock}\n  </url>`;
+    })
+    .join("\n\n");
+
+  return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset\n  xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"\n  xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"\n>\n${entries}\n</urlset>\n`;
+}
+
+function generateRssXml() {
+  const items = blogPosts
+    .map((p) => {
+      const link = `${SITE_URL}/blog/${p.slug}`;
+      return `    <item>\n      <title>${escapeXml(p.title)}</title>\n      <link>${escapeXml(link)}</link>\n      <guid isPermaLink="true">${escapeXml(link)}</guid>\n      <description>${escapeXml(p.description)}</description>\n      <category>${escapeXml(p.category)}</category>\n    </item>`;
+    })
+    .join("\n");
+
+  return `<?xml version="1.0" encoding="UTF-8"?>\n<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">\n  <channel>\n    <title>RapidTechLabs Blog — Web Development, ERP, AI &amp; SEO Guides</title>\n    <link>${SITE_URL}/blog</link>\n    <atom:link href="${SITE_URL}/rss.xml" rel="self" type="application/rss+xml" />\n    <description>Actionable engineering, pricing, and SEO guides from RapidTechLabs.</description>\n    <language>en-in</language>\n${items}\n  </channel>\n</rss>\n`;
 }
 
 if (!fs.existsSync(TEMPLATE_PATH)) {
@@ -384,9 +772,24 @@ if (!fs.existsSync(TEMPLATE_PATH)) {
 
 const baseTemplate = fs.readFileSync(TEMPLATE_PATH, "utf8");
 
-for (const route of routes) {
+for (const route of allRoutes) {
   const html = buildRouteHtml(baseTemplate, route);
   const targetPath = path.join(DIST_DIR, route.outFile);
+  fs.mkdirSync(path.dirname(targetPath), { recursive: true });
   fs.writeFileSync(targetPath, html, "utf8");
-  console.log(`Generated static SEO page: dist/${route.outFile} -> ${SITE_URL}${route.routePath}`);
+  console.log(
+    `Generated static SEO page: dist/${route.outFile.replaceAll("\\", "/")} -> ${SITE_URL}${route.routePath}`,
+  );
 }
+
+const sitemapXml = generateSitemapXml();
+fs.writeFileSync(path.join(DIST_DIR, "sitemap.xml"), sitemapXml, "utf8");
+fs.writeFileSync(path.join(PUBLIC_DIR, "sitemap.xml"), sitemapXml, "utf8");
+console.log(
+  `Updated sitemap.xml with ${7 + blogPosts.length} URLs (including ${blogPosts.length} blog articles).`,
+);
+
+const rssXml = generateRssXml();
+fs.writeFileSync(path.join(DIST_DIR, "rss.xml"), rssXml, "utf8");
+fs.writeFileSync(path.join(PUBLIC_DIR, "rss.xml"), rssXml, "utf8");
+console.log(`Generated rss.xml with ${blogPosts.length} blog articles.`);

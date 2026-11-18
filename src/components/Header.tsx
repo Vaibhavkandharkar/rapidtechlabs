@@ -689,6 +689,15 @@ export function Header() {
           </Link>
 
           <Link
+            to="/blog"
+            onClick={closeAll}
+            className="px-3 py-2 rounded-md text-sm font-medium text-foreground/80 hover:text-foreground hover:bg-secondary transition-colors"
+            activeProps={{ className: "text-primary font-semibold" }}
+          >
+            Blog
+          </Link>
+
+          <Link
             to="/about"
             onClick={closeAll}
             className="px-3 py-2 rounded-md text-sm font-medium text-foreground/80 hover:text-foreground hover:bg-secondary transition-colors"
@@ -947,6 +956,14 @@ export function Header() {
               className="px-3 py-2 rounded-md text-sm font-medium hover:bg-secondary"
             >
               Portfolio & Case Studies
+            </Link>
+
+            <Link
+              to="/blog"
+              onClick={closeAll}
+              className="px-3 py-2 rounded-md text-sm font-medium hover:bg-secondary"
+            >
+              Blog & SEO Guides
             </Link>
 
             <Link
