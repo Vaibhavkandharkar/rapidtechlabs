@@ -3,32 +3,32 @@ import { developmentProcess } from "@/data/site";
 
 export function DevelopmentProcessSection() {
   return (
-    <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20">
-      <div className="text-center max-w-3xl mx-auto mb-14">
-        <span className="inline-block text-xs font-semibold uppercase tracking-widest text-accent mb-3">
+    <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20">
+      <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-14">
+        <span className="inline-block text-xs font-semibold uppercase tracking-widest text-accent mb-2 sm:mb-3">
           Our Methodology
         </span>
-        <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-foreground">
+        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-foreground">
           From Concept to Production in 5 Proven Stages
         </h2>
-        <p className="mt-4 text-muted-foreground text-lg">
+        <p className="mt-3 sm:mt-4 text-muted-foreground text-sm sm:text-base lg:text-lg">
           No black boxes. You get complete transparency into sprint schedules, code repositories,
           and architectural milestones.
         </p>
       </div>
 
-      <div className="grid md:grid-cols-5 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 sm:gap-5">
         {developmentProcess.map((step, idx) => (
           <div
             key={step.step}
-            className="relative rounded-2xl bg-card border border-border p-6 shadow-card hover:shadow-glow transition flex flex-col justify-between"
+            className="relative rounded-2xl bg-card border border-border p-5 sm:p-6 shadow-card hover:shadow-glow transition flex flex-col justify-between"
           >
             <div>
-              <div className="flex items-center justify-between mb-4">
+              <div className="flex items-center justify-between gap-2 mb-4">
                 <span className="font-display font-extrabold text-2xl text-gradient-brand">
                   {step.step}
                 </span>
-                <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-secondary text-primary">
+                <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-secondary text-primary shrink-0">
                   {step.duration}
                 </span>
               </div>
@@ -46,16 +46,16 @@ export function DevelopmentProcessSection() {
         ))}
       </div>
 
-      <div className="mt-12 rounded-2xl bg-gradient-soft border border-border p-6 sm:p-8 flex flex-col sm:flex-row items-center justify-between gap-6">
-        <div className="flex items-center gap-4">
-          <div className="w-12 h-12 rounded-xl bg-gradient-brand text-white grid place-items-center shrink-0 shadow-glow">
-            <ShieldCheck size={24} />
+      <div className="mt-10 sm:mt-12 rounded-2xl bg-gradient-soft border border-border p-5 sm:p-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5 sm:gap-6">
+        <div className="flex items-start sm:items-center gap-4">
+          <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-gradient-brand text-white grid place-items-center shrink-0 shadow-glow">
+            <ShieldCheck size={22} />
           </div>
           <div>
-            <h4 className="font-bold text-base text-foreground">
-              Guaranteed Security & Intellectual Property Transfer
+            <h4 className="font-bold text-sm sm:text-base text-foreground">
+              Guaranteed Security &amp; Intellectual Property Transfer
             </h4>
-            <p className="text-xs sm:text-sm text-muted-foreground mt-0.5">
+            <p className="text-xs sm:text-sm text-muted-foreground mt-0.5 leading-relaxed">
               Strict bilateral NDAs, 100% source code ownership, zero proprietary dependencies, and
               GDPR/data privacy compliance.
             </p>
@@ -63,7 +63,7 @@ export function DevelopmentProcessSection() {
         </div>
         <a
           href="#enquiry-form"
-          className="inline-flex items-center gap-2 rounded-xl bg-gradient-brand text-white px-5 py-2.5 text-xs font-semibold shadow-glow hover:brightness-110 whitespace-nowrap transition"
+          className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-brand text-white px-5 py-2.5 text-xs font-semibold shadow-glow hover:brightness-110 whitespace-nowrap transition shrink-0"
         >
           Book Discovery Call <ArrowRight size={14} />
         </a>

@@ -61,7 +61,7 @@ function Home() {
   };
 
   return (
-    <>
+    <div className="overflow-x-clip">
       {/* HERO */}
       <section className="relative overflow-hidden bg-gradient-hero text-white">
         <div className="absolute inset-0 opacity-30">
@@ -75,46 +75,47 @@ function Home() {
           />
         </div>
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[oklch(0.18_0.08_250)]" />
-        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-24 lg:py-32 grid lg:grid-cols-2 gap-12 items-center">
-          <div className="animate-fade-up">
-            <span className="inline-flex items-center gap-2 rounded-full glass-dark px-4 py-1.5 text-xs font-medium text-cyan">
-              <Sparkles size={14} /> Full-Stack Engineering · AI · Web Development · Agency Partner
+        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-14 sm:py-20 lg:py-28 grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-12 items-center">
+          <div className="animate-fade-up min-w-0">
+            <span className="inline-flex flex-wrap items-center gap-1.5 sm:gap-2 rounded-full glass-dark px-3 sm:px-4 py-1.5 text-[11px] sm:text-xs font-medium text-cyan leading-snug">
+              <Sparkles size={13} className="shrink-0" /> Full-Stack Engineering · AI · Web
+              Development · Agency Partner
             </span>
-            <h1 className="mt-5 text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight">
+            <h1 className="mt-4 sm:mt-5 text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
               Transforming Businesses Through{" "}
               <span className="bg-gradient-to-r from-cyan to-white bg-clip-text text-transparent">
                 Smart Technology Solutions
               </span>
             </h1>
-            <p className="mt-6 text-lg text-white/80 max-w-xl leading-relaxed">
+            <p className="mt-4 sm:mt-6 text-base sm:text-lg text-white/80 max-w-xl leading-relaxed">
               From launch-ready corporate websites and custom SaaS to modular ERPs and AI copilots,
               we engineer the digital backbone of ambitious businesses in India and worldwide.
             </p>
-            <div className="mt-8 flex flex-wrap gap-3">
+            <div className="mt-6 sm:mt-8 flex flex-col sm:flex-row flex-wrap gap-3">
               <a
                 href="#pricing"
-                className="inline-flex items-center gap-2 rounded-lg bg-cyan px-6 py-3 font-semibold text-brand hover:brightness-110 transition shadow-glow"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-lg bg-cyan px-6 py-3 font-semibold text-sm sm:text-base text-brand hover:brightness-110 transition shadow-glow"
               >
                 View Packages & Pricing <ArrowRight size={18} />
               </a>
               <a
                 href="#enquiry-form"
-                className="inline-flex items-center gap-2 rounded-lg glass-dark px-6 py-3 font-semibold text-white hover:bg-white/20 transition"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-lg glass-dark px-6 py-3 font-semibold text-sm sm:text-base text-white hover:bg-white/20 transition"
               >
                 Request Custom Quote
               </a>
             </div>
             {/* Operational Commitments (Replaced fake client counts) */}
-            <div className="mt-10 grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-lg">
+            <div className="mt-8 sm:mt-10 grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-lg">
               {stats.map((s) => (
                 <div key={s.label}>
-                  <div className="text-xl sm:text-2xl font-bold text-cyan">{s.value}</div>
-                  <div className="text-[11px] text-white/70 mt-0.5">{s.label}</div>
+                  <div className="text-lg sm:text-2xl font-bold text-cyan">{s.value}</div>
+                  <div className="text-[11px] text-white/70 mt-0.5 leading-snug">{s.label}</div>
                 </div>
               ))}
             </div>
           </div>
-          <div className="relative animate-float">
+          <div className="relative animate-float min-w-0">
             <div className="relative rounded-2xl overflow-hidden shadow-glow ring-1 ring-white/20">
               <img
                 src={dashboard}
@@ -124,14 +125,18 @@ function Home() {
                 height={896}
               />
             </div>
-            <div className="absolute -bottom-6 -left-6 glass rounded-xl p-4 hidden sm:block">
+            <div className="mt-3 sm:mt-0 sm:absolute sm:-bottom-4 sm:left-4 lg:-bottom-6 lg:-left-6 glass rounded-xl p-3 sm:p-4 inline-flex sm:block">
               <div className="flex items-center gap-3">
-                <div className="rounded-lg bg-gradient-brand p-2">
-                  <Zap className="text-white" size={18} />
+                <div className="rounded-lg bg-gradient-brand p-2 shrink-0">
+                  <Zap className="text-white" size={16} />
                 </div>
                 <div>
-                  <div className="text-xs text-muted-foreground">Average Delivery</div>
-                  <div className="font-semibold text-foreground">2–4 Weeks</div>
+                  <div className="text-[11px] sm:text-xs text-muted-foreground">
+                    Average Delivery
+                  </div>
+                  <div className="text-sm sm:text-base font-semibold text-foreground">
+                    2–4 Weeks
+                  </div>
                 </div>
               </div>
             </div>
@@ -141,21 +146,21 @@ function Home() {
 
       {/* SECTOR FOCUS & PLATFORM CAPABILITIES */}
       <section className="border-y border-border bg-secondary/40">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
-          <p className="text-center text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-4">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
+          <p className="text-center text-[11px] sm:text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-3 sm:mb-4">
             Technical Engineering Across Key Industry Verticals
           </p>
-          <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-3 opacity-80 text-sm font-semibold text-muted-foreground">
-            <span>Manufacturing & ERP</span>
-            <span>·</span>
-            <span>Healthcare & Clinics</span>
-            <span>·</span>
-            <span>Education & EdTech</span>
-            <span>·</span>
-            <span>FinTech & AI</span>
-            <span>·</span>
-            <span>Retail & E-Commerce</span>
-            <span>·</span>
+          <div className="flex flex-wrap items-center justify-center gap-x-4 sm:gap-x-8 gap-y-2 opacity-85 text-xs sm:text-sm font-semibold text-muted-foreground">
+            <span>Manufacturing &amp; ERP</span>
+            <span className="hidden sm:inline">·</span>
+            <span>Healthcare &amp; Clinics</span>
+            <span className="hidden sm:inline">·</span>
+            <span>Education &amp; EdTech</span>
+            <span className="hidden sm:inline">·</span>
+            <span>FinTech &amp; AI</span>
+            <span className="hidden sm:inline">·</span>
+            <span>Retail &amp; E-Commerce</span>
+            <span className="hidden sm:inline">·</span>
             <span>SaaS Startups</span>
           </div>
         </div>
@@ -298,8 +303,8 @@ function Home() {
       <AgencyPartnershipSection />
 
       {/* ABOUT */}
-      <Section className="bg-gradient-soft rounded-3xl mx-4 sm:mx-6 lg:mx-8 !max-w-none">
-        <div className="mx-auto max-w-7xl grid lg:grid-cols-2 gap-12 items-center">
+      <Section className="bg-gradient-soft rounded-2xl sm:rounded-3xl mx-4 sm:mx-6 lg:mx-8 !max-w-none">
+        <div className="mx-auto max-w-7xl grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           <div className="rounded-2xl overflow-hidden shadow-card">
             <img
               src={about}
@@ -310,19 +315,19 @@ function Home() {
               loading="lazy"
             />
           </div>
-          <div>
+          <div className="min-w-0">
             <span className="text-xs font-semibold uppercase tracking-widest text-accent">
               About RapidTechLabs
             </span>
-            <h2 className="mt-3 text-3xl sm:text-4xl font-bold">
+            <h2 className="mt-2 sm:mt-3 text-2xl sm:text-3xl lg:text-4xl font-bold leading-tight">
               A reliable engineering partner for ambitious teams
             </h2>
-            <p className="mt-4 text-muted-foreground text-lg leading-relaxed">
+            <p className="mt-3 sm:mt-4 text-muted-foreground text-sm sm:text-base lg:text-lg leading-relaxed">
               We blend deep technical craft with business awareness to deliver platforms that move
               the needle — from corporate websites to hospital clinics, educational institutions to
               custom ERPs.
             </p>
-            <ul className="mt-6 space-y-3">
+            <ul className="mt-5 sm:mt-6 space-y-3 text-sm sm:text-base">
               {[
                 "Senior, full-stack engineers with hands-on production experience",
                 "Secure-by-design architecture, strict NDAs & 100% IP transfer",
@@ -330,21 +335,21 @@ function Home() {
                 "Transparent Indian market pricing with no surprise billing",
               ].map((t) => (
                 <li key={t} className="flex items-start gap-3">
-                  <CheckCircle2 className="text-accent mt-0.5" size={20} />
+                  <CheckCircle2 className="text-accent mt-0.5 shrink-0" size={18} />
                   <span>{t}</span>
                 </li>
               ))}
             </ul>
-            <div className="mt-8 flex flex-wrap gap-3">
+            <div className="mt-6 sm:mt-8 flex flex-col sm:flex-row flex-wrap gap-3">
               <Link
                 to="/about"
-                className="inline-flex items-center gap-2 rounded-lg bg-gradient-brand px-5 py-2.5 font-semibold text-white shadow-glow"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-lg bg-gradient-brand px-5 py-2.5 text-sm font-semibold text-white shadow-glow"
               >
                 Read our story <ArrowRight size={16} />
               </Link>
               <a
                 href="#enquiry-form"
-                className="inline-flex items-center gap-2 rounded-lg border border-border bg-card px-5 py-2.5 font-semibold text-foreground hover:bg-secondary"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-lg border border-border bg-card px-5 py-2.5 text-sm font-semibold text-foreground hover:bg-secondary"
               >
                 Request a Consultation
               </a>
@@ -482,15 +487,15 @@ function Home() {
         <Accordion type="single" collapsible className="max-w-3xl mx-auto">
           {faqs.map((f, i) => (
             <AccordionItem key={i} value={`item-${i}`}>
-              <AccordionTrigger className="text-left font-semibold text-foreground">
-                <span className="flex items-center gap-2">
-                  <span className="text-xs uppercase px-2 py-0.5 rounded bg-secondary text-primary font-bold tracking-wider">
+              <AccordionTrigger className="text-left text-sm sm:text-base font-semibold text-foreground">
+                <span className="flex flex-col sm:flex-row sm:items-center items-start gap-1.5 sm:gap-2.5 pr-2">
+                  <span className="shrink-0 text-[10px] sm:text-xs uppercase px-2 py-0.5 rounded bg-secondary text-primary font-bold tracking-wider">
                     {f.category}
                   </span>
                   <span>{f.q}</span>
                 </span>
               </AccordionTrigger>
-              <AccordionContent className="text-muted-foreground leading-relaxed pt-2">
+              <AccordionContent className="text-sm text-muted-foreground leading-relaxed pt-2">
                 {f.a}
               </AccordionContent>
             </AccordionItem>
@@ -558,6 +563,6 @@ function Home() {
           __html: JSON.stringify(breadcrumbSchema([{ name: "Home", path: "/" }])),
         }}
       />
-    </>
+    </div>
   );
 }

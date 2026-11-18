@@ -280,7 +280,7 @@ export function FloatingMeetingButton() {
   const [hidden, setHidden] = useState(false);
   if (hidden) return null;
   return (
-    <div className="fixed bottom-5 right-5 z-40 flex items-center gap-2">
+    <div className="fixed bottom-4 sm:bottom-5 right-4 sm:right-5 z-40 flex items-center gap-1.5 sm:gap-2">
       <button
         onClick={() => setHidden(true)}
         aria-label="Dismiss"
@@ -290,12 +290,12 @@ export function FloatingMeetingButton() {
       </button>
       <InstantMeeting
         trigger={
-          <button className="group inline-flex items-center gap-2 rounded-full bg-gradient-brand pl-4 pr-5 py-3 font-semibold text-white shadow-glow hover:brightness-110 transition">
-            <span className="relative flex h-2.5 w-2.5">
+          <button className="group inline-flex items-center gap-1.5 sm:gap-2 rounded-full bg-gradient-brand pl-3.5 pr-4 sm:pl-4 sm:pr-5 py-2.5 sm:py-3 text-xs sm:text-sm font-semibold text-white shadow-glow hover:brightness-110 transition">
+            <span className="relative flex h-2 w-2 sm:h-2.5 sm:w-2.5">
               <span className="absolute inline-flex h-full w-full rounded-full bg-cyan opacity-75 animate-ping" />
-              <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-cyan" />
+              <span className="relative inline-flex h-2 w-2 sm:h-2.5 sm:w-2.5 rounded-full bg-cyan" />
             </span>
-            <Video size={16} /> Instant Meeting
+            <Video size={15} /> Instant Meeting
           </button>
         }
       />

@@ -11,7 +11,7 @@ export function FloatingWhatsAppButton() {
       rel="noopener noreferrer"
       aria-label="Chat with RapidTechLabs on WhatsApp"
       title="Chat on WhatsApp (+91 8806884168)"
-      className="group fixed bottom-20 right-5 z-50 flex items-center gap-2.5 rounded-full bg-[#25D366] p-3.5 text-white shadow-lg shadow-[#25D366]/35 ring-2 ring-white/25 transition-all duration-200 hover:scale-105 hover:bg-[#1ebe5d] hover:shadow-xl hover:shadow-[#25D366]/45 focus:outline-none focus:ring-4 focus:ring-[#25D366]/50"
+      className="group fixed bottom-[72px] sm:bottom-20 right-4 sm:right-5 z-50 flex items-center gap-2.5 rounded-full bg-[#25D366] p-3 sm:p-3.5 text-white shadow-lg shadow-[#25D366]/35 ring-2 ring-white/25 transition-all duration-200 hover:scale-105 hover:bg-[#1ebe5d] hover:shadow-xl hover:shadow-[#25D366]/45 focus:outline-none focus:ring-4 focus:ring-[#25D366]/50"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"

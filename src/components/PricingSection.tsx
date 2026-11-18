@@ -84,24 +84,27 @@ export function PricingSection() {
   ];
 
   return (
-    <section id="pricing" className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20 scroll-mt-16">
-      <div className="text-center max-w-3xl mx-auto mb-10">
-        <span className="inline-block text-xs font-semibold uppercase tracking-widest text-accent mb-3">
+    <section
+      id="pricing"
+      className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20 scroll-mt-16"
+    >
+      <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-10">
+        <span className="inline-block text-xs font-semibold uppercase tracking-widest text-accent mb-2 sm:mb-3">
           Transparent Agency Pricing
         </span>
-        <h2 className="text-3xl sm:text-4xl font-bold text-foreground">
+        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-foreground leading-tight">
           Competitive Indian Market Pricing. Zero Compromise on Quality.
         </h2>
-        <p className="mt-3 text-muted-foreground text-base sm:text-lg">
+        <p className="mt-3 text-muted-foreground text-sm sm:text-base lg:text-lg leading-relaxed">
           No hidden fees, no ambiguous billing, and zero vendor lock-in. 100% source code ownership
           and transparent milestone scopes.
         </p>
 
         {/* Currency Switcher */}
-        <div className="mt-6 inline-flex items-center gap-1.5 p-1 rounded-xl bg-secondary border border-border">
+        <div className="mt-5 sm:mt-6 inline-flex flex-wrap items-center justify-center gap-1.5 p-1 rounded-xl bg-secondary border border-border">
           <button
             onClick={() => setCurrency("INR")}
-            className={`px-4 py-1.5 rounded-lg text-xs font-bold transition ${
+            className={`px-3 sm:px-4 py-1.5 rounded-lg text-xs font-bold transition ${
               currency === "INR"
                 ? "bg-card text-foreground shadow-sm"
                 : "text-muted-foreground hover:text-foreground"
@@ -111,7 +114,7 @@ export function PricingSection() {
           </button>
           <button
             onClick={() => setCurrency("USD")}
-            className={`px-4 py-1.5 rounded-lg text-xs font-bold transition ${
+            className={`px-3 sm:px-4 py-1.5 rounded-lg text-xs font-bold transition ${
               currency === "USD"
                 ? "bg-card text-foreground shadow-sm"
                 : "text-muted-foreground hover:text-foreground"
@@ -123,26 +126,38 @@ export function PricingSection() {
       </div>
 
       <Tabs defaultValue="websites" className="max-w-6xl mx-auto">
-        <div className="flex justify-center mb-10">
-          <TabsList className="bg-secondary p-1 rounded-xl flex-wrap justify-center h-auto">
-            <TabsTrigger value="websites" className="text-xs sm:text-sm font-semibold">
+        <div className="flex justify-center mb-8 sm:mb-10">
+          <TabsList className="bg-secondary p-1 rounded-xl grid grid-cols-2 sm:inline-flex gap-1 w-full sm:w-auto h-auto">
+            <TabsTrigger
+              value="websites"
+              className="text-xs sm:text-sm font-semibold py-2 whitespace-normal text-center"
+            >
               Website Development
             </TabsTrigger>
-            <TabsTrigger value="seo" className="text-xs sm:text-sm font-semibold">
-              SEO & Growth
+            <TabsTrigger
+              value="seo"
+              className="text-xs sm:text-sm font-semibold py-2 whitespace-normal text-center"
+            >
+              SEO &amp; Growth
             </TabsTrigger>
-            <TabsTrigger value="maintenance" className="text-xs sm:text-sm font-semibold">
+            <TabsTrigger
+              value="maintenance"
+              className="text-xs sm:text-sm font-semibold py-2 whitespace-normal text-center"
+            >
               Website Maintenance
             </TabsTrigger>
-            <TabsTrigger value="custom" className="text-xs sm:text-sm font-semibold">
-              Custom Software & ERP
+            <TabsTrigger
+              value="custom"
+              className="text-xs sm:text-sm font-semibold py-2 whitespace-normal text-center"
+            >
+              Custom Software &amp; ERP
             </TabsTrigger>
           </TabsList>
         </div>
 
         {/* TAB 1: WEBSITE DEVELOPMENT (4 PACKAGES) */}
         <TabsContent value="websites">
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-y-8 sm:gap-6 pt-2">
             {pricingPackages.websiteDevelopment.map((pkg) => (
               <div
                 key={pkg.name}
@@ -210,18 +225,23 @@ export function PricingSection() {
           </div>
 
           {/* PACKAGE COMPARISON MATRIX */}
-          <div className="mt-14 rounded-2xl bg-card border border-border overflow-hidden shadow-card">
-            <div className="p-5 bg-secondary/50 border-b border-border">
-              <h4 className="font-bold text-base text-foreground">
-                Website Development Package Comparison
-              </h4>
-              <p className="text-xs text-muted-foreground mt-0.5">
-                Compare features side-by-side to choose the best scope for your business.
-              </p>
+          <div className="mt-10 sm:mt-14 rounded-2xl bg-card border border-border overflow-hidden shadow-card">
+            <div className="p-4 sm:p-5 bg-secondary/50 border-b border-border flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+              <div>
+                <h4 className="font-bold text-sm sm:text-base text-foreground">
+                  Website Development Package Comparison
+                </h4>
+                <p className="text-xs text-muted-foreground mt-0.5">
+                  Compare features side-by-side to choose the best scope for your business.
+                </p>
+              </div>
+              <span className="text-[11px] font-medium text-primary sm:hidden">
+                Swipe table horizontally →
+              </span>
             </div>
 
             <div className="overflow-x-auto">
-              <table className="w-full text-xs text-left">
+              <table className="w-full min-w-[620px] text-xs text-left">
                 <thead className="bg-secondary/30 text-muted-foreground uppercase text-[10px] font-bold tracking-wider">
                   <tr>
                     <th className="py-3 px-4">Feature Inclusions</th>
@@ -451,12 +471,12 @@ export function PricingSection() {
       </div>
 
       {/* SECTION 6: STRONG CONVERSION SECTION */}
-      <div className="mt-12 max-w-5xl mx-auto rounded-3xl bg-gradient-hero text-white p-8 sm:p-12 shadow-glow text-center relative overflow-hidden">
+      <div className="mt-10 sm:mt-12 max-w-5xl mx-auto rounded-2xl sm:rounded-3xl bg-gradient-hero text-white p-6 sm:p-10 lg:p-12 shadow-glow text-center relative overflow-hidden">
         <div className="relative z-10 max-w-2xl mx-auto">
           <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full glass-dark text-cyan text-xs font-semibold mb-3">
             <HelpCircle size={14} /> Tailored Advice
           </span>
-          <h3 className="text-2xl sm:text-3xl font-bold tracking-tight">
+          <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold tracking-tight">
             Not Sure Which Package Is Right for You?
           </h3>
           <p className="mt-3 text-white/80 text-sm sm:text-base leading-relaxed">
@@ -464,16 +484,16 @@ export function PricingSection() {
             based on your requirements and budget.
           </p>
 
-          <div className="mt-8 flex flex-wrap justify-center gap-3">
+          <div className="mt-6 sm:mt-8 flex flex-col sm:flex-row flex-wrap justify-center gap-3">
             <a
               href="#enquiry-form"
-              className="inline-flex items-center gap-2 rounded-xl bg-cyan text-brand px-5 py-3 text-sm font-semibold shadow-glow hover:brightness-110 transition"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl bg-cyan text-brand px-5 py-3 text-sm font-semibold shadow-glow hover:brightness-110 transition"
             >
               Get a Free Consultation <ArrowRight size={16} />
             </a>
             <a
               href="#enquiry-form"
-              className="inline-flex items-center gap-2 rounded-xl glass-dark text-white px-5 py-3 text-sm font-semibold hover:bg-white/20 transition"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl glass-dark text-white px-5 py-3 text-sm font-semibold hover:bg-white/20 transition"
             >
               Request Custom Quotation
             </a>
@@ -481,7 +501,7 @@ export function PricingSection() {
               href="https://wa.me/918806884168?text=Hi%20RapidTechLabs%2C%20I%20would%20like%20to%20consult%20about%20the%20best%20package%20for%20my%20business"
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center gap-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white px-5 py-3 text-sm font-semibold transition"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white px-5 py-3 text-sm font-semibold transition"
             >
               <MessageSquare size={16} /> Talk to Our Experts on WhatsApp
             </a>

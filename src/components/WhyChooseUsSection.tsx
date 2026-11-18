@@ -14,21 +14,21 @@ import { whyChooseUsPillars } from "@/data/site";
 
 export function WhyChooseUsSection() {
   return (
-    <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20">
-      <div className="text-center max-w-3xl mx-auto mb-14">
-        <span className="inline-block text-xs font-semibold uppercase tracking-widest text-accent mb-3">
+    <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20">
+      <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-14">
+        <span className="inline-block text-xs font-semibold uppercase tracking-widest text-accent mb-2 sm:mb-3">
           Why RapidTechLabs
         </span>
-        <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-foreground">
-          Built For High-Growth Enterprises & Ambitious Founders
+        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-foreground">
+          Built For High-Growth Enterprises &amp; Ambitious Founders
         </h2>
-        <p className="mt-4 text-muted-foreground text-lg">
+        <p className="mt-3 sm:mt-4 text-muted-foreground text-sm sm:text-base lg:text-lg leading-relaxed">
           We combine the speed and domain agility of a boutique engineering studio with the rigor
           and security required by international enterprises.
         </p>
       </div>
 
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
         {whyChooseUsPillars.map((pillar, i) => (
           <div
             key={i}

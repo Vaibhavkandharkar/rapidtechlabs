@@ -34,31 +34,34 @@ export function SoftwareProductSection() {
   const [totalMarks, setTotalMarks] = useState("100 Marks (3 Hours)");
 
   return (
-    <section id="software-products" className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20">
-      <div className="text-center max-w-3xl mx-auto mb-14">
-        <span className="inline-flex items-center gap-2 rounded-full glass px-3.5 py-1 text-xs font-semibold text-accent mb-3 shadow-card">
-          <Sparkles size={14} className="text-primary" /> {softwareProduct.badge}
+    <section
+      id="software-products"
+      className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20"
+    >
+      <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-14">
+        <span className="inline-flex items-center gap-2 rounded-full glass px-3.5 py-1 text-[11px] sm:text-xs font-semibold text-accent mb-3 shadow-card">
+          <Sparkles size={14} className="text-primary shrink-0" /> {softwareProduct.badge}
         </span>
-        <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-foreground">
+        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-foreground">
           {softwareProduct.name}
         </h2>
-        <p className="mt-3 text-muted-foreground text-lg">
+        <p className="mt-3 text-muted-foreground text-sm sm:text-base lg:text-lg leading-relaxed">
           {softwareProduct.tagline}. Generate standardized, beautiful question papers, school
           worksheets, test blueprints, and institutional invoices in seconds.
         </p>
-        <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
+        <div className="mt-6 flex flex-col sm:flex-row flex-wrap items-center justify-center gap-3">
           <a
             href={softwareProduct.liveUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 rounded-xl bg-gradient-brand px-5 py-2.5 text-sm font-semibold text-white shadow-glow hover:brightness-110 transition"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-brand px-5 py-2.5 text-xs sm:text-sm font-semibold text-white shadow-glow hover:brightness-110 transition text-center"
           >
-            <span>Launch Live App (paper-gen-five.vercel.app)</span>
-            <ExternalLink size={15} />
+            <span>Launch Live PaperGen App</span>
+            <ExternalLink size={15} className="shrink-0" />
           </a>
           <button
             onClick={() => setDemoOpen(true)}
-            className="inline-flex items-center gap-2 rounded-xl border border-border bg-card px-5 py-2.5 text-sm font-semibold hover:bg-secondary transition"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl border border-border bg-card px-5 py-2.5 text-xs sm:text-sm font-semibold hover:bg-secondary transition"
           >
             <Eye size={16} /> Interactive Sandbox
           </button>
@@ -66,13 +69,15 @@ export function SoftwareProductSection() {
       </div>
 
       {/* Main product feature showcase grid */}
-      <div className="grid lg:grid-cols-12 gap-8 items-center mb-16">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-center mb-12 sm:mb-16">
         {/* Left: Overview and highlights */}
-        <div className="lg:col-span-6 space-y-6">
-          <div className="rounded-2xl bg-card border border-border p-6 sm:p-8 shadow-card">
-            <div className="flex items-center justify-between mb-2">
-              <h3 className="text-xl font-bold text-foreground">Why Teams Choose PaperGen</h3>
-              <span className="text-[11px] font-bold text-emerald-500 bg-emerald-500/10 px-2.5 py-0.5 rounded-full">
+        <div className="lg:col-span-6 min-w-0 space-y-6">
+          <div className="rounded-2xl bg-card border border-border p-5 sm:p-8 shadow-card">
+            <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
+              <h3 className="text-lg sm:text-xl font-bold text-foreground">
+                Why Teams Choose PaperGen
+              </h3>
+              <span className="text-[11px] font-bold text-emerald-500 bg-emerald-500/10 px-2.5 py-0.5 rounded-full shrink-0">
                 Active Live Deployment
               </span>
             </div>
@@ -80,33 +85,35 @@ export function SoftwareProductSection() {
               {softwareProduct.overview}
             </p>
 
-            <div className="mt-6 grid sm:grid-cols-2 gap-4">
+            <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
               {softwareProduct.highlights.map((h, i) => (
                 <div key={i} className="flex items-start gap-2.5">
                   <CheckCircle2 size={18} className="text-accent shrink-0 mt-0.5" />
-                  <div>
+                  <div className="min-w-0">
                     <h4 className="text-xs font-bold text-foreground uppercase tracking-wider">
                       {h.title}
                     </h4>
-                    <p className="text-xs text-muted-foreground mt-0.5">{h.description}</p>
+                    <p className="text-xs text-muted-foreground mt-0.5 leading-relaxed">
+                      {h.description}
+                    </p>
                   </div>
                 </div>
               ))}
             </div>
 
-            <div className="mt-8 pt-6 border-t border-border flex flex-wrap gap-3">
+            <div className="mt-6 sm:mt-8 pt-5 sm:pt-6 border-t border-border flex flex-col sm:flex-row flex-wrap gap-3">
               <a
                 href={softwareProduct.liveUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-xl bg-primary px-5 py-2.5 text-sm font-semibold text-white shadow-glow hover:brightness-110 transition"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl bg-primary px-5 py-2.5 text-sm font-semibold text-white shadow-glow hover:brightness-110 transition"
               >
-                <span>Open paperGen Software</span>
+                <span>Open PaperGen Software</span>
                 <ExternalLink size={14} />
               </a>
               <a
                 href="#enquiry-form"
-                className="inline-flex items-center gap-2 rounded-xl border border-border bg-card px-5 py-2.5 text-sm font-semibold hover:bg-secondary transition"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl border border-border bg-card px-5 py-2.5 text-sm font-semibold hover:bg-secondary transition text-center"
               >
                 Request Custom Institutional Setup
               </a>
@@ -115,14 +122,14 @@ export function SoftwareProductSection() {
         </div>
 
         {/* Right: Live Interactive Document Generator Sandbox */}
-        <div className="lg:col-span-6">
-          <div className="rounded-2xl border border-border bg-card p-6 shadow-glow overflow-hidden">
-            <div className="flex items-center justify-between pb-4 border-b border-border">
+        <div className="lg:col-span-6 min-w-0">
+          <div className="rounded-2xl border border-border bg-card p-4 sm:p-6 shadow-glow overflow-hidden">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-border">
               <div className="flex items-center gap-2">
-                <FileText size={18} className="text-primary" />
+                <FileText size={18} className="text-primary shrink-0" />
                 <span className="font-semibold text-sm">PaperGen Live Sandbox</span>
               </div>
-              <div className="flex gap-1.5 p-1 rounded-lg bg-secondary">
+              <div className="grid grid-cols-3 sm:flex gap-1 p-1 rounded-lg bg-secondary w-full sm:w-auto">
                 {(
                   [
                     { id: "exampaper", label: "Exam Paper" },
@@ -133,7 +140,7 @@ export function SoftwareProductSection() {
                   <button
                     key={tab.id}
                     onClick={() => setActiveTab(tab.id)}
-                    className={`px-3 py-1 rounded text-xs font-semibold transition ${
+                    className={`px-2 sm:px-3 py-1.5 sm:py-1 rounded text-[11px] sm:text-xs font-semibold transition truncate ${
                       activeTab === tab.id
                         ? "bg-card text-foreground shadow-sm"
                         : "text-muted-foreground hover:text-foreground"
@@ -146,7 +153,7 @@ export function SoftwareProductSection() {
             </div>
 
             {/* Quick Interactive Inputs */}
-            <div className="grid grid-cols-2 gap-2 my-4 text-xs">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 my-4 text-xs">
               <div>
                 <label className="text-muted-foreground block mb-1">
                   {activeTab === "invoice" ? "Billed Client / Company" : "School / Academy Name"}
@@ -155,7 +162,7 @@ export function SoftwareProductSection() {
                   type="text"
                   value={institutionName}
                   onChange={(e) => setInstitutionName(e.target.value)}
-                  className="w-full rounded-lg border border-input bg-background px-2.5 py-1.5 text-xs font-medium"
+                  className="w-full rounded-lg border border-input bg-background px-2.5 py-2 text-xs font-medium"
                 />
               </div>
               <div>
@@ -166,28 +173,28 @@ export function SoftwareProductSection() {
                   type="text"
                   value={subjectTitle}
                   onChange={(e) => setSubjectTitle(e.target.value)}
-                  className="w-full rounded-lg border border-input bg-background px-2.5 py-1.5 text-xs font-medium"
+                  className="w-full rounded-lg border border-input bg-background px-2.5 py-2 text-xs font-medium"
                 />
               </div>
             </div>
 
             {/* Simulated Generated Document Page */}
-            <div className="rounded-xl border border-border bg-background p-6 shadow-sm text-xs space-y-4 font-mono">
-              <div className="flex justify-between items-start pb-4 border-b border-border">
-                <div>
-                  <div className="font-bold text-base text-foreground font-sans">
+            <div className="rounded-xl border border-border bg-background p-4 sm:p-6 shadow-sm text-xs space-y-4 font-mono">
+              <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-3 pb-4 border-b border-border">
+                <div className="min-w-0">
+                  <div className="font-bold text-sm sm:text-base text-foreground font-sans break-words">
                     {institutionName || "Apex Model Academy"}
                   </div>
-                  <div className="text-muted-foreground">
+                  <div className="text-muted-foreground break-words">
                     {activeTab === "invoice"
                       ? "RapidTechLabs Cloud Billing Dept."
                       : "Department of Academic Examinations"}
                   </div>
-                  <div className="text-muted-foreground text-[10px]">
-                    Powered by PaperGen Engine • paper-gen-five.vercel.app
+                  <div className="text-muted-foreground text-[10px] break-all">
+                    Powered by PaperGen • paper-gen-five.vercel.app
                   </div>
                 </div>
-                <div className="text-right">
+                <div className="sm:text-right shrink-0">
                   <span className="inline-block px-2 py-0.5 rounded bg-primary/10 text-primary font-bold uppercase tracking-wider text-[10px]">
                     {activeTab === "exampaper"
                       ? "Annual Exam"
@@ -206,7 +213,7 @@ export function SoftwareProductSection() {
                 <span className="text-muted-foreground block text-[10px] uppercase font-bold tracking-wider">
                   {activeTab === "invoice" ? "Bill Details:" : "Subject & Blueprint:"}
                 </span>
-                <div className="font-bold text-foreground text-sm font-sans">
+                <div className="font-bold text-foreground text-sm font-sans break-words">
                   {subjectTitle || "Mathematics & Science Assessment"}
                 </div>
                 <div className="text-muted-foreground">
@@ -217,37 +224,39 @@ export function SoftwareProductSection() {
               </div>
 
               <div className="rounded-lg bg-secondary/50 p-3 space-y-1.5 font-sans">
-                <div className="flex justify-between text-muted-foreground font-semibold border-b border-border pb-1 text-[11px]">
+                <div className="flex justify-between gap-2 text-muted-foreground font-semibold border-b border-border pb-1 text-[11px]">
                   <span>{activeTab === "invoice" ? "Service Description" : "Section Details"}</span>
-                  <span>{activeTab === "invoice" ? "Amount" : "Weightage"}</span>
+                  <span className="shrink-0">
+                    {activeTab === "invoice" ? "Amount" : "Weightage"}
+                  </span>
                 </div>
-                <div className="flex justify-between text-foreground text-xs">
-                  <span>
+                <div className="flex justify-between gap-3 text-foreground text-xs">
+                  <span className="min-w-0">
                     {activeTab === "exampaper"
                       ? "Section A: Multiple Choice Questions (20 Qs)"
                       : activeTab === "worksheet"
                         ? "Part 1: Concept Drills & Formulas"
                         : "PaperGen Institutional Cloud License"}
                   </span>
-                  <span className="font-bold">
+                  <span className="font-bold shrink-0">
                     {activeTab === "invoice" ? "₹11,999/mo" : "20 Marks"}
                   </span>
                 </div>
-                <div className="flex justify-between text-foreground text-xs">
-                  <span>
+                <div className="flex justify-between gap-3 text-foreground text-xs">
+                  <span className="min-w-0">
                     {activeTab === "exampaper"
                       ? "Section B: Long Analytical Problems (8 Qs)"
                       : activeTab === "worksheet"
                         ? "Part 2: Practical Lab Scenarios"
                         : "High-Resolution PDF Rendering API"}
                   </span>
-                  <span className="font-bold">
+                  <span className="font-bold shrink-0">
                     {activeTab === "invoice" ? "Included" : "80 Marks"}
                   </span>
                 </div>
               </div>
 
-              <div className="flex justify-between items-center pt-2 border-t border-border">
+              <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2 pt-2 border-t border-border">
                 <span className="text-muted-foreground text-[10px]">
                   PaperGen Hash: #pg-9e4a8b-live
                 </span>
@@ -257,21 +266,21 @@ export function SoftwareProductSection() {
                   rel="noopener noreferrer"
                   className="text-primary font-bold text-[11px] hover:underline inline-flex items-center gap-1 font-sans"
                 >
-                  Test on paper-gen-five.vercel.app <ExternalLink size={10} />
+                  Test on paper-gen-five.vercel.app <ExternalLink size={10} className="shrink-0" />
                 </a>
               </div>
             </div>
 
-            <div className="mt-4 flex items-center justify-between text-xs text-muted-foreground">
+            <div className="mt-4 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs text-muted-foreground">
               <span className="flex items-center gap-1.5">
-                <Zap size={14} className="text-primary" /> Generated in 35ms via PaperGen Cloud
-                Engine
+                <Zap size={14} className="text-primary shrink-0" /> Generated in 35ms via PaperGen
+                Cloud Engine
               </span>
               <a
                 href={softwareProduct.liveUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-primary font-semibold hover:underline flex items-center gap-1"
+                className="text-primary font-semibold hover:underline inline-flex items-center gap-1 shrink-0"
               >
                 Launch Full App <ExternalLink size={12} />
               </a>
