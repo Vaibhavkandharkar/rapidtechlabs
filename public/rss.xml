@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>RapidTechLabs Blog — Web Development, ERP, AI &amp; SEO Guides</title>
+    <link>https://www.rapidtechlabs.in/blog</link>
+    <atom:link href="https://www.rapidtechlabs.in/rss.xml" rel="self" type="application/rss+xml" />
+    <description>Actionable engineering, pricing, and SEO guides from RapidTechLabs.</description>
+    <language>en-in</language>
+    <item>
+      <title>Website Development Cost in India: Complete Pricing Guide (₹19,999 to ₹3.5L+)</title>
+      <link>https://www.rapidtechlabs.in/blog/website-development-cost-india</link>
+      <guid isPermaLink="true">https://www.rapidtechlabs.in/blog/website-development-cost-india</guid>
+      <description>Transparent breakdown of website development cost in India for startups, SMBs, and enterprises — compare features, timelines, hosting, SEO, and monthly care costs.</description>
+      <category>Web &amp; Pricing</category>
+    </item>
+    <item>
+      <title>Hospital &amp; Clinic Management Software (HMS/EHR) Guide: Essential Modules &amp; Architecture</title>
+      <link>https://www.rapidtechlabs.in/blog/hospital-management-system-guide-india</link>
+      <guid isPermaLink="true">https://www.rapidtechlabs.in/blog/hospital-management-system-guide-india</guid>
+      <description>Complete guide to modern Hospital Management Systems (HMS) and Clinic EHR software in India — OPD/IPD workflows, pharmacy, lab reporting, billing, and data security.</description>
+      <category>Healthcare</category>
+    </item>
+    <item>
+      <title>How Custom Industrial ERP Software Eliminates Manufacturing Bottlenecks &amp; Inventory Leakage</title>
+      <link>https://www.rapidtechlabs.in/blog/industrial-erp-software-manufacturing</link>
+      <guid isPermaLink="true">https://www.rapidtechlabs.in/blog/industrial-erp-software-manufacturing</guid>
+      <description>Discover how modular Industrial ERP software streamlines Bill of Materials (BOM), MRP, procurement, and shop-floor visibility for Indian manufacturing companies.</description>
+      <category>Enterprise ERP</category>
+    </item>
+    <item>
+      <title>How Schools &amp; Coaching Institutes Generate Exam Question Papers in Minutes with PaperGen</title>
+      <link>https://www.rapidtechlabs.in/blog/automated-question-paper-generator-papergen</link>
+      <guid isPermaLink="true">https://www.rapidtechlabs.in/blog/automated-question-paper-generator-papergen</guid>
+      <description>Stop spending hours formatting exam sheets in Word. See how PaperGen automates question papers, worksheets, blueprints, and print-ready PDFs for schools and academies.</description>
+      <category>EdTech &amp; PaperGen</category>
+    </item>
+    <item>
+      <title>Technical SEO &amp; Website Maintenance Checklist: How to Get Indexed and Rank on Google</title>
+      <link>https://www.rapidtechlabs.in/blog/technical-seo-website-maintenance-guide</link>
+      <guid isPermaLink="true">https://www.rapidtechlabs.in/blog/technical-seo-website-maintenance-guide</guid>
+      <description>Practical technical SEO and website care checklist for Indian businesses — fix canonical errors, speed up Core Web Vitals, get pages indexed fast, and grow organic leads.</description>
+      <category>SEO &amp; Growth</category>
+    </item>
+  </channel>
+</rss>

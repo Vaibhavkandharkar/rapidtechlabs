@@ -26,6 +26,7 @@ import {
   CreditCard,
   Layers,
   CheckCircle2,
+  BookOpen,
 } from "lucide-react";
 import logo from "@/assets/logo.png";
 import { InstantMeeting } from "@/components/InstantMeeting";
@@ -663,6 +664,28 @@ export function Header() {
                       </div>
                     </div>
                   </a>
+
+                  <Link
+                    to="/blog"
+                    onClick={closeAll}
+                    className="group flex items-start gap-3 p-2.5 rounded-xl hover:bg-secondary transition"
+                  >
+                    <div className="w-9 h-9 rounded-xl bg-primary/10 text-primary grid place-items-center shrink-0 mt-0.5 group-hover:bg-primary group-hover:text-white transition">
+                      <BookOpen size={18} />
+                    </div>
+                    <div>
+                      <div className="font-bold text-xs text-foreground group-hover:text-primary transition flex items-center gap-1.5">
+                        <span>Blog &amp; SEO Guides</span>
+                        <span className="px-1.5 py-0.5 rounded text-[9px] bg-primary/10 text-primary font-bold uppercase">
+                          Insights
+                        </span>
+                      </div>
+                      <div className="text-[11px] text-muted-foreground leading-snug mt-0.5">
+                        Website pricing breakdowns, ERP &amp; healthcare blueprints, and technical
+                        SEO checklists.
+                      </div>
+                    </div>
+                  </Link>
                 </div>
 
                 <div className="mt-3 pt-2.5 border-t border-border flex items-center justify-between text-xs">
@@ -686,15 +709,6 @@ export function Header() {
             activeProps={{ className: "text-primary font-semibold" }}
           >
             Portfolio
-          </Link>
-
-          <Link
-            to="/blog"
-            onClick={closeAll}
-            className="px-3 py-2 rounded-md text-sm font-medium text-foreground/80 hover:text-foreground hover:bg-secondary transition-colors"
-            activeProps={{ className: "text-primary font-semibold" }}
-          >
-            Blog
           </Link>
 
           <Link
@@ -946,6 +960,13 @@ export function Header() {
                   >
                     • Free Technical Website Audit
                   </a>
+                  <Link
+                    to="/blog"
+                    onClick={closeAll}
+                    className="block text-xs py-1 font-semibold text-primary hover:underline"
+                  >
+                    • Blog &amp; SEO Guides
+                  </Link>
                 </div>
               )}
             </div>
@@ -956,14 +977,6 @@ export function Header() {
               className="px-3 py-2 rounded-md text-sm font-medium hover:bg-secondary"
             >
               Portfolio & Case Studies
-            </Link>
-
-            <Link
-              to="/blog"
-              onClick={closeAll}
-              className="px-3 py-2 rounded-md text-sm font-medium hover:bg-secondary"
-            >
-              Blog & SEO Guides
             </Link>
 
             <Link
