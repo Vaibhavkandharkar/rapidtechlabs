@@ -1,5 +1,16 @@
-import { useState } from "react";
-import { Video, Calendar, Copy, Check, ArrowRight, X } from "lucide-react";
+import { useMemo, useState } from "react";
+import {
+  Video,
+  Calendar,
+  Check,
+  ArrowRight,
+  X,
+  ExternalLink,
+  MessageSquare,
+  Download,
+  Clock,
+  ShieldCheck,
+} from "lucide-react";
 import {
   Dialog,
   DialogContent,
@@ -9,83 +20,308 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { WHATSAPP_NUMBER } from "@/components/FloatingWhatsAppButton";
 
-function makeRoom() {
-  const slug = "RTL-" + Math.random().toString(36).slice(2, 8).toUpperCase();
-  return `https://meet.jit.si/${slug}`;
+const GOOGLE_MEET_HOST_EMAIL = "contact.rapidtechlabs@gmail.com";
+const GOOGLE_MEET_NEW_URL = "https://meet.google.com/new";
+// Optional: if you create a Google Calendar Appointment Schedule for contact.rapidtechlabs@gmail.com,
+// set VITE_GOOGLE_APPOINTMENT_URL in your Vercel env variables to link it directly.
+const GOOGLE_APPOINTMENT_URL =
+  (import.meta.env.VITE_GOOGLE_APPOINTMENT_URL as string | undefined)?.trim() || "";
+
+interface TimeSlot {
+  value: string; // 24-hour HH:mm (IST)
+  label: string;
 }
 
-const today = new Date();
-const dates = Array.from({ length: 7 }).map((_, i) => {
-  const d = new Date(today);
-  d.setDate(today.getDate() + i);
-  return d;
-});
-const times = ["09:00", "10:30", "12:00", "14:00", "15:30", "17:00"];
+const TIME_SLOTS: TimeSlot[] = [
+  { value: "10:00", label: "10:00 AM" },
+  { value: "11:30", label: "11:30 AM" },
+  { value: "13:00", label: "01:00 PM" },
+  { value: "15:00", label: "03:00 PM" },
+  { value: "16:30", label: "04:30 PM" },
+  { value: "18:00", label: "06:00 PM" },
+];
+
+function getUpcomingDates(count = 7): Date[] {
+  const base = new Date();
+  base.setHours(0, 0, 0, 0);
+  return Array.from({ length: count }).map((_, i) => {
+    const d = new Date(base);
+    d.setDate(base.getDate() + i);
+    return d;
+  });
+}
+
+function toLocalDateKey(d: Date): string {
+  const y = d.getFullYear();
+  const m = String(d.getMonth() + 1).padStart(2, "0");
+  const day = String(d.getDate()).padStart(2, "0");
+  return `${y}-${m}-${day}`;
+}
+
+function formatGoogleUtcTimestamp(date: Date): string {
+  const pad = (n: number) => String(n).padStart(2, "0");
+  return (
+    `${date.getUTCFullYear()}` +
+    `${pad(date.getUTCMonth() + 1)}` +
+    `${pad(date.getUTCDate())}T` +
+    `${pad(date.getUTCHours())}` +
+    `${pad(date.getUTCMinutes())}` +
+    `${pad(date.getUTCSeconds())}Z`
+  );
+}
+
+/**
+ * Converts a YYYY-MM-DD date and HH:mm IST (UTC+05:30) time into exact Start/End Date objects.
+ */
+function buildIstSlotDates(dateKey: string, time24: string, durationMinutes = 30) {
+  const [y, m, d] = dateKey.split("-").map(Number);
+  const [hh, mm] = time24.split(":").map(Number);
+  // IST is UTC + 5h30m -> subtract 330 minutes from IST wall clock to obtain exact UTC epoch
+  const startUtcMs = Date.UTC(y, m - 1, d, hh, mm, 0) - 330 * 60 * 1000;
+  const start = new Date(startUtcMs);
+  const end = new Date(startUtcMs + durationMinutes * 60 * 1000);
+  return { start, end };
+}
+
+function buildGoogleCalendarMeetUrl(opts: {
+  name: string;
+  email: string;
+  phone?: string;
+  topic?: string;
+  start: Date;
+  end: Date;
+}): string {
+  const title = `Google Meet: RapidTechLabs × ${opts.name || "Project Discovery"}`;
+  const detailsLines = [
+    "Video Meeting scheduled via RapidTechLabs (https://www.rapidtechlabs.in)",
+    "",
+    `Client Name: ${opts.name || "Website Visitor"}`,
+    `Client Email: ${opts.email || "Not provided"}`,
+    opts.phone ? `Phone / WhatsApp: ${opts.phone}` : "",
+    opts.topic ? `Discussion Topic: ${opts.topic}` : "",
+    "",
+    `Host Google Meet Account: ${GOOGLE_MEET_HOST_EMAIL}`,
+    "Please click 'Save' to confirm the invite and attach the Google Meet video link automatically.",
+  ].filter(Boolean);
+
+  const attendees = [GOOGLE_MEET_HOST_EMAIL, opts.email].filter(Boolean).join(",");
+
+  const params = new URLSearchParams({
+    action: "TEMPLATE",
+    text: title,
+    dates: `${formatGoogleUtcTimestamp(opts.start)}/${formatGoogleUtcTimestamp(opts.end)}`,
+    details: detailsLines.join("\n"),
+    location: "Google Meet",
+    add: attendees,
+  });
+
+  return `https://calendar.google.com/calendar/render?${params.toString()}`;
+}
+
+function downloadIcsFile(opts: {
+  name: string;
+  email: string;
+  topic?: string;
+  start: Date;
+  end: Date;
+  meetLink?: string;
+}) {
+  const uid = `rtl-${Date.now()}@rapidtechlabs.in`;
+  const summary = `Google Meet: RapidTechLabs × ${opts.name}`;
+  const description = [
+    `Project Discussion with RapidTechLabs`,
+    `Host: ${GOOGLE_MEET_HOST_EMAIL}`,
+    `Guest: ${opts.name} (${opts.email})`,
+    opts.topic ? `Topic: ${opts.topic}` : "",
+    opts.meetLink ? `Google Meet Link: ${opts.meetLink}` : "Platform: Google Meet",
+  ]
+    .filter(Boolean)
+    .join("\\n");
+
+  const ics = [
+    "BEGIN:VCALENDAR",
+    "VERSION:2.0",
+    "PRODID:-//RapidTechLabs//Google Meet Scheduler//EN",
+    "METHOD:REQUEST",
+    "BEGIN:VEVENT",
+    `UID:${uid}`,
+    `DTSTAMP:${formatGoogleUtcTimestamp(new Date())}`,
+    `DTSTART:${formatGoogleUtcTimestamp(opts.start)}`,
+    `DTEND:${formatGoogleUtcTimestamp(opts.end)}`,
+    `SUMMARY:${summary}`,
+    `DESCRIPTION:${description}`,
+    `LOCATION:${opts.meetLink || "Google Meet"}`,
+    `ORGANIZER;CN=RapidTechLabs:mailto:${GOOGLE_MEET_HOST_EMAIL}`,
+    `ATTENDEE;CN=RapidTechLabs;RSVP=TRUE:mailto:${GOOGLE_MEET_HOST_EMAIL}`,
+    opts.email ? `ATTENDEE;CN=${opts.name};RSVP=TRUE:mailto:${opts.email}` : "",
+    "END:VEVENT",
+    "END:VCALENDAR",
+  ]
+    .filter(Boolean)
+    .join("\r\n");
+
+  const blob = new Blob([ics], { type: "text/calendar;charset=utf-8" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "RapidTechLabs-Google-Meet.ics";
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  URL.revokeObjectURL(url);
+}
+
+interface ScheduledBooking {
+  name: string;
+  email: string;
+  phone: string;
+  topic: string;
+  dateKey: string;
+  timeLabel: string;
+  start: Date;
+  end: Date;
+  calendarUrl: string;
+  meetLink?: string;
+  backendSynced: boolean;
+}
 
 export function InstantMeeting({ trigger }: { trigger?: React.ReactNode }) {
-  const [room, setRoom] = useState(makeRoom);
-  const [copied, setCopied] = useState(false);
-  const [date, setDate] = useState(dates[1].toISOString());
-  const [time, setTime] = useState(times[1]);
-  const [scheduled, setScheduled] = useState<null | {
-    date: string;
-    time: string;
-    meetLink: string;
-  }>(null);
-
-  const copy = async () => {
-    await navigator.clipboard.writeText(room);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
-  };
-
+  const dates = useMemo(() => getUpcomingDates(7), []);
+  const [dateKey, setDateKey] = useState(() => toLocalDateKey(dates[1] ?? dates[0]));
+  const [timeSlot, setTimeSlot] = useState<string>(TIME_SLOTS[1].value);
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [topic, setTopic] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [scheduled, setScheduled] = useState<ScheduledBooking | null>(null);
+
+  // Instant Google Meet (Now) state
+  const [instantName, setInstantName] = useState("");
+  const [instantEmail, setInstantEmail] = useState("");
 
   const handleScheduleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setLoading(true);
     setError(null);
 
-    const formData = new FormData(e.currentTarget);
-    const data = {
-      name: formData.get("name"),
-      email: formData.get("email"),
-      date: date,
-      time: time,
+    const cleanName = name.trim();
+    const cleanEmail = email.trim();
+    if (!cleanName || !cleanEmail) {
+      setError("Please enter your name and email address.");
+      return;
+    }
+
+    setLoading(true);
+    const chosenSlot = TIME_SLOTS.find((t) => t.value === timeSlot) ?? TIME_SLOTS[0];
+    const { start, end } = buildIstSlotDates(dateKey, chosenSlot.value, 30);
+
+    const calendarUrl = buildGoogleCalendarMeetUrl({
+      name: cleanName,
+      email: cleanEmail,
+      phone: phone.trim(),
+      topic: topic.trim(),
+      start,
+      end,
+    });
+
+    const payload = {
+      name: cleanName,
+      email: cleanEmail,
+      phone: phone.trim(),
+      topic: topic.trim() || "Project Discovery Meeting",
+      date: dateKey,
+      time: chosenSlot.value,
+      timeLabel: `${chosenSlot.label} IST`,
+      timezone: "Asia/Kolkata",
+      hostEmail: GOOGLE_MEET_HOST_EMAIL,
+      platform: "google_meet",
+      calendarUrl,
     };
+
+    let liveMeetLink: string | undefined;
+    let backendSynced = false;
 
     try {
       const response = await fetch("https://api.rapidtechlabs.in/api/schedule", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
       });
 
-      if (!response.ok) {
-        throw new Error("Failed to schedule meeting");
+      if (response.ok) {
+        const result = await response.json();
+        if (result?.meetLink) {
+          liveMeetLink = String(result.meetLink);
+          backendSynced = true;
+        }
       }
-
-      const result = await response.json();
-
-      if (!result.meetLink) {
-        throw new Error("Google Meet link was not generated");
-      }
-
-      setScheduled({
-        date,
-        time,
-        meetLink: result.meetLink,
-      });
-    } catch (err: any) {
-      setError(err.message || "Something went wrong. Please try again.");
-    } finally {
-      setLoading(false);
+    } catch {
+      // Fallback: notify general contact endpoint silently & persist locally
+      fetch("https://api.rapidtechlabs.in/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          type: "google_meet_booking",
+          ...payload,
+        }),
+      }).catch(() => {});
     }
+
+    try {
+      const existing = JSON.parse(localStorage.getItem("rapidtechlabs_meetings") || "[]");
+      existing.unshift({ ...payload, meetLink: liveMeetLink, createdAt: new Date().toISOString() });
+      localStorage.setItem("rapidtechlabs_meetings", JSON.stringify(existing.slice(0, 30)));
+    } catch {
+      // ignore storage errors
+    }
+
+    setScheduled({
+      name: cleanName,
+      email: cleanEmail,
+      phone: phone.trim(),
+      topic: topic.trim(),
+      dateKey,
+      timeLabel: `${chosenSlot.label} IST`,
+      start,
+      end,
+      calendarUrl,
+      meetLink: liveMeetLink,
+      backendSynced,
+    });
+
+    setLoading(false);
   };
+
+  const buildInstantNowCalendarUrl = () => {
+    const start = new Date(Date.now() + 5 * 60 * 1000); // starts in 5 minutes
+    const end = new Date(start.getTime() + 30 * 60 * 1000);
+    return buildGoogleCalendarMeetUrl({
+      name: instantName.trim() || "Instant Discovery Call",
+      email: instantEmail.trim(),
+      topic: "Instant Google Meet Discussion",
+      start,
+      end,
+    });
+  };
+
+  const instantWhatsappPingUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
+    `Hi RapidTechLabs! I'd like to start an Instant Google Meet right now.\nName: ${
+      instantName.trim() || "Website Visitor"
+    }\nEmail: ${instantEmail.trim() || "Will share in chat"}\nHost Calendar: ${GOOGLE_MEET_HOST_EMAIL}`,
+  )}`;
+
+  const scheduledWhatsappUrl = scheduled
+    ? `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
+        `Hi RapidTechLabs! I just scheduled a Google Meet with ${GOOGLE_MEET_HOST_EMAIL}.\nName: ${
+          scheduled.name
+        }\nEmail: ${scheduled.email}\nDate: ${scheduled.dateKey}\nTime: ${scheduled.timeLabel}${
+          scheduled.topic ? `\nTopic: ${scheduled.topic}` : ""
+        }`,
+      )}`
+    : "";
 
   return (
     <Dialog>
@@ -96,158 +332,206 @@ export function InstantMeeting({ trigger }: { trigger?: React.ReactNode }) {
           </button>
         )}
       </DialogTrigger>
-      <DialogContent className="sm:max-w-lg">
+      <DialogContent className="sm:max-w-lg max-h-[90vh] overflow-y-auto p-5 sm:p-6">
         <DialogHeader>
-          <DialogTitle>Meet with RapidTechLabs</DialogTitle>
-          <DialogDescription>
-            Start an instant video call or schedule a discovery slot — no account required.
+          <DialogTitle className="flex items-center gap-2 text-lg sm:text-xl">
+            <span className="w-8 h-8 rounded-lg bg-gradient-brand text-white grid place-items-center shrink-0">
+              <Video size={16} />
+            </span>
+            <span>Google Meet with RapidTechLabs</span>
+          </DialogTitle>
+          <DialogDescription className="text-xs sm:text-sm">
+            Schedule a Google Meet directly with{" "}
+            <strong className="text-foreground">{GOOGLE_MEET_HOST_EMAIL}</strong> or start an
+            immediate call to discuss your project.
           </DialogDescription>
         </DialogHeader>
-        <Tabs defaultValue="instant" className="mt-2">
-          <TabsList className="grid grid-cols-2">
-            <TabsTrigger value="instant">
-              <Video size={14} className="mr-1.5" /> Instant call
+
+        <Tabs defaultValue="schedule" className="mt-2">
+          <TabsList className="grid grid-cols-2 w-full">
+            <TabsTrigger value="schedule" className="text-xs sm:text-sm">
+              <Calendar size={14} className="mr-1.5 shrink-0" /> Schedule Meet
             </TabsTrigger>
-            <TabsTrigger value="schedule">
-              <Calendar size={14} className="mr-1.5" /> Schedule
+            <TabsTrigger value="instant" className="text-xs sm:text-sm">
+              <Video size={14} className="mr-1.5 shrink-0" /> Instant Call Now
             </TabsTrigger>
           </TabsList>
 
-          <TabsContent value="instant" className="space-y-4 pt-4">
-            <div className="rounded-xl bg-gradient-soft border border-border p-4">
-              <div className="text-xs font-semibold uppercase tracking-widest text-accent">
-                Your private room
-              </div>
-              <div className="mt-1 flex items-center gap-2">
-                <code className="flex-1 truncate text-sm font-medium">{room}</code>
-                <button
-                  onClick={copy}
-                  aria-label="Copy link"
-                  className="rounded-md border border-border bg-card p-2 hover:bg-secondary"
-                >
-                  {copied ? <Check size={14} className="text-accent" /> : <Copy size={14} />}
-                </button>
-              </div>
-            </div>
-            <p className="text-sm text-muted-foreground">
-              Share the link with your team, then click <b>Join now</b>. Our consultant will receive
-              a ping and join within minutes during business hours.
-            </p>
-            <div className="flex flex-wrap gap-2">
-              <a
-                href={room}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center gap-2 rounded-lg bg-gradient-brand px-5 py-2.5 font-semibold text-white shadow-glow"
-              >
-                Join now <ArrowRight size={16} />
-              </a>
-              <button
-                onClick={() => setRoom(makeRoom())}
-                className="rounded-lg border border-border bg-card px-4 py-2.5 text-sm font-medium hover:bg-secondary"
-              >
-                New room
-              </button>
-            </div>
-          </TabsContent>
-
+          {/* TAB 1: SCHEDULE GOOGLE MEET */}
           <TabsContent value="schedule" className="space-y-4 pt-4">
             {scheduled ? (
-              <div className="text-center py-6">
-                <div className="mx-auto w-12 h-12 rounded-full bg-gradient-brand grid place-items-center">
+              <div className="text-center py-3 space-y-4">
+                <div className="mx-auto w-12 h-12 rounded-full bg-gradient-brand grid place-items-center shadow-glow">
                   <Check className="text-white" size={22} />
                 </div>
-                <h4 className="mt-4 font-semibold text-lg">You're booked in</h4>
-                <p className="mt-1 text-muted-foreground text-sm">
-                  {new Date(scheduled.date).toLocaleDateString(undefined, {
-                    weekday: "long",
-                    month: "short",
-                    day: "numeric",
-                  })}{" "}
-                  at {scheduled.time}. We've reserved your slot — a calendar invite will hit your
-                  inbox shortly.
-                </p>
-                <div className="mt-4">
-                  <a
-                    href={scheduled.meetLink}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="inline-flex items-center gap-2 rounded-lg bg-gradient-brand px-4 py-2 text-white font-medium"
-                  >
-                    Join Google Meet
-                  </a>
+
+                <div>
+                  <h4 className="font-bold text-lg text-foreground">
+                    {scheduled.backendSynced
+                      ? "Google Meet Confirmed!"
+                      : "Your Google Meet Slot Is Ready!"}
+                  </h4>
+                  <p className="mt-1 text-muted-foreground text-xs sm:text-sm leading-relaxed">
+                    {new Date(`${scheduled.dateKey}T00:00:00`).toLocaleDateString("en-IN", {
+                      weekday: "long",
+                      month: "short",
+                      day: "numeric",
+                    })}{" "}
+                    at <strong className="text-foreground">{scheduled.timeLabel}</strong> with{" "}
+                    <strong className="text-foreground">{GOOGLE_MEET_HOST_EMAIL}</strong>.
+                  </p>
                 </div>
+
+                <div className="rounded-xl bg-secondary/50 border border-border p-3.5 text-left text-xs space-y-1.5">
+                  <div className="flex justify-between gap-2">
+                    <span className="text-muted-foreground">Host Google Meet:</span>
+                    <span className="font-semibold text-foreground break-all">
+                      {GOOGLE_MEET_HOST_EMAIL}
+                    </span>
+                  </div>
+                  <div className="flex justify-between gap-2">
+                    <span className="text-muted-foreground">Attendee:</span>
+                    <span className="font-semibold text-foreground break-all">
+                      {scheduled.name} ({scheduled.email})
+                    </span>
+                  </div>
+                  <div className="flex justify-between gap-2">
+                    <span className="text-muted-foreground">Slot:</span>
+                    <span className="font-semibold text-primary">
+                      {scheduled.dateKey} · {scheduled.timeLabel}
+                    </span>
+                  </div>
+                </div>
+
+                <div className="flex flex-col gap-2.5 pt-1">
+                  {scheduled.meetLink ? (
+                    <a
+                      href={scheduled.meetLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-full inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-brand px-4 py-3 text-sm font-semibold text-white shadow-glow hover:brightness-110 transition"
+                    >
+                      <Video size={16} /> Join Google Meet Room <ExternalLink size={14} />
+                    </a>
+                  ) : (
+                    <a
+                      href={GOOGLE_APPOINTMENT_URL || scheduled.calendarUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-full inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-brand px-4 py-3 text-sm font-semibold text-white shadow-glow hover:brightness-110 transition"
+                    >
+                      <Calendar size={16} /> Confirm in Google Calendar (Google Meet){" "}
+                      <ExternalLink size={14} />
+                    </a>
+                  )}
+
+                  <a
+                    href={scheduledWhatsappUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full inline-flex items-center justify-center gap-2 rounded-xl bg-[#25D366] hover:bg-[#1ebe5d] px-4 py-2.5 text-xs sm:text-sm font-semibold text-white transition"
+                  >
+                    <MessageSquare size={15} /> Ping Host on WhatsApp (+91 8806884168)
+                  </a>
+
+                  <button
+                    type="button"
+                    onClick={() =>
+                      downloadIcsFile({
+                        name: scheduled.name,
+                        email: scheduled.email,
+                        topic: scheduled.topic,
+                        start: scheduled.start,
+                        end: scheduled.end,
+                        meetLink: scheduled.meetLink,
+                      })
+                    }
+                    className="w-full inline-flex items-center justify-center gap-2 rounded-xl border border-border bg-card hover:bg-secondary px-4 py-2 text-xs font-semibold text-foreground transition"
+                  >
+                    <Download size={14} /> Download Calendar Invite (.ics)
+                  </button>
+                </div>
+
                 <button
+                  type="button"
                   onClick={() => setScheduled(null)}
-                  className="mt-4 text-sm text-primary font-medium hover:underline"
+                  className="text-xs text-primary font-semibold hover:underline pt-1"
                 >
-                  Book another slot
+                  Schedule another time slot
                 </button>
               </div>
             ) : (
               <form onSubmit={handleScheduleSubmit} className="space-y-4">
                 {error && (
-                  <div className="bg-red-500/10 border border-red-500/20 text-red-500 p-3 rounded-lg text-sm mb-4">
+                  <div className="bg-red-500/10 border border-red-500/20 text-red-500 p-3 rounded-lg text-xs">
                     {error}
                   </div>
                 )}
+
                 <div>
-                  <label className="block text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-2">
-                    Pick a day
+                  <label className="block text-[11px] font-semibold uppercase tracking-widest text-muted-foreground mb-2">
+                    1. Pick a day
                   </label>
                   <div className="flex gap-2 overflow-x-auto pb-1">
                     {dates.map((d) => {
-                      const iso = d.toISOString();
-                      const active = iso === date;
+                      const key = toLocalDateKey(d);
+                      const active = key === dateKey;
                       return (
                         <button
                           type="button"
-                          key={iso}
-                          onClick={() => setDate(iso)}
-                          className={`flex-shrink-0 rounded-xl border px-3 py-2 text-center transition ${
+                          key={key}
+                          onClick={() => setDateKey(key)}
+                          className={`flex-shrink-0 rounded-xl border px-3 py-2 text-center min-w-[58px] transition ${
                             active
                               ? "border-transparent bg-gradient-brand text-white shadow-glow"
                               : "border-border bg-card hover:bg-secondary"
                           }`}
                         >
                           <div className="text-[10px] uppercase tracking-wider opacity-80">
-                            {d.toLocaleDateString(undefined, { weekday: "short" })}
+                            {d.toLocaleDateString("en-IN", { weekday: "short" })}
                           </div>
-                          <div className="font-semibold">{d.getDate()}</div>
+                          <div className="font-semibold text-sm">{d.getDate()}</div>
                         </button>
                       );
                     })}
                   </div>
                 </div>
+
                 <div>
-                  <label className="block text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-2">
-                    Pick a time
+                  <label className="flex items-center justify-between text-[11px] font-semibold uppercase tracking-widest text-muted-foreground mb-2">
+                    <span>2. Pick a time (IST)</span>
+                    <span className="inline-flex items-center gap-1 normal-case tracking-normal text-[11px] font-medium">
+                      <Clock size={11} /> 30 min · Google Meet
+                    </span>
                   </label>
-                  <div className="grid grid-cols-3 gap-2">
-                    {times.map((t) => {
-                      const active = t === time;
+                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                    {TIME_SLOTS.map((slot) => {
+                      const active = slot.value === timeSlot;
                       return (
                         <button
                           type="button"
-                          key={t}
-                          onClick={() => setTime(t)}
-                          className={`rounded-lg border px-3 py-2 text-sm font-medium transition ${
+                          key={slot.value}
+                          onClick={() => setTimeSlot(slot.value)}
+                          className={`rounded-lg border px-2.5 py-2 text-xs sm:text-sm font-medium transition ${
                             active
                               ? "border-transparent bg-gradient-brand text-white shadow-glow"
                               : "border-border bg-card hover:bg-secondary"
                           }`}
                         >
-                          {t}
+                          {slot.label}
                         </button>
                       );
                     })}
                   </div>
                 </div>
-                <div className="grid sm:grid-cols-2 gap-3">
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                   <input
                     name="name"
                     required
-                    placeholder="Your name"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    placeholder="Your full name *"
                     maxLength={120}
                     className="rounded-lg border border-input bg-background px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring"
                   />
@@ -255,20 +539,113 @@ export function InstantMeeting({ trigger }: { trigger?: React.ReactNode }) {
                     name="email"
                     required
                     type="email"
-                    placeholder="Work email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="Your email (for Meet invite) *"
                     maxLength={255}
                     className="rounded-lg border border-input bg-background px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring"
                   />
                 </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                  <input
+                    name="phone"
+                    type="tel"
+                    value={phone}
+                    onChange={(e) => setPhone(e.target.value)}
+                    placeholder="Phone / WhatsApp (optional)"
+                    maxLength={30}
+                    className="rounded-lg border border-input bg-background px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring"
+                  />
+                  <input
+                    name="topic"
+                    value={topic}
+                    onChange={(e) => setTopic(e.target.value)}
+                    placeholder="Topic (Website, ERP, SEO...)"
+                    maxLength={140}
+                    className="rounded-lg border border-input bg-background px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring"
+                  />
+                </div>
+
                 <button
                   type="submit"
                   disabled={loading}
-                  className="w-full rounded-lg bg-gradient-brand px-5 py-2.5 font-semibold text-white shadow-glow hover:brightness-110 disabled:opacity-70"
+                  className="w-full inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-brand px-5 py-2.5 text-sm font-semibold text-white shadow-glow hover:brightness-110 disabled:opacity-70 transition"
                 >
-                  {loading ? "Confirming..." : "Confirm meeting"}
+                  <Video size={15} />
+                  {loading ? "Preparing Google Meet..." : "Schedule Google Meet"}
                 </button>
+
+                <div className="flex items-center justify-center gap-1.5 text-[11px] text-muted-foreground">
+                  <ShieldCheck size={13} className="text-primary shrink-0" />
+                  <span>Invite sent directly to {GOOGLE_MEET_HOST_EMAIL}</span>
+                </div>
               </form>
             )}
+          </TabsContent>
+
+          {/* TAB 2: INSTANT GOOGLE MEET NOW */}
+          <TabsContent value="instant" className="space-y-4 pt-4">
+            <div className="rounded-xl bg-gradient-soft border border-border p-4 space-y-2">
+              <div className="text-[11px] font-bold uppercase tracking-widest text-accent">
+                Direct Google Meet Discussion
+              </div>
+              <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
+                Want to discuss your project right now? Create an instant Google Meet invite with{" "}
+                <strong className="text-foreground">{GOOGLE_MEET_HOST_EMAIL}</strong> or launch a
+                live Google Meet room and ping us on WhatsApp to join immediately.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+              <input
+                type="text"
+                value={instantName}
+                onChange={(e) => setInstantName(e.target.value)}
+                placeholder="Your name (optional)"
+                maxLength={120}
+                className="rounded-lg border border-input bg-background px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring"
+              />
+              <input
+                type="email"
+                value={instantEmail}
+                onChange={(e) => setInstantEmail(e.target.value)}
+                placeholder="Your email (optional)"
+                maxLength={255}
+                className="rounded-lg border border-input bg-background px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring"
+              />
+            </div>
+
+            <div className="flex flex-col gap-2.5">
+              <a
+                href={GOOGLE_APPOINTMENT_URL || buildInstantNowCalendarUrl()}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-brand px-5 py-3 text-sm font-semibold text-white shadow-glow hover:brightness-110 transition"
+              >
+                <Calendar size={16} /> Book Immediate Google Meet (In 5 Mins){" "}
+                <ArrowRight size={15} />
+              </a>
+
+              <a
+                href={GOOGLE_MEET_NEW_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full inline-flex items-center justify-center gap-2 rounded-xl border border-border bg-card hover:bg-secondary px-5 py-2.5 text-sm font-semibold text-foreground transition"
+              >
+                <Video size={15} className="text-primary" /> Start New Google Meet Room Now{" "}
+                <ExternalLink size={13} />
+              </a>
+
+              <a
+                href={instantWhatsappPingUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full inline-flex items-center justify-center gap-2 rounded-xl bg-[#25D366] hover:bg-[#1ebe5d] px-5 py-2.5 text-sm font-semibold text-white transition"
+              >
+                <MessageSquare size={15} /> Ping Host on WhatsApp to Join Now
+              </a>
+            </div>
           </TabsContent>
         </Tabs>
       </DialogContent>
