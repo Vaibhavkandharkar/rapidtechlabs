@@ -234,7 +234,7 @@ export function Footer() {
 
           <ul className="mt-6 space-y-2 text-sm text-white/70">
             <li className="flex items-center gap-2">
-              <Phone size={14} className="text-cyan" /> +91 9325378590
+              <Phone size={14} className="text-cyan" /> +91 8806884168
             </li>
             <li className="flex items-center gap-2">
               <MapPin size={14} className="text-cyan" /> India & Global Remote-First (Pan-India

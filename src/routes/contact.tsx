@@ -64,10 +64,10 @@ function ContactPage() {
                 <div>
                   <div className="text-xs text-muted-foreground">Direct Call & WhatsApp</div>
                   <a
-                    href="tel:+919325378590"
+                    href="tel:+918806884168"
                     className="font-semibold text-sm text-foreground hover:text-primary transition"
                   >
-                    +91 9325378590
+                    +91 8806884168
                   </a>
                 </div>
               </div>

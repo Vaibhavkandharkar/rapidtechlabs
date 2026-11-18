@@ -11,7 +11,7 @@ export const SITE_URL = "https://www.rapidtechlabs.in";
 export const SITE_NAME = "RapidTechLabs";
 export const DEFAULT_OG_IMAGE = `${SITE_URL}/og-image.png`;
 export const CONTACT_EMAIL = "sales@rapidtechlabs.in";
-export const CONTACT_PHONE = "+91 9325378590";
+export const CONTACT_PHONE = "+91 8806884168";
 
 // ─── meta generator ─────────────────────────────────────────────────────────
 
@@ -77,7 +77,7 @@ export function organizationSchema() {
       "Enterprise IT solutions: ERP, hospital & institute management, custom software, website development, AI integration and digital marketing.",
     contactPoint: {
       "@type": "ContactPoint",
-      telephone: "+91-9325378590",
+      telephone: "+91-8806884168",
       email: CONTACT_EMAIL,
       contactType: "sales",
       availableLanguage: ["English", "Hindi"],

@@ -54,7 +54,7 @@ const navHtml = `
 const footerHtml = `
   <footer>
     <p>RapidTechLabs — Building Solutions. Powering Futures. Website Development, Custom Software, ERP, AI Integration &amp; SEO Agency.</p>
-    <p>Email: <a href="mailto:sales@rapidtechlabs.in">sales@rapidtechlabs.in</a> | Phone: <a href="tel:+919325378590">+91 9325378590</a></p>
+    <p>Email: <a href="mailto:sales@rapidtechlabs.in">sales@rapidtechlabs.in</a> | Phone: <a href="tel:+918806884168">+91 8806884168</a></p>
     <nav aria-label="Footer navigation">
       <a href="/">Home</a>
       <a href="/services">Services</a>
@@ -311,7 +311,7 @@ const routes = [
           <h2>Direct Contact Channels</h2>
           <ul>
             <li>Sales &amp; Technical Enquiries: <a href="mailto:sales@rapidtechlabs.in">sales@rapidtechlabs.in</a></li>
-            <li>Phone &amp; WhatsApp: <a href="tel:+919325378590">+91 9325378590</a></li>
+            <li>Phone &amp; WhatsApp: <a href="tel:+918806884168">+91 8806884168</a></li>
             <li>Coverage: India &amp; Global Remote-First (USA, UK, Canada, Australia, UAE, Singapore)</li>
           </ul>
         </section>
