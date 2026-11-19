@@ -145,10 +145,72 @@
       }
     </script>
     <!-- ROUTE_SCHEMA_SLOT -->
+
+    <!-- Inline base styles: prevents white flash and unstyled text flicker -->
+    <style>
+      html,
+      body {
+        background-color: #020617;
+        color: #f8fafc;
+        margin: 0;
+        padding: 0;
+        font-family:
+          Inter,
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          Roboto,
+          sans-serif;
+      }
+      @keyframes rtl-spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+      .rtl-preloader-spinner {
+        width: 40px;
+        height: 40px;
+        margin: 0 auto 16px;
+        border: 3px solid rgba(56, 189, 248, 0.16);
+        border-top-color: #38bdf8;
+        border-radius: 50%;
+        animation: rtl-spin 0.75s linear infinite;
+      }
+    </style>
   </head>
 
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <div
+        id="app-preloader"
+        style="
+          min-height: 100vh;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background-color: #020617;
+        "
+      >
+        <div style="text-align: center; padding: 24px">
+          <div class="rtl-preloader-spinner"></div>
+          <div
+            style="
+              font-size: 15px;
+              font-weight: 700;
+              letter-spacing: 0.08em;
+              text-transform: uppercase;
+              color: #f8fafc;
+            "
+          >
+            RapidTechLabs
+          </div>
+          <div style="font-size: 12px; color: #64748b; margin-top: 6px; letter-spacing: 0.02em">
+            Engineering Digital Solutions
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- SEO_NOSCRIPT_SLOT -->
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

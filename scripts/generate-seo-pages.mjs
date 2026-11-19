@@ -719,8 +719,21 @@ function buildRouteHtml(template, route) {
 
   html = html.replace("<!-- ROUTE_SCHEMA_SLOT -->", schemaScripts);
 
-  const seoSnapshot = `<div id="root"><div style="max-width:1100px;margin:0 auto;padding:24px;font-family:Inter,system-ui,sans-serif">${navHtml}${route.bodyHtml}${footerHtml}</div></div>`;
-  html = html.replace('<div id="root"></div>', seoSnapshot);
+  const noscriptBlock = `    <noscript>
+      <div id="seo-fallback-content" style="max-width:1100px;margin:0 auto;padding:24px;font-family:Inter,system-ui,sans-serif;color:#0f172a;background-color:#ffffff">
+${navHtml}
+${route.bodyHtml}
+${footerHtml}
+      </div>
+    </noscript>`;
+
+  if (html.includes("<!-- SEO_NOSCRIPT_SLOT -->")) {
+    html = html.replace("<!-- SEO_NOSCRIPT_SLOT -->", noscriptBlock);
+  } else if (html.includes("</div>\n    <script")) {
+    html = html.replace("</div>\n    <script", `</div>\n${noscriptBlock}\n    <script`);
+  } else {
+    html = html.replace("</body>", `${noscriptBlock}\n  </body>`);
+  }
 
   return html;
 }
