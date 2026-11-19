@@ -778,6 +778,98 @@ function generateRssXml() {
   return `<?xml version="1.0" encoding="UTF-8"?>\n<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">\n  <channel>\n    <title>RapidTechLabs Blog — Web Development, ERP, AI &amp; SEO Guides</title>\n    <link>${SITE_URL}/blog</link>\n    <atom:link href="${SITE_URL}/rss.xml" rel="self" type="application/rss+xml" />\n    <description>Actionable engineering, pricing, and SEO guides from RapidTechLabs.</description>\n    <language>en-in</language>\n${items}\n  </channel>\n</rss>\n`;
 }
 
+function generateRobotsTxt() {
+  return `# RapidTechLabs (https://www.rapidtechlabs.in)
+# Robots Exclusion Protocol configuration
+
+User-agent: *
+Allow: /
+Disallow: /*.map$
+Disallow: /api/
+
+# Major Search Engine Crawlers
+User-agent: Googlebot
+Allow: /
+
+User-agent: Googlebot-Image
+Allow: /
+
+User-agent: Googlebot-News
+Allow: /
+
+User-agent: Googlebot-Video
+Allow: /
+
+User-agent: APIs-Google
+Allow: /
+
+User-agent: Mediapartners-Google
+Allow: /
+
+User-agent: AdsBot-Google
+Allow: /
+
+User-agent: AdsBot-Google-Mobile
+Allow: /
+
+User-agent: Storebot-Google
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Slurp
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: Baiduspider
+Allow: /
+
+User-agent: YandexBot
+Allow: /
+
+# AI Search Engines & LLM Web Crawlers
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: Meta-ExternalAgent
+Allow: /
+
+User-agent: cohere-ai
+Allow: /
+
+# Sitemaps & Feeds
+Sitemap: ${SITE_URL}/sitemap.xml
+Sitemap: ${SITE_URL}/rss.xml
+
+# Canonical Host
+Host: ${SITE_URL}
+`;
+}
+
 if (!fs.existsSync(TEMPLATE_PATH)) {
   console.error("dist/index.html not found. Run vite build first.");
   process.exit(1);
@@ -806,3 +898,8 @@ const rssXml = generateRssXml();
 fs.writeFileSync(path.join(DIST_DIR, "rss.xml"), rssXml, "utf8");
 fs.writeFileSync(path.join(PUBLIC_DIR, "rss.xml"), rssXml, "utf8");
 console.log(`Generated rss.xml with ${blogPosts.length} blog articles.`);
+
+const robotsTxt = generateRobotsTxt();
+fs.writeFileSync(path.join(DIST_DIR, "robots.txt"), robotsTxt, "utf8");
+fs.writeFileSync(path.join(PUBLIC_DIR, "robots.txt"), robotsTxt, "utf8");
+console.log("Updated robots.txt in dist/ and public/.");
