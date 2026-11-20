@@ -65,6 +65,15 @@ function RouteSeoSync() {
         }
       }
     }
+
+    if (typeof window !== "undefined" && Array.isArray((window as any).dataLayer)) {
+      (window as any).dataLayer.push({
+        event: "page_view",
+        page_path: window.location.pathname,
+        page_title: document.title,
+        page_location: window.location.href,
+      });
+    }
   }, [matches]);
 
   return null;
