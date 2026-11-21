@@ -341,7 +341,6 @@ const staticRoutes = [
           <h2>Latest Engineering &amp; SEO Guides</h2>
           <ul>
             ${blogPosts
-              .slice(0, 5)
               .map((p) => `<li><a href="/blog/${p.slug}">${escapeHtml(p.title)}</a></li>`)
               .join("\n")}
           </ul>
