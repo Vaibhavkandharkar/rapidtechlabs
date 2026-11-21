@@ -146,13 +146,13 @@ function BlogIndexPage() {
                   className={`shrink-0 inline-flex items-center gap-1.5 rounded-full px-3.5 sm:px-4 py-2 text-xs sm:text-sm font-semibold transition ${
                     active
                       ? "bg-gradient-brand text-white shadow-glow"
-                      : "bg-card border border-border text-muted-foreground hover:text-foreground hover:border-primary/40"
+                      : "bg-white border border-border text-foreground/80 hover:text-foreground hover:border-primary/40 shadow-xs"
                   }`}
                 >
                   <span>{cat}</span>
                   <span
                     className={`rounded-full px-1.5 py-0.5 text-[10px] ${
-                      active ? "bg-white/20 text-white" : "bg-secondary text-foreground/70"
+                      active ? "bg-white/20 text-white" : "bg-slate-100 text-slate-700"
                     }`}
                   >
                     {count}
@@ -165,7 +165,7 @@ function BlogIndexPage() {
 
         {/* FEATURED SPOTLIGHT CARD */}
         {showFeaturedSpotlight && featuredPost && (
-          <article className="mb-10 sm:mb-14 group rounded-2xl sm:rounded-3xl overflow-hidden bg-card border border-border shadow-card hover:shadow-glow transition-all grid grid-cols-1 lg:grid-cols-12">
+          <article className="mb-10 sm:mb-14 group rounded-2xl sm:rounded-3xl overflow-hidden bg-white border border-border shadow-card hover:shadow-glow transition-all grid grid-cols-1 lg:grid-cols-12">
             <Link
               to="/blog/$slug"
               params={{ slug: featuredPost.slug }}
@@ -182,7 +182,7 @@ function BlogIndexPage() {
                 <span className="rounded-full bg-gradient-brand px-2.5 sm:px-3 py-1 text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-white shadow-glow">
                   Featured Guide
                 </span>
-                <span className="rounded-full glass-dark px-2.5 sm:px-3 py-1 text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-cyan">
+                <span className="rounded-full bg-white text-slate-900 shadow-md px-2.5 sm:px-3 py-1 text-[10px] sm:text-[11px] font-bold uppercase tracking-wider">
                   {featuredPost.category}
                 </span>
               </div>
@@ -214,7 +214,7 @@ function BlogIndexPage() {
                   {featuredPost.tags.slice(0, 4).map((tag) => (
                     <span
                       key={tag}
-                      className="inline-flex items-center gap-1 rounded-lg bg-secondary px-2.5 py-1 text-[11px] font-medium text-foreground/80"
+                      className="inline-flex items-center gap-1 rounded-lg bg-white border border-slate-200/80 px-2.5 py-1 text-[11px] font-medium text-foreground/80 shadow-xs"
                     >
                       <Tag size={10} className="text-accent shrink-0" /> {tag}
                     </span>
@@ -263,7 +263,7 @@ function BlogIndexPage() {
             {displayedGridPosts.map((post) => (
               <article
                 key={post.slug}
-                className="group rounded-2xl overflow-hidden bg-card border border-border shadow-card hover:shadow-glow hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between min-w-0"
+                className="group rounded-2xl overflow-hidden bg-white border border-border shadow-card hover:shadow-glow hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between min-w-0"
               >
                 <div>
                   <Link
@@ -279,7 +279,7 @@ function BlogIndexPage() {
                       height={750}
                       loading="lazy"
                     />
-                    <span className="absolute top-3 left-3 rounded-md glass-dark px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-cyan">
+                    <span className="absolute top-3 left-3 rounded-md bg-white text-slate-900 shadow-md px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider">
                       {post.category}
                     </span>
                   </Link>

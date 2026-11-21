@@ -158,7 +158,7 @@ function BlogArticlePage() {
             <span className="text-cyan font-semibold">{post.category}</span>
           </nav>
 
-          <span className="inline-block rounded-full glass-dark px-3 sm:px-3.5 py-1 text-[11px] sm:text-xs font-bold uppercase tracking-wider text-cyan">
+          <span className="inline-block rounded-full bg-white text-slate-900 shadow-md px-3 sm:px-3.5 py-1 text-[11px] sm:text-xs font-bold uppercase tracking-wider">
             {post.category}
           </span>
 
@@ -504,7 +504,7 @@ function BlogArticlePage() {
               {related.map((item) => (
                 <article
                   key={item.slug}
-                  className="group rounded-2xl overflow-hidden bg-card border border-border shadow-card hover:shadow-glow transition-all flex flex-col justify-between min-w-0"
+                  className="group rounded-2xl overflow-hidden bg-white border border-border shadow-card hover:shadow-glow transition-all flex flex-col justify-between min-w-0"
                 >
                   <div>
                     <Link
@@ -520,7 +520,7 @@ function BlogArticlePage() {
                         height={560}
                         loading="lazy"
                       />
-                      <span className="absolute top-3 left-3 rounded-md glass-dark px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider text-cyan">
+                      <span className="absolute top-3 left-3 rounded-md bg-white text-slate-900 shadow-md px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider">
                         {item.category}
                       </span>
                     </Link>
