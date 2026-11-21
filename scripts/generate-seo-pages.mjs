@@ -127,6 +127,19 @@ function markdownToStaticHtmlAndFaqs(body) {
       continue;
     }
 
+    // Code block
+    if (line.startsWith("```")) {
+      i++;
+      const codeLines = [];
+      while (i < lines.length && !lines[i].trim().startsWith("```")) {
+        codeLines.push(escapeHtml(lines[i]));
+        i++;
+      }
+      if (i < lines.length) i++;
+      htmlParts.push(`<pre><code>${codeLines.join("\n")}</code></pre>`);
+      continue;
+    }
+
     if (line.startsWith("> ")) {
       const qLines = [];
       while (i < lines.length && lines[i].trim().startsWith("> ")) {
@@ -208,6 +221,9 @@ function markdownToStaticHtmlAndFaqs(body) {
     }
     if (pLines.length > 0) {
       htmlParts.push(`<p>${renderInlineHtml(pLines.join(" "))}</p>`);
+    } else if (i < lines.length) {
+      htmlParts.push(`<p>${renderInlineHtml(lines[i].trim())}</p>`);
+      i++;
     }
   }
 

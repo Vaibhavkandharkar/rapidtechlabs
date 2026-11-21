@@ -240,6 +240,9 @@ function parseMarkdownBody(body: string): {
     }
     if (paraLines.length > 0) {
       blocks.push({ type: "paragraph", text: paraLines.join(" ") });
+    } else if (i < lines.length) {
+      blocks.push({ type: "paragraph", text: lines[i].trim() });
+      i++;
     }
   }
 

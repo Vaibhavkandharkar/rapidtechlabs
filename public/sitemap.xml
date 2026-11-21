@@ -56,6 +56,12 @@
   </url>
 
   <url>
+    <loc>https://www.rapidtechlabs.in/blog/white-label-software-development-guide-agencies</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
     <loc>https://www.rapidtechlabs.in/blog/how-to-build-saas-mvp-cost-tech-stack</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
