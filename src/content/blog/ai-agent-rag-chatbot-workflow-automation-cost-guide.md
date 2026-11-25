@@ -132,7 +132,7 @@ RapidTechLabs partners with agencies across the US, UK, Canada, Australia, Europ
 
 ### How much does it cost to build a custom AI agent or RAG chatbot in 2026?
 
-A targeted AI workflow automation or single-task agent typically costs **$3,500 to $12,000 USD** (₹1,50,000 to ₹4,50,000 INR). A production custom RAG knowledge chatbot with CRM/database integration ranges from **$6,000 to $22,000 USD** (₹2,50,000 to ₹9,00,000 INR), while full enterprise multi-agent platforms range from **$25,000 to $65,000+ USD** depending on document volume, compliance rules, and custom UI dashboards.
+A targeted AI workflow automation or single-task agent typically costs $3,500 to $12,000 USD (₹1,50,000 to ₹4,50,000 INR). A production custom RAG knowledge chatbot with CRM and database integration ranges from $6,000 to $22,000 USD (₹2,50,000 to ₹9,00,000 INR), while full enterprise multi-agent platforms range from $25,000 to $65,000+ USD depending on document volume, compliance rules, and custom UI dashboards.
 
 ### What is the difference between a RAG chatbot and an autonomous AI agent?
 
@@ -148,7 +148,7 @@ For straightforward CRM-to-email or webhook automations, n8n or Make.com offers 
 
 ### How long does it take to launch a production-ready AI workflow with RapidTechLabs?
 
-Simple CRM and lead-qualification automations launch in **2 to 3 weeks**. Custom RAG copilots and intelligent document processing pipelines typically go live in **3 to 6 weeks**, with weekly live staging demos starting from Week 1.
+Simple CRM and lead-qualification automations launch in 2 to 3 weeks. Custom RAG copilots and intelligent document processing pipelines typically go live in 3 to 6 weeks, with weekly live staging demos starting from Week 1.
 
 ### Can you integrate AI copilots into our existing ERP, HMS, website, or SaaS product?
 
@@ -156,8 +156,8 @@ Yes. RapidTechLabs specializes in embedding AI copilots and automation pipelines
 
 ### Do we own 100% of the source code and avoid monthly per-seat vendor lock-in?
 
-Yes. Upon milestone completion, you receive **100% intellectual property and source code ownership**, full repository access, and deployment documentation. You pay only your direct cloud hosting and raw LLM API usage costs with zero per-seat markup.
+Yes. Upon milestone completion, you receive 100% intellectual property and source code ownership, full repository access, and deployment documentation. You pay only your direct cloud hosting and raw LLM API usage costs with zero per-seat markup.
 
 ### Do you work with global clients and agencies outside India?
 
-Yes. RapidTechLabs works remote-first with startups, SMBs, enterprises, and partner agencies across the **United States, United Kingdom, Canada, Australia, UAE, Singapore, Europe, and India**, offering flexible timezone overlap, Slack/WhatsApp channels, mutual NDAs, and billing in USD, GBP, EUR, or INR.
+Yes. RapidTechLabs works remote-first with startups, SMBs, enterprises, and partner agencies across the United States, United Kingdom, Canada, Australia, UAE, Singapore, Europe, and India, offering flexible timezone overlap, Slack/WhatsApp channels, mutual NDAs, and billing in USD, GBP, EUR, or INR.
