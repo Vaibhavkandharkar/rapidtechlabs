@@ -88,11 +88,23 @@ export function Header() {
     setMobileOpen(false);
   };
 
+  const handleLogoClick = () => {
+    closeAll();
+    if (typeof window !== "undefined") {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  };
+
   return (
     <header className="sticky top-0 z-50 glass border-b border-white/40">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex h-16 items-center justify-between">
         {/* BRAND LOGO */}
-        <Link to="/" onClick={closeAll} className="flex items-center gap-2 shrink-0">
+        <Link
+          to="/"
+          onClick={handleLogoClick}
+          aria-label="RapidTechLabs Home"
+          className="flex items-center gap-2 shrink-0 cursor-pointer"
+        >
           <img
             src={logo}
             alt="RapidTechLabs"

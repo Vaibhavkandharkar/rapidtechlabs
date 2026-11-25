@@ -58,7 +58,16 @@ export function Footer() {
     <footer className="mt-24 bg-gradient-hero text-white">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 grid gap-12 lg:grid-cols-5">
         <div className="lg:col-span-2">
-          <div className="flex items-center gap-2">
+          <Link
+            to="/"
+            onClick={() => {
+              if (typeof window !== "undefined") {
+                window.scrollTo({ top: 0, behavior: "smooth" });
+              }
+            }}
+            aria-label="RapidTechLabs Home"
+            className="inline-flex items-center gap-2 hover:opacity-90 transition-opacity"
+          >
             <img
               src={logo}
               alt="RapidTechLabs"
@@ -68,7 +77,7 @@ export function Footer() {
               loading="lazy"
             />
             <span className="font-display font-bold text-xl">RapidTechLabs</span>
-          </div>
+          </Link>
           <p className="mt-4 text-white/70 text-sm leading-relaxed max-w-sm">
             Building Solutions. Powering Futures. Premium website development, custom software
             engineering, ERP solutions, and AI integrations for forward-thinking enterprises
