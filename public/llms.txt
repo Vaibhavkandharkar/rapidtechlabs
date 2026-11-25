@@ -1,0 +1,37 @@
+# RapidTechLabs
+
+> RapidTechLabs (https://www.rapidtechlabs.in) is a global custom software engineering, AI automation, SaaS MVP, ERP, healthcare/education platform, website development, and technical SEO agency serving clients in the USA, UK, Canada, Australia, UAE, Singapore, Europe, and India.
+
+## Core Services & Transparent Global Pricing
+- **AI Automation, RAG Copilots & Custom AI Agents**: Custom workflow automation ($3,500–$7,500 / ₹1.5L–₹3L), private RAG knowledge chatbots ($6,000–$15,000 / ₹2.5L–₹6L), autonomous multi-step AI agents ($10,000–$22,000), and enterprise multi-agent platforms ($25,000–$65,000+) with zero-data-retention APIs and 100% source code ownership.
+- **White-Label Software & AI Development for Agencies**: Confidential ghost engineering partner for digital marketing, SEO, and design agencies at wholesale rates yielding 50%–70% agency profit margins under mutual NDA.
+- **Custom Software & SaaS MVP Development**: Multi-tenant SaaS platforms, REST/GraphQL APIs, Stripe/Razorpay billing, and 45–60 day MVP launches using React, Next.js, TypeScript, Node.js, Python, .NET Core, and PostgreSQL.
+- **Website Development**: Launch Website ($249 / ₹19,999), Starter Business ($499 / ₹39,999), Growth Professional ($1,199 / ₹99,999), Enterprise Custom (Starting $4,200 / ₹3,50,000).
+- **Industrial ERP & Enterprise Systems**: Manufacturing ERP (BOM, MRP, procurement, inventory), Hospital & Clinic Management Systems (HMS/EHR, OPD/IPD, pharmacy, lab), and Institute Management Systems.
+- **SEO Services & Website Maintenance**: SEO Foundation ($249/mo / ₹19,999/mo), Growth Accelerator ($599/mo / ₹49,999/mo), and Website Maintenance Care ($75/mo / ₹5,999/mo).
+- **PaperGen (Live SaaS Product)**: Automated exam question paper and worksheet generator at https://paper-gen-five.vercel.app/.
+
+## Key Pages
+- [Home](https://www.rapidtechlabs.in/)
+- [Services](https://www.rapidtechlabs.in/services)
+- [Portfolio & Case Studies](https://www.rapidtechlabs.in/portfolio)
+- [Engineering & Growth Blog](https://www.rapidtechlabs.in/blog)
+- [About RapidTechLabs](https://www.rapidtechlabs.in/about)
+- [Contact & Consultation](https://www.rapidtechlabs.in/contact)
+
+## Engineering & Pricing Guides
+- [AI Agent, Custom RAG Chatbot & Workflow Automation Cost (2026 Global Guide): Architecture, ROI & Agency Pricing](https://www.rapidtechlabs.in/blog/ai-agent-rag-chatbot-workflow-automation-cost-guide): Complete 2026 cost and architecture guide for custom AI agents, RAG chatbots, and business workflow automation. Compare global agency pricing, ROI benchmarks, security guardrails, and timelines. (Keywords: AI Automation Agency, AI Agent Development Cost, Custom RAG Chatbot, Business Workflow Automation, Enterprise AI Copilot, Intelligent Document Processing, LLM Integration Services, White Label AI Development)
+- [Outsourcing Software Development to India (2026 Guide): Costs, Tech Stacks & How Global Founders Save 70%](https://www.rapidtechlabs.in/blog/outsource-software-development-to-india-guide): A complete strategic guide for US, UK, European, and global founders outsourcing software development to India. Compare hourly rates, engagement models, IP security, tech stacks, and how to eliminate timezone friction. (Keywords: Outsourcing India, Custom Software, Dedicated Developers, SaaS Development, Global Startups, Tech Stack 2026)
+- [White-Label Software & Web Development (2026 Agency Guide): How Marketing Agencies Scale to $100k+/Mo Without Hiring Developers](https://www.rapidtechlabs.in/blog/white-label-software-development-guide-agencies): The complete 2026 playbook for marketing, design, and SEO agencies looking to offer custom software, SaaS, and web development under their own brand. Discover pricing models, 50-70% profit margins, strict NDA protections, and how to scale delivery without fixed developer payroll. (Keywords: White Label Development, Agency Growth, Software Outsourcing, Web Development Partner, Digital Agencies, Agency Profit Margins)
+- [How to Build a Scalable SaaS MVP in 2026: Cost Breakdown, Architecture & Launch Blueprint](https://www.rapidtechlabs.in/blog/how-to-build-saas-mvp-cost-tech-stack): Complete technical and financial blueprint to build a scalable SaaS MVP in 2026. Explore multi-tenant database design, Stripe and Razorpay billing, AI copilots, real development costs, and a 60-day launch roadmap. (Keywords: SaaS MVP, MVP Cost, Software Architecture, AI Copilots, Stripe Integration, Cloud Scaling)
+- [Website Development Cost in India: Complete Pricing Guide (₹19,999 to ₹3.5L+)](https://www.rapidtechlabs.in/blog/website-development-cost-india): Transparent breakdown of website development cost in India for startups, SMBs, and enterprises — compare features, timelines, hosting, SEO, and monthly care costs. (Keywords: Website Development, Pricing India, Business Website, Web Agency)
+- [Hospital & Clinic Management Software (HMS/EHR) Guide: Essential Modules & Architecture](https://www.rapidtechlabs.in/blog/hospital-management-system-guide-india): Complete guide to modern Hospital Management Systems (HMS) and Clinic EHR software in India — OPD/IPD workflows, pharmacy, lab reporting, billing, and data security. (Keywords: Hospital Management System, Healthcare Software, Clinic EHR, HMS India)
+- [How Custom Industrial ERP Software Eliminates Manufacturing Bottlenecks & Inventory Leakage](https://www.rapidtechlabs.in/blog/industrial-erp-software-manufacturing): Discover how modular Industrial ERP software streamlines Bill of Materials (BOM), MRP, procurement, and shop-floor visibility for Indian manufacturing companies. (Keywords: Industrial ERP, Manufacturing Software, BOM MRP, Custom Software India)
+- [How Schools & Coaching Institutes Generate Exam Question Papers in Minutes with PaperGen](https://www.rapidtechlabs.in/blog/automated-question-paper-generator-papergen): Stop spending hours formatting exam sheets in Word. See how PaperGen automates question papers, worksheets, blueprints, and print-ready PDFs for schools and academies. (Keywords: PaperGen, Question Paper Generator, EdTech India, School Software)
+- [Technical SEO & Website Maintenance Checklist: How to Get Indexed and Rank on Google](https://www.rapidtechlabs.in/blog/technical-seo-website-maintenance-guide): Practical technical SEO and website care checklist for Indian businesses — fix canonical errors, speed up Core Web Vitals, get pages indexed fast, and grow organic leads. (Keywords: Technical SEO, Google Indexing, Website Maintenance, SEO Services India)
+
+## Contact
+- Website: https://www.rapidtechlabs.in
+- Email: sales@rapidtechlabs.in
+- Phone / WhatsApp: +91 8806884168
+- Areas Served: Worldwide (United States, United Kingdom, Canada, Australia, UAE, Singapore, Europe, India)

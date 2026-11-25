@@ -1,11 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>RapidTechLabs Blog — Web Development, ERP, AI &amp; SEO Guides</title>
+    <title>RapidTechLabs Blog — AI Automation, Web Development, ERP &amp; SEO Guides</title>
     <link>https://www.rapidtechlabs.in/blog</link>
     <atom:link href="https://www.rapidtechlabs.in/rss.xml" rel="self" type="application/rss+xml" />
-    <description>Actionable engineering, pricing, and SEO guides from RapidTechLabs.</description>
-    <language>en-in</language>
+    <description>Actionable engineering, AI automation, pricing, and SEO guides from RapidTechLabs.</description>
+    <language>en</language>
+    <item>
+      <title>AI Agent, Custom RAG Chatbot &amp; Workflow Automation Cost (2026 Global Guide): Architecture, ROI &amp; Agency Pricing</title>
+      <link>https://www.rapidtechlabs.in/blog/ai-agent-rag-chatbot-workflow-automation-cost-guide</link>
+      <guid isPermaLink="true">https://www.rapidtechlabs.in/blog/ai-agent-rag-chatbot-workflow-automation-cost-guide</guid>
+      <description>Complete 2026 cost and architecture guide for custom AI agents, RAG chatbots, and business workflow automation. Compare global agency pricing, ROI benchmarks, security guardrails, and timelines.</description>
+      <category>AI &amp; Automation</category>
+    </item>
     <item>
       <title>Outsourcing Software Development to India (2026 Guide): Costs, Tech Stacks &amp; How Global Founders Save 70%</title>
       <link>https://www.rapidtechlabs.in/blog/outsource-software-development-to-india-guide</link>

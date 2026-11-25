@@ -103,7 +103,7 @@ function BlogIndexPage() {
                   setQuery(e.target.value);
                   setVisibleCount(PAGE_SIZE);
                 }}
-                placeholder="Search website cost, ERP, hospital software, SEO..."
+                placeholder="Search AI agents, RAG chatbots, white-label, SaaS MVP, ERP, SEO..."
                 aria-label="Search blog articles"
                 className="w-full rounded-xl sm:rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 pl-10 sm:pl-11 pr-4 py-3 sm:py-3.5 text-sm text-white placeholder:text-white/55 focus:outline-none focus:ring-2 focus:ring-cyan focus:border-cyan transition"
               />

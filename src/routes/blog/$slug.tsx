@@ -52,8 +52,10 @@ export const Route = createFileRoute("/blog/$slug")({
       path: `/blog/${post.slug}`,
       ogType: "article",
       extra: [
+        { name: "keywords", content: post.tags.join(", ") },
         { property: "article:published_time", content: post.date },
         { property: "article:section", content: post.category },
+        ...post.tags.map((tag) => ({ property: "article:tag", content: tag })),
       ],
     });
   },

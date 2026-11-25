@@ -44,7 +44,7 @@ function webPageJsonLd({ name, description, path: routePath }) {
     name,
     description,
     url: `${SITE_URL}${routePath === "/" ? "/" : routePath}`,
-    inLanguage: "en-IN",
+    inLanguage: "en",
     isPartOf: { "@type": "WebSite", name: "RapidTechLabs", url: SITE_URL },
   };
 }
@@ -472,7 +472,7 @@ const staticRoutes = [
         description:
           "Actionable guides on website development pricing, custom software, industrial ERP, hospital management, PaperGen EdTech, and technical SEO.",
         url: `${SITE_URL}/blog`,
-        inLanguage: "en-IN",
+        inLanguage: "en",
         blogPost: blogPosts.map((p) => ({
           "@type": "BlogPosting",
           headline: p.title,
@@ -620,8 +620,13 @@ const blogRoutes = blogPosts.map((post) => {
       datePublished: post.date,
       dateModified: post.date,
       articleSection: post.category,
-      inLanguage: "en-IN",
+      inLanguage: "en",
+      isAccessibleForFree: true,
       keywords: post.tags.join(", "),
+      speakable: {
+        "@type": "SpeakableSpecification",
+        cssSelector: ["h1", "article blockquote", "article h2"],
+      },
       author: { "@type": "Organization", name: post.author, url: SITE_URL },
       publisher: {
         "@type": "Organization",
@@ -790,7 +795,7 @@ function generateRssXml() {
     })
     .join("\n");
 
-  return `<?xml version="1.0" encoding="UTF-8"?>\n<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">\n  <channel>\n    <title>RapidTechLabs Blog — Web Development, ERP, AI &amp; SEO Guides</title>\n    <link>${SITE_URL}/blog</link>\n    <atom:link href="${SITE_URL}/rss.xml" rel="self" type="application/rss+xml" />\n    <description>Actionable engineering, pricing, and SEO guides from RapidTechLabs.</description>\n    <language>en-in</language>\n${items}\n  </channel>\n</rss>\n`;
+  return `<?xml version="1.0" encoding="UTF-8"?>\n<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">\n  <channel>\n    <title>RapidTechLabs Blog — AI Automation, Web Development, ERP &amp; SEO Guides</title>\n    <link>${SITE_URL}/blog</link>\n    <atom:link href="${SITE_URL}/rss.xml" rel="self" type="application/rss+xml" />\n    <description>Actionable engineering, AI automation, pricing, and SEO guides from RapidTechLabs.</description>\n    <language>en</language>\n${items}\n  </channel>\n</rss>\n`;
 }
 
 function generateRobotsTxt() {
@@ -849,6 +854,9 @@ Allow: /
 User-agent: GPTBot
 Allow: /
 
+User-agent: OAI-SearchBot
+Allow: /
+
 User-agent: ChatGPT-User
 Allow: /
 
@@ -864,6 +872,9 @@ Allow: /
 User-agent: Google-Extended
 Allow: /
 
+User-agent: GoogleOther
+Allow: /
+
 User-agent: Applebot
 Allow: /
 
@@ -873,15 +884,64 @@ Allow: /
 User-agent: Meta-ExternalAgent
 Allow: /
 
+User-agent: Amazonbot
+Allow: /
+
+User-agent: YouBot
+Allow: /
+
+User-agent: DuckAssistBot
+Allow: /
+
 User-agent: cohere-ai
 Allow: /
 
-# Sitemaps & Feeds
+# Sitemaps, Feeds & AI Index
 Sitemap: ${SITE_URL}/sitemap.xml
 Sitemap: ${SITE_URL}/rss.xml
 
 # Canonical Host
 Host: ${SITE_URL}
+`;
+}
+
+function generateLlmsTxt() {
+  const postLines = blogPosts
+    .map(
+      (p) =>
+        `- [${p.title}](${SITE_URL}/blog/${p.slug}): ${p.description} (Keywords: ${p.tags.join(", ")})`,
+    )
+    .join("\n");
+
+  return `# RapidTechLabs
+
+> RapidTechLabs (${SITE_URL}) is a global custom software engineering, AI automation, SaaS MVP, ERP, healthcare/education platform, website development, and technical SEO agency serving clients in the USA, UK, Canada, Australia, UAE, Singapore, Europe, and India.
+
+## Core Services & Transparent Global Pricing
+- **AI Automation, RAG Copilots & Custom AI Agents**: Custom workflow automation ($3,500–$7,500 / ₹1.5L–₹3L), private RAG knowledge chatbots ($6,000–$15,000 / ₹2.5L–₹6L), autonomous multi-step AI agents ($10,000–$22,000), and enterprise multi-agent platforms ($25,000–$65,000+) with zero-data-retention APIs and 100% source code ownership.
+- **White-Label Software & AI Development for Agencies**: Confidential ghost engineering partner for digital marketing, SEO, and design agencies at wholesale rates yielding 50%–70% agency profit margins under mutual NDA.
+- **Custom Software & SaaS MVP Development**: Multi-tenant SaaS platforms, REST/GraphQL APIs, Stripe/Razorpay billing, and 45–60 day MVP launches using React, Next.js, TypeScript, Node.js, Python, .NET Core, and PostgreSQL.
+- **Website Development**: Launch Website ($249 / ₹19,999), Starter Business ($499 / ₹39,999), Growth Professional ($1,199 / ₹99,999), Enterprise Custom (Starting $4,200 / ₹3,50,000).
+- **Industrial ERP & Enterprise Systems**: Manufacturing ERP (BOM, MRP, procurement, inventory), Hospital & Clinic Management Systems (HMS/EHR, OPD/IPD, pharmacy, lab), and Institute Management Systems.
+- **SEO Services & Website Maintenance**: SEO Foundation ($249/mo / ₹19,999/mo), Growth Accelerator ($599/mo / ₹49,999/mo), and Website Maintenance Care ($75/mo / ₹5,999/mo).
+- **PaperGen (Live SaaS Product)**: Automated exam question paper and worksheet generator at https://paper-gen-five.vercel.app/.
+
+## Key Pages
+- [Home](${SITE_URL}/)
+- [Services](${SITE_URL}/services)
+- [Portfolio & Case Studies](${SITE_URL}/portfolio)
+- [Engineering & Growth Blog](${SITE_URL}/blog)
+- [About RapidTechLabs](${SITE_URL}/about)
+- [Contact & Consultation](${SITE_URL}/contact)
+
+## Engineering & Pricing Guides
+${postLines}
+
+## Contact
+- Website: ${SITE_URL}
+- Email: sales@rapidtechlabs.in
+- Phone / WhatsApp: +91 8806884168
+- Areas Served: Worldwide (United States, United Kingdom, Canada, Australia, UAE, Singapore, Europe, India)
 `;
 }
 
@@ -918,3 +978,8 @@ const robotsTxt = generateRobotsTxt();
 fs.writeFileSync(path.join(DIST_DIR, "robots.txt"), robotsTxt, "utf8");
 fs.writeFileSync(path.join(PUBLIC_DIR, "robots.txt"), robotsTxt, "utf8");
 console.log("Updated robots.txt in dist/ and public/.");
+
+const llmsTxt = generateLlmsTxt();
+fs.writeFileSync(path.join(DIST_DIR, "llms.txt"), llmsTxt, "utf8");
+fs.writeFileSync(path.join(PUBLIC_DIR, "llms.txt"), llmsTxt, "utf8");
+console.log(`Generated llms.txt with ${blogPosts.length} blog guides in dist/ and public/.`);

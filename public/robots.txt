@@ -53,6 +53,9 @@ Allow: /
 User-agent: GPTBot
 Allow: /
 
+User-agent: OAI-SearchBot
+Allow: /
+
 User-agent: ChatGPT-User
 Allow: /
 
@@ -68,6 +71,9 @@ Allow: /
 User-agent: Google-Extended
 Allow: /
 
+User-agent: GoogleOther
+Allow: /
+
 User-agent: Applebot
 Allow: /
 
@@ -77,10 +83,19 @@ Allow: /
 User-agent: Meta-ExternalAgent
 Allow: /
 
+User-agent: Amazonbot
+Allow: /
+
+User-agent: YouBot
+Allow: /
+
+User-agent: DuckAssistBot
+Allow: /
+
 User-agent: cohere-ai
 Allow: /
 
-# Sitemaps & Feeds
+# Sitemaps, Feeds & AI Index
 Sitemap: https://www.rapidtechlabs.in/sitemap.xml
 Sitemap: https://www.rapidtechlabs.in/rss.xml
 

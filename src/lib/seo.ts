@@ -196,8 +196,13 @@ export function blogPostingSchema(opts: {
     datePublished: opts.datePublished,
     dateModified: opts.dateModified ?? opts.datePublished,
     articleSection: opts.section,
-    inLanguage: "en-IN",
+    inLanguage: "en",
+    isAccessibleForFree: true,
     keywords: opts.keywords?.join(", "),
+    speakable: {
+      "@type": "SpeakableSpecification",
+      cssSelector: ["h1", "article blockquote", "article h2"],
+    },
     author: {
       "@type": "Organization",
       name: opts.authorName,
@@ -226,7 +231,7 @@ export function blogCollectionSchema(
     description:
       "Actionable guides on website development pricing, custom software, industrial ERP, hospital management, PaperGen EdTech, and technical SEO by RapidTechLabs.",
     url: `${SITE_URL}/blog`,
-    inLanguage: "en-IN",
+    inLanguage: "en",
     publisher: {
       "@type": "Organization",
       name: SITE_NAME,
