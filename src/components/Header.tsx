@@ -39,9 +39,37 @@ export function Header() {
   const [mobileExpanded, setMobileExpanded] = useState<"services" | "pricing" | "solutions" | null>(
     null,
   );
+  const [scrollProgress, setScrollProgress] = useState(0);
+  const pathname = useRouterState({ select: (s) => s.location.pathname });
+  const showScrollBar = pathname !== "/contact";
 
   const navRef = useRef<HTMLDivElement>(null);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  useEffect(() => {
+    if (!showScrollBar) {
+      setScrollProgress(0);
+      return;
+    }
+
+    function handleScroll() {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      if (docHeight <= 0) {
+        setScrollProgress(0);
+        return;
+      }
+      setScrollProgress(Math.min(1, Math.max(0, scrollTop / docHeight)));
+    }
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("resize", handleScroll, { passive: true });
+    handleScroll();
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleScroll);
+    };
+  }, [pathname, showScrollBar]);
 
   // Close dropdown on outside click
   useEffect(() => {
@@ -1024,6 +1052,19 @@ export function Header() {
               </a>
             </div>
           </div>
+        </div>
+      )}
+
+      {/* SUBTLE SCROLL PROGRESS BAR */}
+      {showScrollBar && (
+        <div
+          aria-hidden="true"
+          className="absolute bottom-0 left-0 right-0 h-[2.5px] bg-transparent pointer-events-none overflow-hidden"
+        >
+          <div
+            className="h-full w-full origin-left bg-gradient-brand transition-transform duration-75 ease-out"
+            style={{ transform: `scaleX(${scrollProgress})` }}
+          />
         </div>
       )}
     </header>

@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import {
   ArrowLeft,
   ArrowRight,
@@ -66,24 +66,8 @@ function BlogArticlePage() {
   const { slug } = Route.useParams();
   const post = getBlogPostBySlug(slug);
 
-  const [progress, setProgress] = useState(0);
   const [copied, setCopied] = useState(false);
   const [mobileTocOpen, setMobileTocOpen] = useState(false);
-
-  useEffect(() => {
-    function handleScroll() {
-      const scrollTop = window.scrollY;
-      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-      if (docHeight <= 0) {
-        setProgress(0);
-        return;
-      }
-      setProgress(Math.min(100, Math.max(0, (scrollTop / docHeight) * 100)));
-    }
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    handleScroll();
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [slug]);
 
   if (!post) {
     return (
@@ -126,14 +110,6 @@ function BlogArticlePage() {
 
   return (
     <div className="overflow-x-clip">
-      {/* TOP READING PROGRESS BAR */}
-      <div className="fixed top-16 left-0 right-0 z-40 h-1 bg-transparent pointer-events-none">
-        <div
-          className="h-full bg-gradient-brand transition-[width] duration-75"
-          style={{ width: `${progress}%` }}
-        />
-      </div>
-
       {/* ARTICLE HERO */}
       <section className="relative overflow-hidden bg-gradient-hero text-white py-10 sm:py-16 lg:py-20">
         <div
