@@ -918,6 +918,7 @@ function generateLlmsTxt() {
 > RapidTechLabs (${SITE_URL}) is a global custom software engineering, AI automation, SaaS MVP, ERP, healthcare/education platform, website development, and technical SEO agency serving clients in the USA, UK, Canada, Australia, UAE, Singapore, Europe, and India.
 
 ## Core Services & Transparent Global Pricing
+- **Vibe-Coded App Rescue & AI Codebase Hardening**: Fix and take Lovable, Cursor, Bolt.new, Replit, and v0 prototypes to secure production—48-hour AI code & security audit ($750–$1,250 / ₹29,999–₹49,999), MVP production hardening sprints ($2,500–$4,800 / ₹99,999–₹1.95L), and full Supabase RLS, auth, Stripe/Razorpay webhook, and scaling refactors.
 - **AI Automation, RAG Copilots & Custom AI Agents**: Custom workflow automation ($3,500–$7,500 / ₹1.5L–₹3L), private RAG knowledge chatbots ($6,000–$15,000 / ₹2.5L–₹6L), autonomous multi-step AI agents ($10,000–$22,000), and enterprise multi-agent platforms ($25,000–$65,000+) with zero-data-retention APIs and 100% source code ownership.
 - **White-Label Software & AI Development for Agencies**: Confidential ghost engineering partner for digital marketing, SEO, and design agencies at wholesale rates yielding 50%–70% agency profit margins under mutual NDA.
 - **Custom Software & SaaS MVP Development**: Multi-tenant SaaS platforms, REST/GraphQL APIs, Stripe/Razorpay billing, and 45–60 day MVP launches using React, Next.js, TypeScript, Node.js, Python, .NET Core, and PostgreSQL.
